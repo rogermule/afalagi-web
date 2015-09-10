@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Encoder</title>
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/custome_common.css" rel="stylesheet">
+    <link href="../../css/Admin.css" rel="stylesheet">
+
+</head>
+<body class="back_ground_addis">
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <a class="navbar-brand white">Afalagi Encoder</a>
+    <p class="navbar-text white">We serve any thing with a single call.</p>
+    <ul class="nav navbar-nav navbar-right">
+
+        <li class="nav active"><a href="../../../CONTROLLER/Logout_Handler.php">Logout</a></li>
+        <li class="nav active"><a href="#">About</a></li>
+
+    </ul>
+
+</div>
+
+<div class="row margin_top_51">
+
+
+
+    <!--this is the start of the menu-->
+     <div class="col-sm-3">
+         <div class="list-group border_raduis_0">
+            <a href="#" class="list-group-item encoder_menu">
+                <span class=" glyphicon glyphicon-plus m_r_10"></span>
+                <span class="s_20px">Add Place</span>
+
+            </a>
+            <a href="#" class="list-group-item encoder_menu">
+                <span class=" glyphicon glyphicon-plus m_r_10"></span>
+                <span class="s_20px">Add Company</span>
+            </a>
+            <a href="#" class="list-group-item encoder_menu">
+                <span class=" glyphicon glyphicon-plus m_r_10"></span>
+                <span class="s_20px">Add Hotels</span>
+
+            </a>
+            <a href="#" class="list-group-item encoder_menu">
+                <span class=" glyphicon glyphicon-plus m_r_10"></span>
+                <span class="s_20px">Add Hospitals</span>
+
+            </a>
+            <a href="#" class="list-group-item encoder_menu">
+                <span class=" glyphicon glyphicon-plus m_r_10"></span>
+                <span class="s_20px">Add Buildings</span>
+
+            </a>
+            <a href="#" class="list-group-item encoder_menu">
+                <span class=" glyphicon glyphicon-plus m_r_10"></span>
+                <span class="s_20px">Add Events</span>
+
+            </a>
+            <a href="#" class="list-group-item encoder_menu">
+                <span class=" glyphicon glyphicon-plus m_r_10"></span>
+                <span class="s_20px">Add Phone Numbers</span>
+
+            </a>
+
+        </div>
+     </div>
+     <!--end of the menu-->
+
+    <!--start of, adding company-->
+
+    <div class="col-sm-7 list_container margin_0">
+
+        <div class="col-sm-12">
+
+            <div class="panel panel-default">
+                <div class="panel-body text-center">
+                    <h4>Add Company</h4>
+
+                </div>
+            </div>
+
+            <div class=" margin_top_20">
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Company Address</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form class="form-horizontal" role="form"
+                              action="../../../CONTROLLER/Admin_Edit_User.php" method="POST">
+
+
+                            <div class="form-group">
+                                <label for="Region" class="col-sm-4 control-label">Region</label>
+                                <div class="col-sm-5">
+                                    <select class="form-control" id="Region">
+                                        <option>Select Region</option>
+                                        <option>Amhara</option>
+                                        <option>Afar</option>
+                                        <option>Benshangul</option>
+                                        <option>Debub</option>
+                                        <option>Somaliya</option>
+                                        <option>Ormoiya</option>
+                                        <option>Tigray</option>
+
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="City" class="col-sm-4 control-label">City</label>
+                                <div class="col-sm-5">
+                                    <select class="form-control" id="City">
+                                        <option>Select city</option>
+                                        <option>Addis Ababa</option>
+                                        <option>Jigjiga</option>
+                                        <option>Jimma</option>
+                                        <option>BahirDar</option>
+                                        <option>Wello</option>
+                                        <option>Axum</option>
+                                        <option>Mekele</option>
+
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Sub_City" class="col-sm-4 control-label">City</label>
+                                <div class="col-sm-5">
+                                    <select class="form-control" id="Sub_City">
+                                        <option>Select Sub City</option>
+                                        <option>Kirkos</option>
+                                        <option>Nifas Silk Lafto</option>
+                                        <option>Bole</option>
+
+
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Sefer" class="col-sm-4 control-label">City</label>
+                                <div class="col-sm-5">
+                                    <select class="form-control" id="Sefer">
+                                        <option>Select Sefer</option>
+                                        <option>Jemo 1</option>
+                                        <option>Lebu</option>
+                                        <option>CMC</option>
+                                        <option>Ayer Tena</option>
+                                   </select>
+                                </div>
+                            </div>
+
+
+
+                            <!--<div class="form-group margin_top_30">-->
+
+                                <!--<div class="col-sm-5 col-lg-offset-4">-->
+                                    <!--<button type="submit" class="btn btn-success btn-block">-->
+                                        <!--<strong>Add Region</strong>-->
+                                    <!--</button>-->
+                                <!--</div>-->
+                            <!--</div>-->
+
+
+                        </form>
+                    </div>
+                </div>
+
+
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Company Name And work Description</h3>
+                    </div>
+                    <div class="panel-body">
+                        Panel content
+                    </div>
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

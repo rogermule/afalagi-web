@@ -1,0 +1,199 @@
+<?php
+
+/**
+ * this php file will handle the form entry by the admin
+ * and checks if the admin entered all the form entry and edits the user
+ */
+
+require("../CONFIGURATION/Config.php");//this file contains configurations files
+require(DB);//this will make the database class included
+require("../MODEL/User.php");//user object will be created so it should be included in here
+require("User_Controller.php");//admin controller is going to extend this class so it should be included
+require("Admin_Controller.php");
+require("Controller_Secure_Access.php");//this will prevent this file from being accessed easily
+require("../MODEL/User_Type.php");
+require("../MODEL/Error_Type.php");
+$errors = array();
+
+
+/**
+ * @param User $new_user
+ * this function takes a new added user and sends the user name and type of the
+ * user to Admin_Add_User.php file
+ */
+function admin_redirect_success(){
+
+
+	$dir = "VIEW/html/Admin/Admin_Action_Handler.php?EDIT_PROFILE=1&success=1";
+	$url = BASE_URL.$dir;
+	header("Location:$url");//redirect the admin to the Admin_Add_Users.php file
+	exit();
+
+}
+
+
+/**
+ * this function redirects the user
+ */
+function admin_redirect_error($type_of_error){
+
+
+	$error_type = "";
+
+	if($type_of_error == Error_Type::FORM){
+		$error_type = "Fill out the form  correctly.";
+	}
+
+	else if($type_of_error == Error_Type::DATA_BASE){
+		$error_type = "Error when adding new user.";
+	}
+
+	else if($type_of_error == Error_Type::SAME_USER_NAME){
+		$error_type = "Error, Use a different name. User name exists before.";
+	}
+
+	$dir = "VIEW/html/Admin/Admin_Action_Handler.php?EDIT_PROFILE=1&error=$error_type";
+	$url = BASE_URL.$dir;
+	header("Location:$url");//redirect the admin to the Admin_Add_Users.php file
+	exit();
+}
+
+
+
+
+if($_SERVER['REQUEST_METHOD'] == "POST"){
+
+
+	/**
+	 * check if the user is logged in
+	 * check login status is from php file "controller secure access"
+	 * it checks if the use is logged in
+	 */
+	if(TRUE == check_login_status()){
+
+		/**
+		 * check if the type of the user is admin
+		 * get_user_type function is from a php file"Controller secure access"
+		 * it returns the type of the user
+		 */
+		$user_type = get_user_type();
+
+		/**
+		 * if the user type is admin instantiate an Admin_controller and do what you got to do
+		 */
+		if($user_type == User_Type::ADMIN){
+
+
+			/**
+			 * get the logged in user
+			 */
+			$user_admin = $_SESSION['Logged_In_User'];
+
+
+			/**
+			 * this is the original password
+			 */
+			$admin_password = $user_admin->getUserPassword();
+
+
+			/**
+			 * instantiate admin controller with the logged in user
+			 */
+			$admin_controller = new Admin_Controller($user_admin);
+
+			/**
+			 * get the user name from post
+			 */
+			if(empty($_POST['User_Name'])){
+				$errors[] = "User Name Should be filled";
+			}
+			else{
+				$User_Name = $_POST['User_Name'];
+			}
+
+			/**
+			 * get the password from post
+			 */
+			if(empty($_POST['Previous_Password'])){
+				$errors[] = "Previous password should be filled";
+			}
+			else{
+				$Previous_Password = $_POST['Previous_Password'];
+			}
+
+			/**
+			 * get the phone number
+			 */
+			if(empty($_POST['New_Password'])){
+				$errors[] = "New Password should be filled";
+			}
+			else{
+				$New_Password = $_POST['New_Password'];
+			}
+
+
+
+			if(!isset($_POST['ID'])){
+				$errors[] = "Please go back and refresh the site!";
+			}
+			else{
+				$User_ID = $_POST['ID'];
+			}
+
+			if($admin_password != $Previous_Password){
+				$errors[] = "previous password don't match";
+			}
+
+			if($admin_controller->Check_User_Name_For_Edit($User_Name,$User_ID)){
+				admin_redirect_error(Error_Type::SAME_USER_NAME);
+			}
+
+
+
+			/**
+			 * if there is no error
+			 */
+			if(empty($errors)){
+
+				/**
+				 * instantiate a new user
+				 */
+				$new_user= new User($User_Name,$New_Password);
+				$new_user->setUserID($User_ID);
+
+
+				/**
+				 * Edit the user and a new user will be returned if the user is updated
+				 */
+				$edited= $admin_controller->Admin_Edit_Profile($new_user);
+
+				/**
+				 * inform the admin about the result
+				 */
+				if($edited){
+					admin_redirect_success();
+				}
+				else{
+					admin_redirect_error(Error_Type::DATA_BASE);
+				}
+
+			}
+			/**
+			 * if there are errors when filling the form
+			 */
+			else{
+
+				admin_redirect_error(Error_Type::FORM);
+			}
+
+		}
+	}
+
+}
+
+
+
+
+
+
+

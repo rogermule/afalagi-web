@@ -1,0 +1,178 @@
+
+.back_ground_addis{
+    background-image: url("../html/img/addis_night_view.jpg");
+
+}
+.border_raduis_0{
+    border-radius: 0;
+}
+
+.list-group-item:first-child {
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+}
+.list-group-item:last-child {
+
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius:0;
+}
+.badge {
+
+    background-color: #ff0000;
+
+}
+a.list-group-item.active > .badge, .nav-pills > .active > a > .badge {
+    color: #ffffff;
+    background-color: #ff0000;
+}
+.left_menu{
+
+
+    padding: 20px 20px;
+}
+/*this will affect the navigations*/
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    border-color: #E6E6E6;
+}
+.navbar-default {
+    border-color: rgb(66, 139, 202);
+    background-color: rgb(66, 139, 202);
+}
+
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+    color: #FFFDFD;
+    background-color: transparent;
+}
+
+.navbar-default .navbar-brand {
+    color: #FFF;
+}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+    color: rgb(66, 139, 202);
+    background-color: #FFF;
+}
+.navbar-default .navbar-nav > li > a {
+    color: #FFF;
+}
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    color: #FFF;
+    background-color: transparent;
+}
+.navbar {
+    border-radius: 0;
+
+}
+
+/*this will affect the list of encoders and workers*/
+
+.list_container{
+    background-color: #f3f3f3;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+}
+
+.list_header{
+    background-color: rgb(72, 152, 221);
+    color: #ffffff;
+}
+
+h1, h2, h3 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.panel-default {
+    border-color: #FFF;
+}
+.panel {
+    margin-bottom: 10px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid transparent;
+    border-radius: 4px;
+    box-shadow: 0px 1px 1px rgba(218, 218, 218, 0.60);
+}
+
+h4, h5, h6 {
+    margin-top:1px;
+    margin-bottom: 1px;
+}
+
+.number{
+    color: #000000;
+    font-weight: 700;
+    margin-right: 10px;
+}
+.name{
+    color: #269abc;
+}
+.list-group-item{
+    transition: 0.1s;
+}
+.list-group-item:hover{
+
+    border-left: 3px solid #269abc;
+    background-color: #fbfbfb;
+}
+
+input[type="radio"], input[type="checkbox"] {
+    margin: 10px 0px 0px;
+    line-height: normal;
+}
+
+.form-horizontal .left {
+    text-align: left;
+    color: #ee3000;
+    font-size: 16px;
+}
+
+
+/*this will affect the encoder */
+
+
+.encoder_menu{
+    padding: 15px;
+
+}
+a.list-group-item:hover,
+a.list-group-item:focus {
+    text-decoration: none;
+    background-color: #519cf5;
+    color: white;
+}
+hr{
+    border-color: #000 -moz-use-text-color -moz-use-text-color;
+}
+
+
+
+
+/*this will affect the place holders*/
+.place_containers{
+    background-color: #f3f3f3;
+}
+
+
+.form_containers{
+
+}
+
+.list_header{
+    background-color: #273027;
+    color: #ffffff;
+}
+
+
+.table-hover > tbody > tr:hover > td,
+.table-hover > tbody > tr:hover > th {
+    background-color: #9e9e9e;
+    color: white;
+}
+
+
+
+
+
+
+
