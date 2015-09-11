@@ -103,7 +103,7 @@
                         <label for="inputPassword3" class="col-sm-4 control-label">Password</label>
                         <div class="col-sm-8">
 
-            <input name="User_Password" type="password" class="form-control" id="inputPassword3" placeholder="Password">
+                            <input name="User_Password" type="password" class="form-control" id="inputPassword3" placeholder="Password">
                         </div>
                     </div>
 
@@ -121,13 +121,13 @@
                     <div class="form-group">
                         <label  class="col-sm-4 control-label">Employee Type</label>
                         <div class="col-sm-8">
-                        <label  class="col-sm-3 control-label" form="Operator">Operator</label>
+                            <label  class="col-sm-3 control-label" form="Operator">Operator</label>
 
-                <input name="User_Type" class="col-sm-1" type="radio"  id="Operator" value="OPERATOR">
+                            <input name="User_Type" class="col-sm-1" type="radio"  id="Operator" value="OPERATOR">
 
-                    <label  class="col-sm-3 col-sm-offset-2 control-label" form="Operator">Encoder</label>
+                            <label  class="col-sm-3 col-sm-offset-2 control-label" form="Operator">Encoder</label>
 
-                <input name="User_Type" class="col-sm-1" type="radio" id="Encoder" value="ENCODER">
+                             <input name="User_Type" class="col-sm-1" type="radio" id="Encoder" value="ENCODER">
 
                         </div>
                     </div>

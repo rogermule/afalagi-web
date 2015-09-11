@@ -52,7 +52,7 @@
     <div class="panel panel-default">
         <div class="panel-body">
             <h4>Encoders</h4>
-            <span><?php echo($num_of_encoders);?> operators</span>
+            <span><?php echo($num_of_encoders);?> encoders</span>
         </div>
     </div>
     <ul class="list-group">

@@ -14,6 +14,5 @@ class User_Type {
 	const ENCODER = "ENCODER";
 	const OPERATOR = "OPERATOR";
 
-
 }
 

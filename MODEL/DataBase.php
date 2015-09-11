@@ -16,6 +16,7 @@ class DataBase{
 	 * constructor of the database class
 	 * in the constructor the config ini will be parsed
 	 */
+
 	function __construct(){
 		$config = parse_ini_file('config.ini',1);
 

@@ -69,7 +69,7 @@ else{
 						</a></li>
 					<li class="active"><a href="#">
 							<span class="glyphicon glyphicon glyphicon-plus m_r_10"></span>
-							Add Employee
+							Edit Employee
 						</a></li>
 
 				</ul>

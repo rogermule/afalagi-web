@@ -38,6 +38,7 @@ class User{
 	/**
 	 * @return mixed
 	 */
+
 	public function getUserID()
 	{
 		return $this->User_ID;
