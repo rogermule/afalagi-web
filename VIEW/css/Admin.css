@@ -1,7 +1,6 @@
 
 .back_ground_addis{
-    background-image: url("../html/img/addis_night_view.jpg");
-
+    background-image: url("../html/img/1.jpg");
 }
 .border_raduis_0{
     border-radius: 0;
@@ -26,8 +25,6 @@ a.list-group-item.active > .badge, .nav-pills > .active > a > .badge {
     background-color: #ff0000;
 }
 .left_menu{
-
-
     padding: 20px 20px;
 }
 /*this will affect the navigations*/
@@ -107,6 +104,7 @@ h4, h5, h6 {
 .name{
     color: #269abc;
 }
+
 .list-group-item{
     transition: 0.1s;
 }
@@ -169,8 +167,6 @@ hr{
     background-color: #9e9e9e;
     color: white;
 }
-
-
 
 
 

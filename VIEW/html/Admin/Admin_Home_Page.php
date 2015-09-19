@@ -23,13 +23,11 @@ include "Admin_Header.html";
 
 include "Admin_Navigation.html";
 
-			?>
+?>
 	<div class="row margin_top_51">
 
 		<?php
 		include "Admin_Menu.html";
-
-
 
 
 			/**

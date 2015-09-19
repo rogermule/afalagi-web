@@ -1,0 +1,7 @@
+To: se.natnael.zeleke@gmail.com
+Subject: PHP error_log message
+
+An error occured in C:\xampp\htdocs\AFALAGI\CONTROLLER\Admin_Add_User.php on 11: 
+<br/> require(/path/to/live/mysql.inc.php): failed to open stream: No such file or directory
+<br/>Date/Time: 9-14-2015 04:17:10
+<br />

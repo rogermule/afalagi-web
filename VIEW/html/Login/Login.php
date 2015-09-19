@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <title></title>
     <link href="../../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../css/custome_common.css" rel="stylesheet">
     <link href="../../css/Admin.css" rel="stylesheet">
+    <link href="../../css/custome_common.css" rel="stylesheet">
+
 </head>
 
 <body class="back_ground_addis">
@@ -18,7 +19,7 @@
 		<p class="navbar-text white">We serve any thing with a single call.</p>
 		<ul class="nav navbar-nav navbar-right">
 
-			<li class="nav active"><a href="about.html">About</a></li>
+			<li class="nav"><a href="about.html">About</a></li>
 
 		</ul>
 

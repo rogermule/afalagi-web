@@ -1,5 +1,6 @@
 <!--start of the workers managing page-->
 
+
 <?php
 
 	$user = $_SESSION['Logged_In_User'];
@@ -30,14 +31,19 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">
+                <li class="active">
+                    <a href="#">
                     <span class="glyphicon glyphicon-folder-open m_r_10"></span>
                     All Employees
-                </a></li>
-                <li><a href="Admin_Add_Users.php">
+                    </a>
+                </li>
+                <li>
+                    <a href="Admin_Add_Users.php">
                     <span class="glyphicon glyphicon glyphicon-plus m_r_10"></span>
                     Add Employee
-                </a></li>
+                    </a>
+                </li>
+
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
