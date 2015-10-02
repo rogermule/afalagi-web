@@ -7,7 +7,7 @@
         <p class="btn btn-info" > Frequently Asked Questions </p>
         <?php
         $dir= '<a href="Operator_Home_Page.php?faq=building" class="list-group-item left_menu ';
-        if($active_menu=="Building"){
+        if($active_menu=="building"){
             $dir.='active">';
         }
         else {

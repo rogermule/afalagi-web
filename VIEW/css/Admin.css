@@ -145,22 +145,16 @@ hr{
 
 
 
-
 /*this will affect the place holders*/
 .place_containers{
     background-color: #f3f3f3;
 }
 
 
-.form_containers{
-
-}
-
 .list_header{
     background-color: #273027;
     color: #ffffff;
 }
-
 
 .table-hover > tbody > tr:hover > td,
 .table-hover > tbody > tr:hover > th {

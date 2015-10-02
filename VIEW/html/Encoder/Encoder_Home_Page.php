@@ -4,7 +4,7 @@
 
 $title ="Encoder";
 
-include "Encoder_Header.html";
+include "Encoder_Header.php";
 
 echo("This is the Encoder Page.");
 ?>

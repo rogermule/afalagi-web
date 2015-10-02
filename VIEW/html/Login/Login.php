@@ -2,6 +2,7 @@
 <html>
 
 <head lang="en">
+
     <meta charset="UTF-8">
     <title></title>
     <link href="../../css/bootstrap.min.css" rel="stylesheet">
@@ -25,9 +26,7 @@
 
 	</div>
 
-
-
-<!--    start of the the body-->
+<!--  start of the the body  -->
 
     <div class="margin_top_20">
 
@@ -44,7 +43,6 @@
 					//this  will be seen if there is any kind of error
 
 		            if($_SERVER['REQUEST_METHOD'] == "GET"){
-
 			            if(isset($_GET['error'])){
 				            if($_GET['error'] == 'credential_error'){
 					            ?>
@@ -61,11 +59,8 @@
 				            <?php
 				            }
 			            }
-
 		            }
-
 	            ?>
-
 
                 <form action="../../../CONTROLLER/Login_Handler.php" method="POST">
 
@@ -98,15 +93,16 @@
 
 
 <!--    start of the fotter-->
-    <div></div>
+   <div>
 
-
+ </div>
 
 </div>
 
 
-<script src="../../js/jquery.min.js"></script>
-<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/jquery.min.js"> </script>
+
+<script src="../../js/bootstrap.min.js"> </script>
 
 </body>
 </html>

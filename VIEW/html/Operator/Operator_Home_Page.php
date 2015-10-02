@@ -1,12 +1,21 @@
 <?php
 
-require("../../../CONFIGURATION/Config.php");
-require("../../../CONTROLLER/SearchController.php");
+
+require_once("../../../CONFIGURATION/Config.php");
+require_once("../../../MODEL/User.php");
+require_once("../../../MODEL/User_Type.php");
+require_once("../../../CONTROLLER/User_Controller.php");
+require_once("../../../CONTROLLER/Controller_Secure_Access.php");
+require_once("../../../CONTROLLER/SearchController.php");
+
 
 $title="Operator";
 include "Operator_Header.html";
 $active_menu = "generic";
 
+if(isset($_GET["faq"])){
+    $active_menu = $_GET["faq"];
+}
 
 ?>
 
@@ -35,26 +44,29 @@ if(!isset($_GET["viewmore"])){   ?>
 
                     <br />
 
-                <nav>
-                    <ul class="pagination">
-                        <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
-                        <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-                        ...
-                    </ul>
-                </nav>
-                 <form class="" role="form" action="Operator_Home_Page.php" method="GET">
 
+                     <form class="" role="form" action="Operator_Home_Page.php" method="GET">
                     <div class="row">
                         <div class="col-lg-11 operator_search_input_area">
-                            <div class="input-group">
+                            <div class="col-lg-10 input-group">
                                 <input type="text" name="search" class="form-control" placeholder="Enter Company Name ...">
+
+                                <label class="col-lg-3 text-primary search_options">Search For: </label>
+
+                                <div class="col-lg-3 search_options">
+                                    <select class="" name="search_options">
+                                        <option value="company" name="company">Company</option>
+                                        <option value="event" name="event">Event</option>
+                                        <option value="event" name="building">Building</option>
+                                    </select>
+                                </div>
+                            </div>
                                   <span class="input-group-btn">
                                     <button class="btn btn-default afalagi_text" type="submit">Search</button>
                                   </span>
-                            </div>
+
                         </div>
                     </div>
-
                   </form>
 
 
@@ -66,6 +78,7 @@ if(!isset($_GET["viewmore"])){   ?>
         if(isset($_GET["search"])){
 
             $searchValue = $_GET["search"];
+            $searchOptions = $_GET["search_options"];
             include("Operator_Search.php");
         }
     ?>

@@ -119,6 +119,11 @@ body{
     text-align: center;
 }
 
+.search_options{
+    padding-top: 15px;
+    padding-left: 0px;
+}
+
 .operator_search{
     padding-left: 30px;
     padding-bottom: 50px;

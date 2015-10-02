@@ -47,7 +47,7 @@ function redirect_user($user_type){
 	}
 	else if($user_type == User_Type::ENCODER){
 
-		$home_page = "Encoder_Home_Page.php";
+        $home_page = "Add_Place/Add_Place_Region_inc.php";
 		$dir = "VIEW/html/Encoder/";
 
 	}
@@ -112,8 +112,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 			$Logged_In_User = $user_controller->getUser();
 
 			$user_type = $Logged_In_User->getUserType();
-
-
 
 			//after getting the user type make the appropriate type of users here
 			if($user_type == User_Type::OPERATOR){

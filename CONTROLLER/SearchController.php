@@ -7,6 +7,8 @@
  */
 
 include("../../../MODEL/DataBase.php");
+define('PAGE_PER_NO',6); // number of results per page.
+
 
 class SearchController{
 
@@ -27,11 +29,101 @@ class SearchController{
     }
 
 
-    function genericSearch($company){
+    function getPagination($count){
+        $paginationCount= floor($count / PAGE_PER_NO);
+        $paginationModCount= $count % PAGE_PER_NO;
+        if(!empty($paginationModCount)){
+            $paginationCount++;
+        }
+        return $paginationCount;
+    }
+
+
+
+    function getCompanyTypeDrop(){
         $query = "";
 
         $query = "SELECT *
-                   FROM company
+                   FROM company_type
+                   ";
+
+        $result = mysqli_query($this->getDbc(),$query);
+
+        if($result){
+            return $result;
+        }
+        else{
+            0;
+        }
+    }
+
+    function getRegionDrop(){
+        $query = "SELECT *
+                  FROM region
+                    ";
+        $result = mysqli_query($this->getDbc(),$query);
+
+        if($result){
+            return $result;
+        }
+        else{
+            0;
+        }
+    }
+
+
+    function getCityDrop($regionid){
+        $query = "SELECT ID,Name
+                  FROM city
+                  WHERE region='$regionid'
+                    ";
+        $result = mysqli_query($this->getDbc(),$query);
+
+        if($result){
+            return $result;
+        }
+        else{
+            0;
+        }
+    }
+
+    function getSubCityDrop($cityid){
+        $query = "SELECT *
+                  FROM sub_city
+                  WHERE region='$cityid'
+                    ";
+        $result = mysqli_query($this->getDbc(),$query);
+
+        if($result){
+            return $result;
+        }
+        else{
+            0;
+        }
+    }
+    function getSubCityAll(){
+        $query = "SELECT *
+                  FROM sub_city
+                    ";
+        $result = mysqli_query($this->getDbc(),$query);
+
+        if($result){
+            return $result;
+        }
+        else{
+            0;
+        }
+    }
+
+
+
+    /////////generic search
+
+    function genericSearch($company,$option){
+        $query = "";
+
+        $query = "SELECT *
+                   FROM $option
                    WHERE Company_Name LIKE '%$company%'
                    ";
 
@@ -83,6 +175,7 @@ class SearchController{
         }
         return $place_id;
     }
+
 
     function getRegionId($place_id){
         $region_id = 0;

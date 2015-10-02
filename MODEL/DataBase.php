@@ -6,6 +6,7 @@
  * Time: 4:58 PM
  */
 class DataBase{
+	private $last_id;
 	private $db_host;
 	private $db_user;
 	private $db_password;
@@ -16,7 +17,6 @@ class DataBase{
 	 * constructor of the database class
 	 * in the constructor the config ini will be parsed
 	 */
-
 	function __construct(){
 		$config = parse_ini_file('config.ini',1);
 
@@ -27,11 +27,21 @@ class DataBase{
 
 	}
 
+
+	/**
+	 * @return mixed
+	 * this will return the last inserted id
+	 */
+	function get_last_id(){
+		$this->last_id = $this->dbc->insert_id;
+		return $this->last_id;
+	}
+
+
 	/**
 	 * @return mysqli connection to the caller
 	 */
-
-	function connect(){
+ 	function connect(){
 		$this->dbc = mysqli_connect($this->db_host,$this->db_user,$this->db_password,$this->db_name) or die("Could not connect to the database".mysql_error());
 		return $this->dbc;
 	}
@@ -39,7 +49,6 @@ class DataBase{
 	/**
 	 * closes the connection
 	 */
-
 	function close(){
 		mysqli_close($this->dbc);
 	}

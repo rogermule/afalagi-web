@@ -40,22 +40,6 @@
             </a>
 
 
-        <?php
-            $dir= '<a href="Operator_Home_Page.php" class="list-group-item left_menu ';
-            if($active_menu=="service"){
-                $dir.='active">';
-            }
-            else {
-                $dir.='">';
-            }
-            echo $dir;
-
-        ?>
-
-        <span class="glyphicon glyphicon-pencil m_r_10"></span>
-        Services
-
-        </a>
 
     </div>
 

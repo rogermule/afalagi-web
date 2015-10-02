@@ -2,10 +2,9 @@
 
 $controller = new SearchController();
 
-$result = $controller->genericSearch($searchValue);
+$result = $controller->genericSearch($searchValue,$searchOptions);
+
 $num_of_result = mysqli_num_rows($result);
-
-
 
 ?>
 
@@ -14,7 +13,9 @@ $num_of_result = mysqli_num_rows($result);
 
 		<div class="col-sm-12">
 			<h3 class="afalagi_text">Afalagi Search Result</h3>
-            <h5 class="afalagi_search"> <?php echo $num_of_result; echo " results found for \""; echo $searchValue; ?>"</h5>
+            <h5 class="afalagi_search">
+                <?php echo $num_of_result; echo " results found for \""; echo $searchValue; ?>"
+                     in <?php echo $searchOptions ?></h5>
 
             <br />
             <div class="row">
@@ -23,7 +24,7 @@ $num_of_result = mysqli_num_rows($result);
 
                     <ul class="list-group">
 
-                        <?php
+                <?php
 
                         $count = 0;
                         if($num_of_result>0){

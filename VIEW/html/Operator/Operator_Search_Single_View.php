@@ -21,6 +21,7 @@ $company_phone = "";
 
 
 <li class="list-group-item">
+
 	<h4 class="list-group-item-heading">
 		<span class="number"> <?php echo "<h3>";echo($count); echo ".";?></span> <span class="name"><?php echo($company_name);?></span></h3></h4>
 	<dl class="dl-horizontal-search grey">
