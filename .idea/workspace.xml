@@ -27,7 +27,7 @@
       <file leaf-file-name="Login.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/VIEW/html/Login/Login.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="75" column="52" selection-start="2309" selection-end="2309" vertical-scroll-proportion="-7.8461537" vertical-offset="1071" max-vertical-offset="1921">
+            <state line="75" column="52" selection-start="2309" selection-end="2309" vertical-scroll-proportion="0.0" vertical-offset="1071" max-vertical-offset="1921">
               <folding />
             </state>
           </provider>
@@ -36,7 +36,7 @@
       <file leaf-file-name="Login_Handler.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/CONTROLLER/Login_Handler.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="67" column="0" selection-start="1595" selection-end="1595" vertical-scroll-proportion="1.917127" vertical-offset="98" max-vertical-offset="3043">
+            <state line="67" column="0" selection-start="1595" selection-end="1595" vertical-scroll-proportion="0.0" vertical-offset="1139" max-vertical-offset="3043">
               <folding />
             </state>
           </provider>
@@ -45,7 +45,7 @@
       <file leaf-file-name="Operator_Specific_Search.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/VIEW/html/Operator/Operator_Specific_Search.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="142" column="0" selection-start="4743" selection-end="4743" vertical-scroll-proportion="-2.6538463" vertical-offset="2345" max-vertical-offset="4828">
+            <state line="142" column="0" selection-start="4743" selection-end="4743" vertical-scroll-proportion="0.0" vertical-offset="2345" max-vertical-offset="4828">
               <folding />
             </state>
           </provider>
@@ -174,6 +174,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -208,7 +209,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -337,8 +337,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.14351496" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="PHP-CGI Server" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22450532" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22754946" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23263328" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
@@ -346,12 +345,13 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32935154" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="PHP-CGI Server" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -371,9 +371,9 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23048328" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.14918032" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.14918032" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -587,9 +587,7 @@
     </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/com/jetbrains/php/lang/psi/stubs/data/mysql.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="420" column="26" selection-start="15509" selection-end="15526" vertical-scroll-proportion="0.12333966" vertical-offset="7075" max-vertical-offset="15283">
-          <folding />
-        </state>
+        <state line="420" column="26" selection-start="15509" selection-end="15526" vertical-scroll-proportion="0.12333966" vertical-offset="7075" max-vertical-offset="15283" />
       </provider>
     </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/com/jetbrains/php/lang/psi/stubs/data/Core_d.php">
@@ -640,47 +638,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/CONTROLLER/SearchController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="72" column="0" selection-start="1340" selection-end="1340" vertical-scroll-proportion="1.6464088" vertical-offset="245" max-vertical-offset="6460">
-          <folding>
-            <marker date="1443009013166" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..company_type..." />
-            <marker date="1443009013166" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..region..." />
-            <marker date="1443009013166" expanded="true" signature="-1:-1" placeholder="SELECT ID,Na..city..." />
-            <marker date="1443009013166" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..sub_city..." />
-            <marker date="1443009013166" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..sub_city..." />
-            <marker date="1443009013166" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..$option&#10;                   WHERE..." />
-            <marker date="1443009013166" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..company_type..." />
-            <marker date="1443009013166" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..address..." />
-            <marker date="1443009013166" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..place..." />
-            <marker date="1443009013166" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..place..." />
-            <marker date="1443009013166" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..place..." />
-            <marker date="1443009013166" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..place..." />
-            <marker date="1443009013166" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..region..." />
-            <marker date="1443009013166" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..city..." />
-            <marker date="1443009013166" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..sub_city..." />
-            <marker date="1443009013166" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..sefer..." />
-            <marker date="1443009013166" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..telephone..." />
-            <marker date="1443009013166" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..faqBuilding..." />
-          </folding>
-        </state>
+        <state line="72" column="0" selection-start="1340" selection-end="1340" vertical-scroll-proportion="1.6464088" vertical-offset="245" max-vertical-offset="6460" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/VIEW/html/Operator/Operator_Specific_Search.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="142" column="0" selection-start="4743" selection-end="4743" vertical-scroll-proportion="-2.6538463" vertical-offset="2345" max-vertical-offset="4828">
+        <state line="142" column="0" selection-start="4743" selection-end="4743" vertical-scroll-proportion="0.0" vertical-offset="2345" max-vertical-offset="4828">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/VIEW/html/Login/Login.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="75" column="52" selection-start="2309" selection-end="2309" vertical-scroll-proportion="-7.8461537" vertical-offset="1071" max-vertical-offset="1921">
+        <state line="75" column="52" selection-start="2309" selection-end="2309" vertical-scroll-proportion="0.0" vertical-offset="1071" max-vertical-offset="1921">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/CONTROLLER/Login_Handler.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="67" column="0" selection-start="1595" selection-end="1595" vertical-scroll-proportion="1.917127" vertical-offset="98" max-vertical-offset="3043">
+        <state line="67" column="0" selection-start="1595" selection-end="1595" vertical-scroll-proportion="0.0" vertical-offset="1139" max-vertical-offset="3043">
           <folding />
         </state>
       </provider>
