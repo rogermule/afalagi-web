@@ -6,6 +6,17 @@
 	<link href="../../../css/bootstrap.min.css" rel="stylesheet">
 	<link href="../../../css/custome_common.css" rel="stylesheet">
 	<link href="../../../css/Admin.css" rel="stylesheet">
+	<link href="../../../css/datepicker.css" rel="stylesheet">
+	<script src="../../../js/jquery.min.js"></script>
+	<script src="../../../js/bootstrap.min.js"></script>
+	<script src="../../../js/bootstrap-datepicker.js"></script>
+	<script>
+		$(document).ready( function(){
+			$('.datepicker').datepicker({
+				format:'yyyy/mm/dd'
+			});
+		});
+	</script>
 
 </head>
 <body class="back_ground_addis">

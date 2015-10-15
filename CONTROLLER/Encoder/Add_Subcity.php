@@ -6,7 +6,7 @@ require(DB);//this will make the database class included
 require("../../MODEL/User.php");//user object will be created so it should be included in here
 require("../../MODEL/Sub_City.php");
 require("User_Controller.php");//admin controller is going to extend this class so it should be included
-require("Encoder_Controller.php");
+require("All_Controllers.php");
 require("../Controller_Secure_Access.php");//this will prevent this file from being accessed easily
 require("../../MODEL/User_Type.php");
 require("../../MODEL/Error_Type.php");

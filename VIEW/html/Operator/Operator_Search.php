@@ -1,4 +1,6 @@
 <?php
+$user = $_SESSION['Logged_In_User'];
+$search_controller = new Encoder_Controller($user);//make an encoder object
 
 $controller = new SearchController();
 

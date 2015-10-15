@@ -35,7 +35,7 @@ require("../../MODEL/Direction.php");
 
 
 require("User_Controller.php");//admin controller is going to extend this class so it should be included
-require("Encoder_Controller.php");
+require("All_Controllers.php");
 require("../Controller_Secure_Access.php");//this will prevent this file from being accessed easily
 require("../../MODEL/User_Type.php");
 require("../../MODEL/Error_Type.php");
@@ -220,7 +220,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 					$Building_ID = mysqli_real_escape_string($database,trim($_POST['Building']));
 				}
 
-				//get the floor id
+				//get the floor
  				if(empty($_POST['Building_Floor']) OR ($_POST['Building_Floor'] == 'NOT_FILLED')){
 					$errors[] = "Building Floor should be filled";
 				}

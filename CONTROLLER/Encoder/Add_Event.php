@@ -6,7 +6,7 @@ require(DB);//this will make the database class included
 require("../../MODEL/User.php");//user object will be created so it should be included in here
 require("../../MODEL/Event.php");
 require("User_Controller.php");//admin controller is going to extend this class so it should be included
-require("Encoder_Controller.php");
+require("All_Controllers.php");
 require("../Controller_Secure_Access.php");//this will prevent this file from being accessed easily
 require("../../MODEL/User_Type.php");
 require("../../MODEL/Error_Type.php");
@@ -114,6 +114,22 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 			}
 			else{
 				$About_Event_Amharic  = $_POST["About_Event_Amharic"];
+			}
+
+			//get the event start
+			if(empty($_POST['Event_Start'])){
+				$Event_Start = '';
+			}
+			else if(!(empty($_POST['Event_Start']))){
+				$Event_Start = $_POST['Event_Start'];
+			}
+
+			//get the event end
+			if(empty($_POST['Event_End'])){
+				$Event_End = '';
+			}
+			else if(!(empty($_POST['Event_End']))){
+				$Event_End = $_POST['Event_End'];
 			}
 
 

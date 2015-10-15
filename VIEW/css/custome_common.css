@@ -122,6 +122,15 @@ body{
 .search_options{
     padding-top: 15px;
     padding-left: 0px;
+
+}
+.search_optionsLabel{
+    padding-top: 25px;
+    padding-left: 35px;
+}
+.search_optionsSpecificLabel{
+    padding-top:7px;
+    padding-left: 35px;
 }
 
 .operator_search{
@@ -141,8 +150,8 @@ body{
     text-align: left;
     color: #080808;
     font-size: 16px;
-    padding-left: 200px;
-    padding-top: 20px;
+    padding-left: 100px;
+    padding-top: 0px;
     padding-right: 20px;
 }
 .bt_specific_search{

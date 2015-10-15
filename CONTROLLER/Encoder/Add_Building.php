@@ -23,7 +23,7 @@ require("../../MODEL/Direction.php");
 
 require("../../MODEL/Building.php");
 require("User_Controller.php");//admin controller is going to extend this class so it should be included
-require("Encoder_Controller.php");
+require("All_Controllers.php");
 require("../Controller_Secure_Access.php");//this will prevent this file from being accessed easily
 require("../../MODEL/User_Type.php");
 

@@ -1,13 +1,9 @@
 <?php
 
-require("../../../../CONFIGURATION/Config.php");
-require(DB);
-require("../../../../MODEL/User.php");
-require("../../../../MODEL/Sefer.php");
-require("../../../../MODEL/User_Type.php");
-require("../../../../CONTROLLER/Encoder/User_Controller.php");
-require("../../../../CONTROLLER/Encoder/Encoder_Controller.php");
-require("../../../../CONTROLLER/Controller_Secure_Access.php");
+
+require('Require.php');
+
+
 include("Place_Header.php");
 include("includables.php");
 
@@ -47,35 +43,42 @@ $encoder = new Encoder_Controller($user);//make an encoder object
 				if(isset($_GET['error'])){
 					$error_msg = $_GET['error'];
 					?>
-
-					<div class="alert alert-danger alert-dismissable">
+ 					<div class="alert alert-danger alert-dismissable">
 						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 						<strong>Warning!</strong><?php echo($error_msg);?>
 					</div>
-
-				<?php
+ 				<?php
 				}
-
-				if(isset($_GET['success'])){
-
-
-
-					$street_name = $_GET["street_name"];
+ 				if(isset($_GET['success'])){
+ 					$street_name = $_GET["street_name"];
 					$street_name_amharic = $_GET["street_name_amharic"];
-
-					?>
+ 					?>
 					<div class="alert alert-success alert-dismissable">
 						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 						<strong>You have added a new Street successfully.</strong>
 						<br/>New Street --- <?php echo("$street_name ($street_name_amharic)");?>
 					</div>
-
-				<?php
+ 				<?php
+ 				}
+				else if(isset($_GET['success_edit'])){
+ 					?>
+					<div class="alert alert-success alert-dismissable">
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+						<strong>You have edited a Street successfully.</strong>
+ 					</div>
+ 				<?php
+ 				}
+				else if(isset($_GET['success_delete'])){
+  					?>
+					<div class="alert alert-success alert-dismissable">
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+						<strong>You have deleted a Street successfully.</strong>
+ 					</div>
+ 				<?php
 
 				}
 			}
-
-			?>
+ 			?>
 
 			<div class=" margin_top_20">
 
@@ -149,7 +152,7 @@ $encoder = new Encoder_Controller($user);//make an encoder object
 					<div class="panel panel-primary list_header margin_top_10">
 						<div class="panel-body text-center">
 
-							<h4>List of Category</h4>
+							<h4>List of Street</h4>
 
 						</div>
 					</div>
@@ -162,7 +165,7 @@ $encoder = new Encoder_Controller($user);//make an encoder object
 							<th>#</th>
 							<th>Name</th>
 							<th>ስም</th>
-							<th>info</th>
+
 							<th>መረጃ</th>
 
 							</thead>
@@ -179,16 +182,22 @@ $encoder = new Encoder_Controller($user);//make an encoder object
 
 									$street_name = $str['Name'];
 									$street_name_amharic  = $str['Name_Amharic'];
-									$About_Street = $str['About_Street'];
+
 									$About_Street_Amharic = $str['About_Street_Amharic'];
+									$Street_ID = $str["ID"];
 
 									?>
 									<tr>
 										<td><?php echo($count);?></td>
 										<td><?php echo($street_name);?></td>
 										<td><?php echo($street_name_amharic);?></td>
-										<td><?php echo($About_Street);?></td>
+
 										<td><?php echo($About_Street_Amharic);?></td>
+										<td>
+											<a class="btn btn-warning btn-xs" href="Edit_Street.php?Street_ID=<?php echo($Street_ID)?>">Edit</a>
+											<a class="btn btn-danger btn-xs"
+											   href="Delete_Street.php?Street_ID=<?php echo($Street_ID);?>">Delete</a>
+										</td>
 									</tr>
 								<?php
 								}

@@ -1,13 +1,6 @@
 <?php
 
-require("../../../../CONFIGURATION/Config.php");
-require(DB);
-require("../../../../MODEL/User.php");
-require("../../../../MODEL/Sub_City.php");
-require("../../../../MODEL/User_Type.php");
-require("../../../../CONTROLLER/Encoder/User_Controller.php");
-require("../../../../CONTROLLER/Encoder/Encoder_Controller.php");
-require("../../../../CONTROLLER/Controller_Secure_Access.php");
+require('Require.php');
 
 include("Place_Header.php");
 include("includables.php");
@@ -19,8 +12,6 @@ include("includables.php");
 	$num_sub_cities = mysqli_num_rows($SubCities);
 
 ?>
-
-
 
 	<div class=" col-sm-7 list_container margin_0">
 
@@ -63,6 +54,30 @@ include("includables.php");
 				    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 				    <strong>You have added a new Sub city successfully.</strong>
 				    <br/>New Sub City --- <?php echo("$subcity_name");?>
+			    </div>
+
+		    <?php
+
+		    }
+		    else if(isset($_GET['success_edit'])){
+
+			    ?>
+			    <div class="alert alert-success alert-dismissable">
+				    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				    <strong>You have edited a Sub city successfully!</strong>
+
+			    </div>
+
+		    <?php
+
+		    }
+		    else if(isset($_GET['success_delete'])){
+
+			    ?>
+			    <div class="alert alert-success alert-dismissable">
+				    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				    <strong>You have deleted Sub city successfully!</strong>
+
 			    </div>
 
 		    <?php
@@ -142,11 +157,17 @@ include("includables.php");
 		                $count++;
 		                $subcity_name = $subcity["Name"];
 		                $subcity_name_amharic = $subcity["Name_Amharic"];
+		                $sub_city_id = $subcity['ID'];
 		                ?>
 		                <tr>
 			                <td><?php echo($count);?></td>
 			                <td><?php echo($subcity_name);?></td>
 			                <td><?php echo($subcity_name_amharic);?></td>
+			                <td>
+				                <a class="btn btn-warning btn-xs" href="Edit_Sub_City.php?Sub_City_ID=<?php echo($sub_city_id)?>">Edit</a>
+				                <a class="btn btn-danger btn-xs"
+				                   href="Delete_Sub_City.php?Sub_City_ID=<?php echo($sub_city_id);?>">Delete</a>
+			                </td>
 		                </tr>
 	                <?php
 	                }

@@ -1,13 +1,7 @@
 <?php
 
 
-require("../../../../CONFIGURATION/Config.php");
-require(DB);
-require("../../../../MODEL/User.php");
-require("../../../../MODEL/User_Type.php");
-require("../../../../CONTROLLER/Encoder/User_Controller.php");
-require("../../../../CONTROLLER/Encoder/Encoder_Controller.php");
-require("../../../../CONTROLLER/Controller_Secure_Access.php");
+require("Require.php");
 
 include "Encoder_Header.php";
 include "Includeables.php";
@@ -26,6 +20,106 @@ include "Includeables.php";
 	$categories = $encoder->Get_Category();  //get category
 	$company_ownership = $encoder->Get_Ownerships();//get different type of ownership
 
+	if($_SERVER['REQUEST_METHOD']== 'GET'){
+
+		if(isset($_GET['CA'])){
+
+			$Company_ID = $_GET['company_id'];
+ 			$single_company = $encoder->Get_Company_With_Out_Building($Company_ID);
+			$Company_Spec = mysqli_fetch_array($single_company,MYSQLI_ASSOC);
+
+			//get place
+			$Com_Region_ID = $Company_Spec["Region"];
+			$Com_City_ID = $Company_Spec["City"];
+			$Com_Sub_City_ID = $Company_Spec["Sub_City"];
+			$Com_Sefer_ID = $Company_Spec["Sefer"];
+			$Com_Wereda_ID = $Company_Spec["Wereda"];
+			$Com_Street_ID = $Company_Spec["Street"];
+ 			$Com_Direction = $Company_Spec["Direction"];
+			$Com_Direction_Amharic = $Company_Spec["Direction_Amharic"];
+
+			//contact
+ 			$Com_House_No = $Company_Spec["House_No"];
+			$Com_POBOX = $Company_Spec["POBOX"];
+			$Com_Telephone = $Company_Spec["Telephone"];
+			$Com_Fax = $Company_Spec["FAX"];
+			$Com_Email = $Company_Spec["Email"];
+
+			//get category and type
+			$Com_Category_ID = $Company_Spec["Category_ID"];
+			$Com_Company_Type_ID = $Company_Spec["Company_Type_ID"];
+
+			//about company
+			$Com_Company_Name = $Company_Spec["Company_Name"];
+			$Com_Company_Name_Amharic = $Company_Spec["Company_Name_Amharic"];
+			$Com_Working_Hours = $Company_Spec["Working_Hours"];
+			$Com_Working_Hours_Amharic = $Company_Spec["Working_Hours_Amharic"];
+			$Com_Company_Service = $Company_Spec["Product_Service"];
+			$Com_Company_Service_Amharic = $Company_Spec["Product_Service_Amharic"];
+			$Com_Branch = $Company_Spec["Branch"];
+			$Com_Branch_Amharic = $Company_Spec["Branch_Amharic"];
+			$Com_Expiration_Date = $Company_Spec["Expiration_Date"];
+
+
+			//right_side
+			$About_Company_ID = $Company_Spec["About_Company_ID"];
+			$Payment_Status_ID = $Company_Spec["Payment_Status_ID"];
+			$Company_Service_ID = $Company_Spec["Company_Service_ID"];
+			$Company_Ownership_ID =$Company_Spec["Company_Ownership_ID"];
+			$Company_Category_ID = $Company_Spec["Company_Category_ID"];
+ 			$Contact_ID = $Company_Spec["Contact_ID"];
+
+			//left side
+			$Direction_ID = $Company_Spec["Direction_ID"];
+			$Place_ID = $Company_Spec["Place_ID"];
+
+
+
+		}
+		else if(isset($_GET['CB'])){
+
+			$Company_ID = $_GET['company_id'];
+			$single_company = $encoder->Get_Company_With_Building($Company_ID);
+			$Company_Spec = mysqli_fetch_array($single_company,MYSQLI_ASSOC);
+
+			//company spec
+			$Com_Company_Name = $Company_Spec["Company_Name"];
+			$Com_Company_Name_Amharic = $Company_Spec["Company_Name_Amharic"];
+			$Com_Working_Hours = $Company_Spec["Working_Hours"];
+			$Com_Working_Hours_Amharic = $Company_Spec["Working_Hours_Amharic"];
+			$Com_Company_Service = $Company_Spec["Product_Service"];
+			$Com_Company_Service_Amharic = $Company_Spec["Product_Service_Amharic"];
+			$Com_Branch = $Company_Spec["Branch"];
+			$Com_Branch_Amharic = $Company_Spec["Branch_Amharic"];
+ 			$Com_Expiration_Date = $Company_Spec["Expiration_Date"];
+
+			//contact
+			$Com_House_No = $Company_Spec["House_No"];
+			$Com_POBOX = $Company_Spec["POBOX"];
+			$Com_Telephone = $Company_Spec["Telephone"];
+			$Com_Fax = $Company_Spec["FAX"];
+			$Com_Email = $Company_Spec["Email"];
+ 			$Com_Category_ID = $Company_Spec["Category_ID"];
+			$Com_Company_Type_ID = $Company_Spec["Company_Type_ID"];
+ 			$Com_Floor = $Company_Spec["Floor"];
+ 			$Com_Building_ID = $Company_Spec["Building_ID"];
+
+			//left_side
+			$About_Company_ID = $Company_Spec["About_Company_ID"];
+			$Payment_Status_ID = $Company_Spec["Payment_Status_ID"];
+			$Company_Service_ID = $Company_Spec["Company_Service_ID"];
+			$Company_Ownership_ID =$Company_Spec["Company_Ownership_ID"];
+			$Company_Category_ID = $Company_Spec["Company_Category_ID"];
+			$Contact_ID = $Company_Spec["Contact_ID"];
+
+			//building stuff
+			$Address_Building_ID = $Company_Spec["Address_Building_Floor_ID"];
+			$Building_ID = $Company_Spec["Building_ID"];
+			$Floor =$Company_Spec["Floor"];
+
+		}
+	}
+
 ?>
 
 	<div class="col-sm-7 list_container margin_0">
@@ -35,45 +129,13 @@ include "Includeables.php";
 	<div class="panel panel-default">
 		<div class="panel-body text-center">
 
-			<h4>Add Company</h4>
+			<h4>Edit Company</h4>
 
 		</div>
 	</div>
 
-	<?php
 
-	/**
-	 * if the get server request method has error set
-	 * inform the admin about the user
-	 */
-	if($_SERVER['REQUEST_METHOD'] == "GET") {
 
-		if(isset($_GET['error'])){
-			$error_msg = $_GET['error'];
-			?>
-
-			<div class="alert alert-danger alert-dismissable">
-				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-				<strong>Warning!</strong><?php echo($error_msg);?>
-			</div>
-
-		<?php
-		}
-
-		if(isset($_GET['success'])){
-			$company_name = $_GET["Company_Name"];
-			$company_name_amharic = $_GET["Company_Name_Amharic"];
-			?>
-			<div class="alert alert-success alert-dismissable">
-				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-				<strong>You have added a new company successfully.</strong>
-				<br/>New Company -- <?php echo("$company_name ($company_name_amharic)");?>
-				<br/>
-			</div>
-		<?php
-		}
-	}
-	?>
 
 	<div class=" margin_top_20">
 
@@ -83,184 +145,13 @@ include "Includeables.php";
 	</div>
 	<div class="panel-body">
 	<form class="form-horizontal" role="form"
-	      action="../../../../CONTROLLER/Encoder/Add_Company.php" method="POST">
+	      action="../../../../CONTROLLER/Encoder/Edit_Company.php" method="POST">
 
-
-	<div class="form-group">
-		<label for="Region" class="col-sm-4 control-label">Region</label>
-		<div class="col-sm-5">
-			<select class="form-control" id="Region" name="Region">
-
-				<option value="NOT_FILLED" >- - - - - - - select region</option>
-				<?php
-				$Region_ID = "";
-				$Region_Name = "";
-
-				if($Regions){
-					while($reg = mysqli_fetch_array($Regions,MYSQLI_ASSOC)){
-						$Region_ID = $reg['ID'];
-						$Region_Name = $reg['Name'];
-
-						?>
-						<option value="<?php echo($Region_ID);?>"><?php echo($Region_Name);?></option>
-					<?php
-					}
-				}
-
-				?>
-
-			</select>
-		</div>
-		<div class="col-sm-2">
-			<a href="../Add_Place/Add_Place_Region_inc.php" class="btn btn-info">new</a>
-		</div>
-	</div>
-
-	<div class="form-group">
-		<label for="City" class="col-sm-4 control-label">City</label>
-		<div class="col-sm-5">
-			<select class="form-control" id="City" name="City">
-				<option value="NOT_FILLED">- - - - - - - select city</option>
-				<?php
-				$City_ID = "";
-				$City_Name = "";
-
-				if($Cities){
-					while($cit = mysqli_fetch_array($Cities,MYSQLI_ASSOC)){
-						$City_ID = $cit['ID'];
-						$City_Name = $cit['Name'];
-
-						?>
-						<option value="<?php echo($City_ID);?>"><?php echo($City_Name);?></option>
-					<?php
-					}
-				}
-
-				?>
-			</select>
-		</div>
-		<div class="col-sm-2">
-			<a href="../Add_Place/Add_Place_City_inc.php" class="btn btn-info">new</a>
-		</div>
-	</div>
-
-	<div class="form-group">
-		<label for="Sub_City" class="col-sm-4 control-label">Sub City</label>
-		<div class="col-sm-5">
-			<select class="form-control" id="Sub_City" name="Sub_City">
-
-				<option value="NOT_FILLED">- - - - - - - select Sub city</option>
-				<?php
-				$SubCity_ID = "";
-				$SubCity_Name = "";
-
-				if($SubCities){
-					while($SubCit = mysqli_fetch_array($SubCities,MYSQLI_ASSOC)){
-						$SubCity_ID = $SubCit['ID'];
-						$SubCity_Name = $SubCit['Name'];
-						?>
-						<option value="<?php echo($SubCity_ID);?>"><?php echo($SubCity_Name);?></option>
-					<?php
-					}
-				}
-
-				?>
-
-			</select>
-		</div>
-		<div class="col-sm-2">
-			<a href="../Add_Place/Add_Place_Sub_City_inc.php" class="btn btn-info">new</a>
-		</div>
-	</div>
-
-	<div class="form-group">
-		<label for="Wereda" class="col-sm-4 control-label">Kebele/Wereda</label>
-		<div class="col-sm-5">
-			<select class="form-control" id="Wereda" name="Wereda">
-				<option value="NOT_FILLED">- - - - - - - select Kebele/Wereda</option>
-				<?php
-				$Wereda_ID = "";
-				$Wereda_Name = "";
-
-				if($Weredas){
-					while($Wer = mysqli_fetch_array($Weredas,MYSQLI_ASSOC)){
-						$Wereda_ID = $Wer['ID'];
-						$Wereda_Name = $Wer['Name'];
-						?>
-						<option value="<?php echo($Wereda_ID);?>"><?php echo($Wereda_Name);?></option>
-					<?php
-					}
-				}
-				?>
-			</select>
-		</div>
-		<div class="col-sm-2">
-			<a href="../Add_Place/Add_Place_Kebele_OR_Wereda_inc.php" class="btn btn-info">new</a>
-		</div>
-	</div>
-
-	<div class="form-group">
-		<label for="Sefer" class="col-sm-4 control-label">Sefer</label>
-		<div class="col-sm-5">
-			<select class="form-control" id="Sefer" name="Sefer">
-				<option value="NOT_FILLED">- - - - - - - select sefer</option>
-				<?php
-				$Sefer_ID = "";
-				$Sefer_Name = "";
-
-				if($Sefers){
-					while($sef = mysqli_fetch_array($Sefers,MYSQLI_ASSOC)){
-						$Sefer_ID = $sef['ID'];
-						$Sefer_Name = $sef['Name'];
-
-						?>
-						<option value="<?php echo($Sefer_ID);?>"><?php echo($Sefer_Name);?></option>
-					<?php
-					}
-				}
-
-				?>
-			</select>
-		</div>
-		<div class="col-sm-2">
-			<a href="../Add_Place/Add_Place_Sefer_inc.php" class="btn btn-info">new</a>
-		</div>
-	</div>
-
-	<div class="form-group">
-		<label for="Street" class="col-sm-4 control-label">Street</label>
-		<div class="col-sm-5">
-			<select class="form-control" id="Street" name="Street">
-				<option value="NOT_FILLED">- - - - - - - select street</option>
-
-				<?php
-				$Street_ID = "";
-				$Street_Name = "";
-
-				if($Street){
-					while($str = mysqli_fetch_array($Street,MYSQLI_ASSOC)){
-						$Street_ID = $str['ID'];
-						$Street_Name = $str['Name'];
-
-						?>
-						<option value="<?php echo($Street_ID);?>"><?php echo($Street_Name);?></option>
-					<?php
-					}
-				}
-
-				?>
-			</select>
-		</div>
-		<div class="col-sm-2">
-			<a href="../Add_Place/Add_Place_Street_inc.php" class="btn btn-info">new</a>
-		</div>
-	</div>
-	<hr>
-
+<div>
 	<div class="form-group">
 		<label for="Building" class="col-sm-4 control-label">Building</label>
 		<div class="col-sm-5">
-			<select class="form-control" id="Building" name="Building">
+			<select class="form-control " id="Building" name="Building">
 				<option value="NOT_FILLED">- - - - - - - select building</option>
 				<?php
 				$Building_ID = "";
@@ -272,7 +163,15 @@ include "Includeables.php";
 						$Building_Name = $bul['Name'];
 
 						?>
-						<option value="<?php echo($Building_ID);?>"><?php echo($Building_Name);?></option>
+						<option <?php
+
+								if(  isset($_GET['CB'])){
+									if($Building_ID == $Com_Building_ID){
+										echo("selected");
+									}
+								}
+
+						?>  value="<?php echo($Building_ID);?>"><?php echo($Building_Name);?></option>
 					<?php
 					}
 				}
@@ -296,8 +195,17 @@ include "Includeables.php";
 				<?php
 				$count = 0;
 				while($count<50){
+					$value = "$count Floor";
 					?>
-					<option value="<?php echo("$count Floor");?>">
+					<option
+							<?php
+							if(  isset($_GET['CB'])){
+								if($Com_Floor == $value){
+									echo("selected");
+								}
+							}
+							?>
+						value="<?php echo("$count Floor");?>">
 						<?php echo("$count Floor");?>
 					</option>
 					<?php
@@ -311,29 +219,246 @@ include "Includeables.php";
 
 	</div>
 
-
-
 	<hr>
+
+	<div class="form-group">
+		<label for="Region" class="col-sm-4 control-label">Region</label>
+		<div class="col-sm-5">
+			<select class="form-control place" id="Region" name="Region"  >
+
+				<option value="NOT_FILLED" >- - - - - - - select region</option>
+				<?php
+				$Region_ID = "";
+				$Region_Name = "";
+
+				if($Regions){
+					while($reg = mysqli_fetch_array($Regions,MYSQLI_ASSOC)){
+						$Region_ID = $reg['ID'];
+						$Region_Name = $reg['Name'];
+
+						?>
+						<option <?php
+
+							if(isset($_GET['CA'])){
+								if($Region_ID == $Com_Region_ID){
+									echo("selected");
+								}
+							}
+
+
+							?> value="<?php echo($Region_ID);?>"> <?php echo($Region_Name);?> </option>
+					<?php
+					}
+				}
+
+				?>
+
+			</select>
+		</div>
+		<div class="col-sm-2">
+			<a href="../Add_Place/Add_Place_Region_inc.php" class="btn btn-info place">new</a>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label for="City" class="col-sm-4 control-label">City</label>
+		<div class="col-sm-5">
+			<select class="form-control place" id="City" name="City">
+				<option value="NOT_FILLED">- - - - - - - select city</option>
+				<?php
+				$City_ID = "";
+				$City_Name = "";
+
+				if($Cities){
+					while($cit = mysqli_fetch_array($Cities,MYSQLI_ASSOC)){
+						$City_ID = $cit['ID'];
+						$City_Name = $cit['Name'];
+
+						?>
+						<option <?php
+						if(isset($_GET['CA'])){
+							if($City_ID == $Com_City_ID){
+								echo("selected");
+							}
+						}
+
+
+						?> value="<?php echo($City_ID);?>"><?php echo($City_Name);?></option>
+					<?php
+					}
+				}
+
+				?>
+			</select>
+		</div>
+		<div class="col-sm-2">
+			<a href="../Add_Place/Add_Place_City_inc.php" class="btn btn-info place">new</a>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label for="Sub_City" class="col-sm-4 control-label">Sub City</label>
+		<div class="col-sm-5">
+			<select class="form-control place" id="Sub_City" name="Sub_City">
+
+				<option value="NOT_FILLED">- - - - - - - select Sub city</option>
+				<?php
+				$SubCity_ID = "";
+				$SubCity_Name = "";
+
+				if($SubCities){
+					while($SubCit = mysqli_fetch_array($SubCities,MYSQLI_ASSOC)){
+						$SubCity_ID = $SubCit['ID'];
+						$SubCity_Name = $SubCit['Name'];
+						?>
+						<option <?php
+
+						if(isset($_GET['CA'])){
+							if($SubCity_ID == $Com_Sub_City_ID){
+								echo("selected");
+							}
+						}
+
+
+						?>  value="<?php echo($SubCity_ID);?>"><?php echo($SubCity_Name);?></option>
+					<?php
+					}
+				}
+
+				?>
+
+			</select>
+		</div>
+		<div class="col-sm-2">
+			<a href="../Add_Place/Add_Place_Sub_City_inc.php" class="btn btn-info place">new</a>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label for="Wereda" class="col-sm-4 control-label">Kebele/Wereda</label>
+		<div class="col-sm-5">
+			<select class="form-control place" id="Wereda" name="Wereda">
+				<option value="NOT_FILLED">- - - - - - - select Kebele/Wereda</option>
+				<?php
+				$Wereda_ID = "";
+				$Wereda_Name = "";
+
+				if($Weredas){
+					while($Wer = mysqli_fetch_array($Weredas,MYSQLI_ASSOC)){
+						$Wereda_ID = $Wer['ID'];
+						$Wereda_Name = $Wer['Name'];
+						?>
+						<option <?php
+
+						if(isset($_GET['CA'])){
+							if($Wereda_ID == $Com_Wereda_ID){
+								echo("selected");
+							}
+						}
+
+
+						?>  value="<?php echo($Wereda_ID);?>"><?php echo($Wereda_Name);?></option>
+					<?php
+					}
+				}
+				?>
+			</select>
+		</div>
+		<div class="col-sm-2">
+			<a href="../Add_Place/Add_Place_Kebele_OR_Wereda_inc.php" class="btn btn-info place">new</a>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label for="Sefer" class="col-sm-4 control-label">Sefer</label>
+		<div class="col-sm-5">
+			<select class="form-control place" id="Sefer" name="Sefer">
+				<option value="NOT_FILLED">- - - - - - - select sefer</option>
+				<?php
+				$Sefer_ID = "";
+				$Sefer_Name = "";
+
+				if($Sefers){
+					while($sef = mysqli_fetch_array($Sefers,MYSQLI_ASSOC)){
+						$Sefer_ID = $sef['ID'];
+						$Sefer_Name = $sef['Name'];
+ 						?>
+						<option <?php
+						if(isset($_GET['CA'])){
+							if($Sefer_ID == $Com_Sefer_ID){
+								echo("selected");
+							}
+						}
+ 						?> value="<?php echo($Sefer_ID);?>"><?php echo($Sefer_Name);?></option>
+					<?php
+					}
+				}
+
+				?>
+			</select>
+		</div>
+		<div class="col-sm-2">
+			<a href="../Add_Place/Add_Place_Sefer_inc.php" class="btn btn-info place">new</a>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label for="Street" class="col-sm-4 control-label">Street</label>
+		<div class="col-sm-5">
+			<select class="form-control place" id="Street" name="Street">
+				<option value="NOT_FILLED">- - - - - - - select street</option>
+
+				<?php
+				$Street_ID = "";
+				$Street_Name = "";
+
+				if($Street){
+					while($str = mysqli_fetch_array($Street,MYSQLI_ASSOC)){
+						$Street_ID = $str['ID'];
+						$Street_Name = $str['Name'];
+
+						?>
+						<option <?php
+
+						if(isset($_GET['CA'])){
+							if($Street_ID == $Com_Street_ID){
+								echo("selected");
+							}
+						}
+
+
+						?> value="<?php echo($Street_ID);?>"><?php echo($Street_Name);?></option>
+					<?php
+					}
+				}
+
+				?>
+			</select>
+		</div>
+		<div class="col-sm-2">
+			<a href="../Add_Place/Add_Place_Street_inc.php" class="btn btn-info place">new</a>
+		</div>
+	</div>
 
 	<div class="form-group">
 		<label for="Direction"
 		       class="col-sm-4 control-label">Direction to the company</label>
 		<div class="col-sm-5">
 
-			<textarea name="Direction" class="form-control"
+			<textarea name="Direction" class="form-control place"
 			          rows="3"  id="Direction"
-			          placeholder="Enter the direction to the companies location"></textarea>
+			          placeholder="Enter the direction to the companies location"><?php if(isset($_GET['CA'])){echo($Com_Direction);}?></textarea>
 		</div>
 	</div>
 
 	<div class="form-group">
 		<label for="Direction_Amharic"
-		       class="col-sm-4 control-label">አቅጣጫ</label>
+		       class="col-sm-4 control-label ">አቅጣጫ</label>
 		<div class="col-sm-5">
 
-			<textarea name="Direction_Amharic" class="form-control"
+			<textarea name="Direction_Amharic" class="form-control place"
 			          rows="3"  id="Direction_Amharic"
-			          placeholder="የድርጅቱን መገኛ አቅጣጫ ያሰገቡ"></textarea>
+			          placeholder="የድርጅቱን መገኛ አቅጣጫ ያሰገቡ"><?php if(isset($_GET['CA'])){echo($Com_Direction_Amharic);}?></textarea>
 		</div>
 	</div>
 
@@ -343,7 +468,7 @@ include "Includeables.php";
 		<label for="House_Number" class="col-sm-4 control-label">House number</label>
 		<div class="col-sm-5">
 			<input name="House_Number" type="text" class="form-control"
-			       id="House_Number" placeholder="Enter House Number" >
+			       id="House_Number" placeholder="Enter House Number" value="<?php echo($Com_House_No);?>">
 		</div>
 	</div>
 
@@ -351,7 +476,7 @@ include "Includeables.php";
 		<label for="POBOX" class="col-sm-4 control-label">PO-BOX</label>
 		<div class="col-sm-5">
 			<input name="POBOX" type="text" class="form-control"
-			       id="POBOX" placeholder="Enter POBOX" >
+			       id="POBOX" placeholder="Enter POBOX" value="<?php echo($Com_POBOX);?>" >
 		</div>
 	</div>
 
@@ -359,7 +484,7 @@ include "Includeables.php";
 		<label for="Telephone" class="col-sm-4 control-label">Telephone</label>
 		<div class="col-sm-5">
 			<input name="Telephone" type="text" class="form-control"
-			       id="Telephone" placeholder="Enter Phone" >
+			       id="Telephone" placeholder="Enter Phone" value="<?php echo($Com_Telephone);?>" >
 		</div>
 	</div>
 
@@ -367,7 +492,7 @@ include "Includeables.php";
 		<label for="FAX" class="col-sm-4 control-label">FAX</label>
 		<div class="col-sm-5">
 			<input name="FAX" type="text" class="form-control"
-			       id="FAX" placeholder="Enter FAX" >
+			       id="FAX" placeholder="Enter FAX" value="<?php echo($Com_Fax);?>" >
 		</div>
 	</div>
 
@@ -375,7 +500,7 @@ include "Includeables.php";
 		<label for="Email" class="col-sm-4 control-label">Email</label>
 		<div class="col-sm-5">
 			<input name="Email" type="text" class="form-control"
-			       id="Email" placeholder="Enter Email" >
+			       id="Email" placeholder="Enter Email" value="<?php echo($Com_Email);?>" >
 		</div>
 	</div>
 
@@ -394,7 +519,13 @@ include "Includeables.php";
 						$Category_Name = $cat['Name'];
 
 						?>
-						<option value="<?php echo($Category_ID);?>"><?php echo($Category_Name);?></option>
+						<option  <?php
+
+						if($Category_ID == $Com_Category_ID){
+							echo("selected");
+						}
+
+						?>  value="<?php echo($Category_ID);?>"><?php echo($Category_Name);?></option>
 					<?php
 					}
 				}
@@ -420,21 +551,20 @@ include "Includeables.php";
 
 				if($company_ownership){
 					while($com_own = mysqli_fetch_array($company_ownership,MYSQLI_ASSOC)){
+ 						$Own_ID = $com_own["ID"];
+						$Own_Type_Name = $com_own["Name"];
+ 						?>
 
-
-						$ID = $com_own["ID"];
-						$Name = $com_own["Name"];
-
-
-						?>
-
-						<option value="<?php echo($ID);?>"><?php echo($Name);?></option>
+						<option <?php
+ 						if($Own_ID == $Com_Company_Type_ID){
+							echo("selected");
+						}
+ 						?> value="<?php echo($Own_ID);?>"><?php echo($Own_Type_Name);?></option>
 
 					<?php
 					}
 				}
-
-				?>
+ 				?>
 			</select>
 		</div>
 		<div class="col-sm-2">
@@ -447,7 +577,7 @@ include "Includeables.php";
 		<label for="Company_Name" class="col-sm-4 control-label">Company Name</label>
 		<div class="col-sm-5">
 			<input name="Company_Name" type="text" class="form-control"
-			       id="Company_Name" placeholder="Enter Company Name" >
+			       id="Company_Name" placeholder="Enter Company Name" value="<?php echo($Com_Company_Name);?>" >
 		</div>
 	</div>
 
@@ -455,7 +585,7 @@ include "Includeables.php";
 		<label for="Company_Name_Amharic" class="col-sm-4 control-label">የድርጅቱ ስም</label>
 		<div class="col-sm-5">
 			<input name="Company_Name_Amharic" type="text" class="form-control"
-			       id="Company_Name_Amharic" placeholder="የድርጅቱ ስም ያሰገቡ " >
+			       id="Company_Name_Amharic" placeholder="የድርጅቱ ስም ያሰገቡ " value="<?php echo($Com_Company_Name_Amharic);?>" >
 		</div>
 	</div>
 
@@ -463,7 +593,7 @@ include "Includeables.php";
 		<label for="Working_Hours" class="col-sm-4 control-label">Working Hours</label>
 		<div class="col-sm-5">
 			<input name="Working_Hours" type="text" class="form-control"
-			       id="Working_Hours" placeholder="Enter working hours" >
+			       id="Working_Hours" placeholder="Enter working hours" value="<?php echo($Com_Working_Hours);?>" >
 		</div>
 	</div>
 
@@ -471,7 +601,7 @@ include "Includeables.php";
 		<label for="Working_Hours_Amharic" class="col-sm-4 control-label">የስራ ሰዓት</label>
 		<div class="col-sm-5">
 			<input name="Working_Hours_Amharic" type="text" class="form-control"
-			       id="Working_Hours_Amharic" placeholder="የስራ ሰዓት ያስገቡ " >
+			       id="Working_Hours_Amharic" placeholder="የስራ ሰዓት ያስገቡ " value="<?php echo($Com_Working_Hours_Amharic);?>" >
 		</div>
 	</div>
 
@@ -481,7 +611,7 @@ include "Includeables.php";
 		<div class="col-sm-5">
 			<textarea name="Product_Description_And_Service" class="form-control"
 			          rows="3"  id="Product_Description_And_Service"
-			          placeholder="Enter product description or service"></textarea>
+			          placeholder="Enter product description or service"><?php echo($Com_Company_Service);?></textarea>
 		</div>
 	</div>
 
@@ -492,7 +622,7 @@ include "Includeables.php";
 
 			<textarea name="Product_Description_And_Service_Amharic" class="form-control"
 			          rows="3"  id="Product_Description_And_Service_Amharic"
-			          placeholder="የስራ ውጤት ማብራርያ ያስገቡ"></textarea>
+			          placeholder="የስራ ውጤት ማብራርያ ያስገቡ"><?php echo($Com_Company_Service_Amharic);?></textarea>
 		</div>
 	</div>
 
@@ -500,7 +630,7 @@ include "Includeables.php";
 		<label for="Branch" class="col-sm-4 control-label">Branch</label>
 		<div class="col-sm-5">
 			<input name="Branch" type="text" class="form-control"
-			       id="Branch" placeholder="Enter Branch" >
+			       id="Branch" placeholder="Enter Branch" value="<?php echo($Com_Branch);?>" >
 		</div>
 	</div>
 
@@ -508,39 +638,87 @@ include "Includeables.php";
 		<label for="Branch_Amharic" class="col-sm-4 control-label">ቅርንጫፍ</label>
 		<div class="col-sm-5">
 			<input name="Branch_Amharic" type="text" class="form-control"
-			       id="Branch" placeholder="ቅርንጫፍ ያስገቡ" >
+			       id="Branch" placeholder="ቅርንጫፍ ያስገቡ"  value="<?php echo($Com_Branch_Amharic);?>" >
 		</div>
 	</div>
 
 	<div class="form-group">
-		<label for="Registration_Expiration_Date" class="col-sm-4 control-label">Registration Expiration Date</label>
-		<div class="col-sm-5">
-			<input name="Registration_Expiration_Date" type="text-a" class="form-control"
-			       id="Registration_Expiration_Date" placeholder="Enter registration expiration date" >
+		<label for="Registration_Expiration_Date"
+		       class="col-sm-4 control-label">Registration Expiration Date</label>
+		<div class="input-group date  col-sm-5 ">
+			<input name="Registration_Expiration_Date"
+			       type="text" class="form-control datepicker"
+			       placeholder="yyyy/mm/dd" value="<?php echo($Com_Expiration_Date);?>">
 		</div>
 	</div>
+</div>
+	<?php
+		if(isset($_GET['CA'])){
+			?>
+ 			<input type="hidden" name="Direction_ID" value="<?php echo("$Direction_ID");?>">
+			<input type="hidden" name="Place_ID" value="<?php echo("$Place_ID");?>">
+			<?php
+		}
+		if(isset($_GET['CB'])){
+			?>
 
+			<input type="hidden" name="Address_Building_Floor_ID" value="<?php echo($Address_Building_ID);?>">
+			<input type="hidden" name="Building_ID" value="<?php echo($Building_ID);?>">
+			<input type="hidden" name="Floor" value="<?php echo($Floor);?>">
 
+			<?php
+		}
+	?>
+	<input type="hidden" name="Company_ID" value="<?php echo($Company_ID);?>">
+	<input type="hidden" name="About_Company_ID" value="<?php echo($About_Company_ID);?>">
+	<input type="hidden" name="Payment_Status_ID" value="<?php echo($Payment_Status_ID);?>">
+	<input type="hidden" name="Company_Service_ID" value="<?php echo($Company_Service_ID);?>">
+	<input type="hidden" name="Company_Ownership_ID" value="<?php echo($Company_Ownership_ID);?>">
+	<input type="hidden" name="Company_Category_ID" value="<?php echo($Company_Category_ID);?>">
+	<input type="hidden" name="Contact_ID" value="<?php echo("$Contact_ID");?>">
 
-	<div class="form-group margin_top_30">
+	<div class="form-group margin_top_30 margin_bottom_200">
 
 		<div class="col-sm-5 col-lg-offset-4">
 			<button type="submit" class="btn btn-success btn-block">
-				<strong>Add Company</strong>
+				<strong>Save</strong>
 			</button>
 		</div>
 	</div>
 
+	</form>
+
 
 
 	</div>
-	</div>
-
-	</div>
-
 	</div>
 
 	</div>
+
+	</div>
+
+	</div>
+
+
+<?php
+
+	//if the company is found on a building disable the place forms
+	if(isset($_GET["CB"])){
+
+		?>
+		<script>
+			$(document).ready( function(){
+				Disable_Place_Forms();
+			});
+			//this will enable place forms
+			function Disable_Place_Forms(){
+				$(".place").attr('disabled','disabled');
+			}
+
+		</script>
+		<?php
+	}
+?>
 
 
 <?php

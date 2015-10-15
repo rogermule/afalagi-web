@@ -41,38 +41,40 @@ if(!isset($_GET["viewmore"])){   ?>
 
             <div class="row col-sm-12 operator_search ">
                     <h2 class="afalagi_text">Afalagi Generic Search</h2>
-
                     <br />
 
-
                      <form class="" role="form" action="Operator_Home_Page.php" method="GET">
-                    <div class="row">
-                        <div class="col-lg-11 operator_search_input_area">
-                            <div class="col-lg-10 input-group">
-                                <input type="text" name="search" class="form-control" placeholder="Enter Company Name ...">
-
-                                <label class="col-lg-3 text-primary search_options">Search For: </label>
-
-                                <div class="col-lg-3 search_options">
-                                    <select class="" name="search_options">
-                                        <option value="company" name="company">Company</option>
-                                        <option value="event" name="event">Event</option>
-                                        <option value="event" name="building">Building</option>
-                                    </select>
-                                </div>
+                       <div class="row">
+                            <div class="col-lg-12 input-group">
+                                    <input type="text" name="search" class="form-control" placeholder="Enter Company Name ...">
                             </div>
-                                  <span class="input-group-btn">
-                                    <button class="btn btn-default afalagi_text" type="submit">Search</button>
-                                  </span>
 
-                        </div>
-                    </div>
+                       </div>
+
+                     <div class="row  col-sm-offset-2">
+                         <div class="col-lg-3">
+                            <label class="text-primary search_optionsLabel">Search For: </label>
+                         </div>
+
+                         <div class="col-lg-3 search_options">
+                            <select class="form-control" name="search_options">
+                                <option value="company" name="company">Company</option>
+                                <option value="event" name="event">Event</option>
+                                <option value="building" name="building">Building</option>
+                            </select>
+                         </div>
+                         <div class="col-lg-3 search_options">
+                                        <button class="btn btn-primary" type="submit">Search  </button>
+
+                         </div>
+                     </div>
                   </form>
 
 
             </div>
 
 <?php } ?>
+
 <!-- for search-->
     <?php
         if(isset($_GET["search"])){
@@ -82,7 +84,6 @@ if(!isset($_GET["viewmore"])){   ?>
             include("Operator_Search.php");
         }
     ?>
-
 
     <!-- for frequently asked questions-->
 

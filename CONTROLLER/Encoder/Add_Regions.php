@@ -5,7 +5,7 @@ require("../../CONFIGURATION/Config.php");//this file contains configurations fi
 require(DB);//this will make the database class included
 require("../../MODEL/User.php");//user object will be created so it should be included in here
 require("User_Controller.php");//admin controller is going to extend this class so it should be included
-require("Encoder_Controller.php");
+require("All_Controllers.php");
 require("../Controller_Secure_Access.php");//this will prevent this file from being accessed easily
 require("../../MODEL/User_Type.php");
 require("../../MODEL/Error_Type.php");
@@ -26,11 +26,6 @@ function encoder_redirect_success(Region $new_region){
 
 }
 
-/**
- * @param $type_of_error
- * this function takes an error type
- * and redirect the encoder to the add regions place
- */
 function encoder_place_redirect($type_of_error){
 
 
@@ -104,9 +99,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 			else{
 				$region_name_amharic = $_POST['Region_Name_Amharic'];
 			}
-
-
-
 
 
 

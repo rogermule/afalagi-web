@@ -1,12 +1,6 @@
 <?php
-require("../../../../CONFIGURATION/Config.php");
-require(DB);
-require("../../../../MODEL/User.php");
-require("../../../../MODEL/City.php");
-require("../../../../MODEL/User_Type.php");
-require("../../../../CONTROLLER/Encoder/User_Controller.php");
-require("../../../../CONTROLLER/Encoder/Encoder_Controller.php");
-require("../../../../CONTROLLER/Controller_Secure_Access.php");
+
+require('Require.php');
 
 include("Place_Header.php");
 include("includables.php");
@@ -62,6 +56,38 @@ include("includables.php");
 				    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 				    <strong>You have added a new city successfully.</strong>
 				    <br/>New City --- <?php echo("$city_name");?>
+			    </div>
+
+		    <?php
+
+		    }
+
+		    else if(isset($_GET['success_edit'])){
+
+
+
+
+			    ?>
+			    <div class="alert alert-success alert-dismissable">
+				    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				    <strong>You Have Edited A city Successfully</strong>
+
+			    </div>
+
+		    <?php
+
+		    }
+
+		    else if(isset($_GET['success_delete'])){
+
+
+
+
+			    ?>
+			    <div class="alert alert-success alert-dismissable">
+				    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				    <strong>You have deleted a city Successfully!</strong>
+
 			    </div>
 
 		    <?php
@@ -125,21 +151,28 @@ include("includables.php");
                 <tbody>
 
 	                <?php
-	                //fetch the regions from the database and render them to the view
+	                //fetch the Citys from the database and render them to the view
 		                $count = 0;
 		                $city_name = "";
 	                    $city_name_amharic = "";
+                        $city_id = "";
 
 		                if($cities){
 			                while($city = mysqli_fetch_array($cities,MYSQLI_ASSOC)){
 				                $count++;
 				                $city_name = $city["Name"];
 				                $city_name_amharic = $city["Name_Amharic"];
+				                $city_id = $city["ID"];
 				                ?>
 				                <tr>
 					                <td><?php echo($count);?></td>
 					                <td><?php echo($city_name);?></td>
 					                <td><?php echo($city_name_amharic);?></td>
+					                <td>
+						                <a class="btn btn-warning btn-xs" href="Edit_City.php?City_ID=<?php echo($city_id)?>">Edit</a>
+						                <a class="btn btn-danger btn-xs"
+						                   href="Delete_City.php?City_ID=<?php echo($city_id);?>">Delete</a>
+					                </td>
 				                </tr>
 			                <?php
 			                }

@@ -15,8 +15,8 @@ include "Operator_Header.html";
 
 $controller = new SearchController();
 
-$type = $controller->getCompanyTypeDrop();
-$region = $controller->getRegionDrop();
+//$type = $controller->getCompanyTypeDrop();
+//$region = $controller->getRegionDrop();
 
 ?>
 
@@ -41,25 +41,22 @@ $region = $controller->getRegionDrop();
 
             <br />
 
-            <div class="droop">
-
-            </div>
 
             <form class="specific_search" name="myForm" role="form" action="Operator_Specific_Search.php" method="GET">
 
                 <input type=hidden name=st value=0>
 
-                <div class="form-group">
-                    <div class="">
-                        <label for="labelsearchfor" class="col-sm-4 control-label" id="labelsearchfor">Search Type: </label>
+                <div class="row form-group">
+                    <div class="col-lg-4">
+                        <label for="labelsearchfor" class="search_optionsSpecificLabel" id="labelsearchfor">Search Type: </label>
                     </div>
-                    <div class="dropdown">
-                        <select name="searchfor">
+                    <div class="col-lg-6 dropdown">
+                        <select class="form-control" name="searchfor">
                             <option value="none">--select one--</option>
                            <?php
                                 $options ="";
                                 while($results = mysqli_fetch_array($type,MYSQL_ASSOC)){
-                                        $options="<option value='".$results['Type']."'>".$results['Type']."</option>";
+                                        $options="<option value='".$results['Name']."'>".$results['Name']."</option>";
                                 }
                             echo $options;
                             ?>
@@ -67,70 +64,85 @@ $region = $controller->getRegionDrop();
                         </select>
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="">
-                        <label for="region" class="col-sm-4 control-label">Region</label>
+                <div class="row form-group">
+                    <div class="col-lg-4">
+                        <label for="region" class="search_optionsSpecificLabel" id="labelregion">Region: </label>
                     </div>
-                    <div class="dropdown">
-                        <select name="region">
+                    <div class="col-lg-6 dropdown">
+                        <select class="form-control" name="region">
                             <option value="none">--select one--</option>
                             <?php
-                                $options ="";
-                                while($results = mysqli_fetch_array($region,MYSQL_ASSOC)){
-                                    $options="<option value='".$results['ID']."'>".$results['Name']."</option>";
-                                }
-                                echo $options;
+                            $options ="";
+                            while($results = mysqli_fetch_array($region,MYSQL_ASSOC)){
+                                $options="<option value='".$results['Name']."'>".$results['Name']."</option>";
+                            }
+                            echo $options;
                             ?>
 
-
                         </select>
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="">
-                        <label for="city" class="col-sm-4 control-label">City</label>
+
+                <div class="row form-group">
+                    <div class="col-lg-4">
+                        <label for="city" class="search_optionsSpecificLabel" id="labelcity">City: </label>
                     </div>
-                     <div class="dropdown">
-                        <select class="" name="city"  onchange="">
-                            <option value="none">--select one-</option>
-
-                        </select>
-                    </div>
-
-            </div>
-
-            <div class="form-group">
-                <div class="">
-                    <label for="region" class="col-sm-4 control-label">Sub City</label>
-                 </div>
-                 <div class="dropdown">
-                        <select name="subcity" onchange="">
+                    <div class="col-lg-6 dropdown">
+                        <select class="form-control" name="city">
                             <option value="none">--select one--</option>
-                            <option value="volvo">Arada</option>
+                            <?php
+                            $options ="";
+                            while($results = mysqli_fetch_array($type,MYSQL_ASSOC)){
+                                $options="<option value='".$results['Name']."'>".$results['Name']."</option>";
+                            }
+                            echo $options;
+                            ?>
 
                         </select>
-                 </div>
-            </div>
-
-            <div class="form-group">
-                <div class="">
-                    <label for="region" class="col-sm-4 control-label">Sefer</label>
+                    </div>
                 </div>
-                <div class="dropdown">
-                        <select name="sefer" onchange="">
+
+                <div class="row form-group">
+                    <div class="col-lg-4">
+                        <label for="subcity" class="search_optionsSpecificLabel" id="labelsubcity">Sub City: </label>
+                    </div>
+                    <div class="col-lg-6 dropdown">
+                        <select class="form-control" name="subcity">
                             <option value="none">--select one--</option>
-                            <option value="volvo">Volvo</option>
-                            <option value="saab">Saab</option>
+                            <?php
+                            $options ="";
+                            while($results = mysqli_fetch_array($type,MYSQL_ASSOC)){
+                                $options="<option value='".$results['Name']."'>".$results['Name']."</option>";
+                            }
+                            echo $options;
+                            ?>
 
                         </select>
+                    </div>
                 </div>
 
+                <div class="row form-group">
+                    <div class="col-lg-4">
+                        <label for="labelsearchfor" class="search_optionsSpecificLabel" id="labelsefer">Sefer: </label>
+                    </div>
+                    <div class="col-lg-6 dropdown">
+                        <select class="form-control" name="sefer">
+                            <option value="none">--select one--</option>
+                            <?php
+                            $options ="";
+                            while($results = mysqli_fetch_array($type,MYSQL_ASSOC)){
+                                $options="<option value='".$results['Name']."'>".$results['Name']."</option>";
+                            }
+                            echo $options;
+                            ?>
 
-            </div>
+                        </select>
+                    </div>
+                </div>
 
                 <div class="form-group margin_top_20">
-                    <div class="col-sm-offset-1 col-sm-5">
-                        <button type="submit" class="btn btn-primary btn-block bt_specific_search"><strong>Search</strong></button>
+                    <div class="col-sm-offset-3 col-sm-5">
+                        <button type="submit" class="btn btn-primary btn-block "><strong>Search</strong></button>
                     </div>
                 </div>
 

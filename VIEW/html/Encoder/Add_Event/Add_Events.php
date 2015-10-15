@@ -103,10 +103,25 @@
 					          placeholder="አጠቃላይ መረጃ"></textarea>
 				</div>
 			</div>
+			<div class="form-group margin_top_70">
+				<label for="Event_Start" class="col-sm-4 control-label">የኢቨንቱ መጀመሪያ ቀን</label>
+				<div class="col-sm-6">
+					<input name="Event_Start" type="text" class="form-control datepicker"
+					       id="Name" placeholder="yyyy/mm/dd" >
+				</div>
+			</div>
+
+			<div class="form-group margin_top_70">
+				<label for="Event_End" class="col-sm-4 control-label">የኢቨንቱ መጨረሻ ቀን</label>
+				<div class="col-sm-6">
+					<input name="Event_End" type="text" class="form-control datepicker"
+					       id="Name_Amharic" placeholder="yyyy/mm/dd" >
+				</div>
+			</div>
 
 
 
-			<div class="form-group margin_top_30">
+			<div class="form-group margin_top_70">
 
 				<div class="col-sm-6 col-lg-offset-4">
 					<button type="submit" class="btn btn-success btn-block">
@@ -115,6 +130,9 @@
 				</div>
 			</div>
 
+			<div class="margin_bottom_200">
+
+			</div>
 
 
 

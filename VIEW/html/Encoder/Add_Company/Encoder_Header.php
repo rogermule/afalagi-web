@@ -12,11 +12,11 @@
 	<script src="Place_Controller.js"></script>
 	<script src="../../../js/bootstrap-datepicker.js"></script>
 	<script>
-		 $(document).ready( function(){
-			 $('.datepicker').datepicker({
-				 format:'yyyy/mm/dd'
-			 });
-		 });
+		$(document).ready( function(){
+			$('.datepicker').datepicker({
+				format:'yyyy/mm/dd'
+			});
+		});
 	</script>
 
 

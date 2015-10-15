@@ -1,22 +1,12 @@
 <?php
-require("../../../../CONFIGURATION/Config.php");
-require(DB);
-require("../../../../MODEL/User.php");
-require("../../../../MODEL/Sefer.php");
-require("../../../../MODEL/User_Type.php");
-require("../../../../CONTROLLER/Encoder/User_Controller.php");
-require("../../../../CONTROLLER/Encoder/Encoder_Controller.php");
-require("../../../../CONTROLLER/Controller_Secure_Access.php");
+require('Require.php');
 
 include("Place_Header.php");
 include("includables.php");
 
 	$user = $_SESSION['Logged_In_User'];
 	$encoder = new Encoder_Controller($user);//make an encoder object
-
-
-
-	$sefers = $encoder->Get_Sefer();
+ 	$sefers = $encoder->Get_Sefer();
 	$num_sefer = mysqli_num_rows($sefers);
 
 ?>
@@ -62,6 +52,32 @@ include("includables.php");
 				    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 				    <strong>You have added a new sefer successfully.</strong>
 				    <br/>New Sefer--- <?php echo("$sefer_name");?>
+			    </div>
+
+		    <?php
+
+		    }
+		    else if(isset($_GET['success_edit'])){
+
+
+			    ?>
+			    <div class="alert alert-success alert-dismissable">
+				    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				    <strong>You have edited sefer successfully.</strong>
+
+			    </div>
+
+		    <?php
+
+		    }
+		    if(isset($_GET['success_delete'])){
+
+
+			    ?>
+			    <div class="alert alert-success alert-dismissable">
+				    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				    <strong>You have deleted a single sefer successfully.</strong>
+
 			    </div>
 
 		    <?php
@@ -134,7 +150,7 @@ include("includables.php");
                 </thead>
                 <tbody>
                 <?php
-                //fetch the regions from the database and render them to the view
+                //fetch the Sefers from the database and render them to the view
                 $count = 0;
                 $sefer_name = "";
                 $sefer_name_amharic = "";
@@ -144,11 +160,17 @@ include("includables.php");
 		                $count++;
 		                $sefer_name = $sefer["Name"];
 		                $sefer_name_amharic = $sefer["Name_Amharic"];
+		                $sefer_id = $sefer["ID"];
 		                ?>
 		                <tr>
 			                <td><?php echo($count);?></td>
 			                <td><?php echo($sefer_name);?></td>
 			                <td><?php echo($sefer_name_amharic);?></td>
+			                <td>
+				                <a class="btn btn-warning btn-xs" href="Edit_Sefer.php?Sefer_ID=<?php echo($sefer_id)?>">Edit</a>
+				                <a class="btn btn-danger btn-xs"
+				                   href="Delete_Sefer.php?Sefer_ID=<?php echo($sefer_id);?>">Delete</a>
+			                </td>
 		                </tr>
 	                <?php
 	                }

@@ -1,13 +1,7 @@
 <?php
 
 
-require("../../../../CONFIGURATION/Config.php");
-require(DB);
-require("../../../../MODEL/User.php");
-require("../../../../MODEL/User_Type.php");
-require("../../../../CONTROLLER/Encoder/User_Controller.php");
-require("../../../../CONTROLLER/Encoder/Encoder_Controller.php");
-require("../../../../CONTROLLER/Controller_Secure_Access.php");
+require('Require.php');
 
 include("Place_Header.php");
 include("includables.php");
@@ -55,7 +49,7 @@ include("includables.php");
 		    <?php
 		    }
 
-		    if(isset($_GET['success'])){
+		    else if(isset($_GET['success'])){
 
 
 			    $region_name = $_GET['Region_Name'];
@@ -65,6 +59,36 @@ include("includables.php");
 				    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 				    <strong>You have added a new region successfully.</strong>
 				    <br/>New Region --- <?php echo("$region_name");?>
+			    </div>
+
+		    <?php
+
+		    }
+		    else if(isset($_GET['success_edit'])){
+
+
+
+
+			    ?>
+			    <div class="alert alert-success alert-dismissable">
+				    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				    <strong>You have successfully edited.</strong>
+
+			    </div>
+
+		    <?php
+
+		    }
+		    else if(isset($_GET['success_delete'])){
+
+
+
+
+			    ?>
+			    <div class="alert alert-success alert-dismissable">
+				    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				    <strong>You have successfully deleted.</strong>
+
 			    </div>
 
 		    <?php
@@ -136,6 +160,7 @@ include("includables.php");
 				if($regions){
 					while($reg = mysqli_fetch_array($regions,MYSQLI_ASSOC)){
 							$count++;
+							$region_id =$reg['ID'];
 							$region_name = $reg["Name"];
 							$region_name_amharic = $reg["Name_Amharic"];
 						?>
@@ -143,6 +168,12 @@ include("includables.php");
 							<td><?php echo($count);?></td>
 							<td><?php echo($region_name);?></td>
 							<td><?php echo($region_name_amharic);?></td>
+							<td>
+								<a class="btn btn-warning btn-xs" href="Edit_Region.php?Region_ID=<?php echo($region_id)?>">Edit</a>
+								<a class="btn btn-danger btn-xs"
+								   href="Delete_Region.php?Region_ID=<?php echo($region_id);?>">Delete</a>
+							</td>
+
 						</tr>
 					<?php
 					}

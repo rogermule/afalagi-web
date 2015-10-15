@@ -6,7 +6,7 @@ require(DB);//this will make the database class included
 require("../../MODEL/User.php");//user object will be created so it should be included in here
 require("../../MODEL/Wereda.php");
 require("User_Controller.php");//admin controller is going to extend this class so it should be included
-require("Encoder_Controller.php");
+require("All_Controllers.php");
 require("../Controller_Secure_Access.php");//this will prevent this file from being accessed easily
 require("../../MODEL/User_Type.php");
 require("../../MODEL/Error_Type.php");
@@ -21,7 +21,7 @@ function encoder_redirect_success(Wereda $wereda){
 	$new_wereda_name = $wereda->getWereda();
 
 
-	$dir = "VIEW/html/Encoder/Add_Place/Add_Place_Kebele_OR_Wereda_inc.php?success=1&Wereda_Name=$new_wereda_name";
+	$dir = "VIEW/html/Encoder/Add_Place/Add_Place_Wereda_inc.php?success=1&Wereda_Name=$new_wereda_name";
 	$url = BASE_URL.$dir;
 	header("Location:$url");//redirect the encoder to the regions add place
 	exit();
@@ -46,7 +46,7 @@ function encoder_place_redirect($type_of_error){
 	else if($type_of_error == Error_Type::SAME_USER_NAME){
 		$error_type = "Error Same wereda or kebele Name. Same City name can not be added";
 	}
-	$dir = "VIEW/html/Encoder/Add_Place/Add_Place_Kebele_OR_Wereda_inc.php?error=$error_type";
+	$dir = "VIEW/html/Encoder/Add_Place/Add_Place_Wereda_inc.php?error=$error_type";
 	$url = BASE_URL.$dir;
 	header("Location:$url");//redirect the encoder to the regions
 	exit();

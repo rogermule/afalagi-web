@@ -39,84 +39,6 @@ class SearchController{
     }
 
 
-
-    function getCompanyTypeDrop(){
-        $query = "";
-
-        $query = "SELECT *
-                   FROM company_type
-                   ";
-
-        $result = mysqli_query($this->getDbc(),$query);
-
-        if($result){
-            return $result;
-        }
-        else{
-            0;
-        }
-    }
-
-    function getRegionDrop(){
-        $query = "SELECT *
-                  FROM region
-                    ";
-        $result = mysqli_query($this->getDbc(),$query);
-
-        if($result){
-            return $result;
-        }
-        else{
-            0;
-        }
-    }
-
-
-    function getCityDrop($regionid){
-        $query = "SELECT ID,Name
-                  FROM city
-                  WHERE region='$regionid'
-                    ";
-        $result = mysqli_query($this->getDbc(),$query);
-
-        if($result){
-            return $result;
-        }
-        else{
-            0;
-        }
-    }
-
-    function getSubCityDrop($cityid){
-        $query = "SELECT *
-                  FROM sub_city
-                  WHERE region='$cityid'
-                    ";
-        $result = mysqli_query($this->getDbc(),$query);
-
-        if($result){
-            return $result;
-        }
-        else{
-            0;
-        }
-    }
-    function getSubCityAll(){
-        $query = "SELECT *
-                  FROM sub_city
-                    ";
-        $result = mysqli_query($this->getDbc(),$query);
-
-        if($result){
-            return $result;
-        }
-        else{
-            0;
-        }
-    }
-
-
-
     /////////generic search
 
     function genericSearch($company,$option){
@@ -137,25 +59,90 @@ class SearchController{
         }
     }
 
-    function getCompanyType($id){
-        $company_type = "Unknown";
+
+    /* ------------ Company Category -------------- */
+    function getCompanyCategoryeId($company_id){
+        $company_category_id = "Unknown";
         $query = "SELECT *
-                    FROM company_type
-                    WHERE id ='$id'";
+                    FROM company_category
+                    WHERE Company_ID ='$company_id'";
 
         $result = mysqli_query($this->getDbc(),$query);
 
         if($result){
             while($results = mysqli_fetch_array($result,MYSQL_ASSOC)){
-                $company_type = $results['Type'];
+                $company_category_id = $results['Category_ID'];
             }
         }
         else{
-            $company_type = "Error getting info";
+            $company_category_id = "Error getting info";
         }
-        return $company_type;
+        return $company_category_id;
     }
 
+    function  getCompanyCatagory($category_id){
+        $company_cataegory = "Unknown";
+        $query = "SELECT *
+                    FROM category
+                    WHERE ID ='$category_id'";
+
+        $result = mysqli_query($this->getDbc(),$query);
+
+        if($result){
+            while($results = mysqli_fetch_array($result,MYSQL_ASSOC)){
+                $company_cataegory = $results['Name'];
+            }
+        }
+        else{
+            $company_cataegory = "Error getting info";
+        }
+        return $company_cataegory;
+    }
+
+    function getCompanyTypeAll(){
+        $query = "SELECT *
+                   FROM category
+                   ";
+
+        $result = mysqli_query($this->getDbc(),$query);
+
+        if($result){
+            return $result;
+        }
+        else{
+            0;
+        }
+    }
+
+  /* -------------- Company Address ----------*/
+    function getCompanyAddressId($company_id){
+        $company_address_id = "Unknown";
+        $query = "SELECT *
+                    FROM category
+                    WHERE ID ='$company_id'";
+
+        $result = mysqli_query($this->getDbc(),$query);
+
+        if($result){
+            while($results = mysqli_fetch_array($result,MYSQL_ASSOC)){
+                $company_address_id = $results['Name'];
+            }
+        }
+        else{
+            $company_address_id = "Error getting info";
+        }
+        return $company_address_id;
+    }
+
+
+    function getCompanyBuilding($company_address_id){
+
+    }
+    function getCompanyBuildingAll(){
+
+    }
+
+  /* ---------------- Place ----------------- */
 
     function getPlaceId($id){
         $place_id = 0;
@@ -175,8 +162,13 @@ class SearchController{
         }
         return $place_id;
     }
+    function getPlace($place_id){
+
+    }
 
 
+
+ /*--------------- Region  ---------------------------------- */
     function getRegionId($place_id){
         $region_id = 0;
         $query = "SELECT *
@@ -197,6 +189,43 @@ class SearchController{
     }
 
 
+    function getRegion($region_id){
+        $company_region = "Unknown";
+        $query = "SELECT *
+                    FROM region
+                    WHERE id ='$region_id'";
+
+        $result = mysqli_query($this->getDbc(),$query);
+
+        if($result){
+            while($results = mysqli_fetch_array($result,MYSQL_ASSOC)){
+                $company_region = $results['Name'];
+            }
+        }
+        else{
+            $company_region = "Error getting info";
+        }
+        return $company_region;
+
+    }
+
+
+    function getRegionAll(){
+        $query = "SELECT *
+                  FROM region
+                    ";
+        $result = mysqli_query($this->getDbc(),$query);
+
+        if($result){
+            return $result;
+        }
+        else{
+            0;
+        }
+    }
+
+
+    /*--------------- City  ---------------------------------- */
 
     function getCityId($place_id){
         $city_id = 0;
@@ -217,6 +246,42 @@ class SearchController{
         return $city_id;
     }
 
+    function getCity($city_id){
+        $company_city = "Unknown";
+        $query = "SELECT *
+                    FROM city
+                    WHERE id ='$city_id'";
+
+        $result = mysqli_query($this->getDbc(),$query);
+
+        if($result){
+            while($results = mysqli_fetch_array($result,MYSQL_ASSOC)){
+                $company_city = $results['Name'];
+            }
+        }
+        else{
+            $company_city = "Error getting info";
+        }
+        return $company_city;
+
+    }
+
+
+    function getCityAll(){
+        $query = "SELECT ID,Name
+                  FROM city
+                    ";
+        $result = mysqli_query($this->getDbc(),$query);
+
+        if($result){
+            return $result;
+        }
+        else{
+            0;
+        }
+    }
+
+    /*--------------- Sub-City  ---------------------------------- */
 
     function getSubCityId($place_id){
         $sub_city_id = 0;
@@ -237,6 +302,43 @@ class SearchController{
         return $sub_city_id;
     }
 
+
+    function getSubCity($subcity_id){
+        $company_sub_city = "Unknown";
+        $query = "SELECT *
+                    FROM sub_city
+                    WHERE id ='$subcity_id'";
+
+        $result = mysqli_query($this->getDbc(),$query);
+
+        if($result){
+            while($results = mysqli_fetch_array($result,MYSQL_ASSOC)){
+                $company_sub_city = $results['Name'];
+            }
+        }
+        else{
+            $company_sub_city = "Error getting info";
+        }
+        return $company_sub_city;
+    }
+
+    function getSubCityAll(){
+        $query = "SELECT *
+                  FROM sub_city
+                    ";
+        $result = mysqli_query($this->getDbc(),$query);
+
+        if($result){
+            return $result;
+        }
+        else{
+            0;
+        }
+    }
+
+
+    /*--------------- Sefer  ---------------------------------- */
+
     function getSeferId($place_id){
         $sefer_id = 0;
         $query = "SELECT *
@@ -256,70 +358,11 @@ class SearchController{
         return $sefer_id;
     }
 
-    function getRegion($id){
-        $company_region = "Unknown";
-        $query = "SELECT *
-                    FROM region
-                    WHERE id ='$id'";
-
-        $result = mysqli_query($this->getDbc(),$query);
-
-        if($result){
-            while($results = mysqli_fetch_array($result,MYSQL_ASSOC)){
-                $company_region = $results['Name'];
-            }
-        }
-        else{
-            $company_region = "Error getting info";
-        }
-        return $company_region;
-
-    }
-
-    function getCity($id){
-        $company_city = "Unknown";
-        $query = "SELECT *
-                    FROM city
-                    WHERE id ='$id'";
-
-        $result = mysqli_query($this->getDbc(),$query);
-
-        if($result){
-            while($results = mysqli_fetch_array($result,MYSQL_ASSOC)){
-                $company_city = $results['Name'];
-            }
-        }
-        else{
-            $company_city = "Error getting info";
-        }
-        return $company_city;
-
-    }
-
-    function getSubCity($id){
-        $company_sub_city = "Unknown";
-        $query = "SELECT *
-                    FROM sub_city
-                    WHERE id ='$id'";
-
-        $result = mysqli_query($this->getDbc(),$query);
-
-        if($result){
-            while($results = mysqli_fetch_array($result,MYSQL_ASSOC)){
-                $company_sub_city = $results['Name'];
-            }
-        }
-        else{
-            $company_sub_city = "Error getting info";
-        }
-        return $company_sub_city;
-    }
-
-    function getSefer($id){
+    function getSefer($sefer_id){
         $company_sefer = "Unknown";
         $query = "SELECT *
                     FROM sefer
-                    WHERE id ='$id'";
+                    WHERE id ='$sefer_id'";
 
         $result = mysqli_query($this->getDbc(),$query);
 
@@ -334,6 +377,12 @@ class SearchController{
         return $company_sefer;
     }
 
+
+    /*--------------- Phone Numbers  ---------------------------------- */
+
+    function getPhoneNumberId($phoneNum){
+
+    }
     function getPhoneNumber($id){
         $company_phone_num = "Unknown";
         $query = "SELECT *
@@ -355,7 +404,7 @@ class SearchController{
 
 
 
-/* Frequently asked Questions   */
+/*----------------- Frequently asked Questions  -----------------------*/
 
     function getFaqBuilding(){
         $query = "";
@@ -372,7 +421,25 @@ class SearchController{
         else{
             0;
         }
+
     }
+
+    function getFaqHotel(){
+
+    }
+    function getFaqSchool(){
+
+    }
+    function getFaqStreet(){
+
+    }
+    function getFaqCompany(){
+
+    }
+    function getFaqCinema(){
+
+    }
+
 
 }
 

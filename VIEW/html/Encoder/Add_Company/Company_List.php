@@ -1,13 +1,7 @@
 <?php
 
 
-require("../../../../CONFIGURATION/Config.php");
-require(DB);
-require("../../../../MODEL/User.php");
-require("../../../../MODEL/User_Type.php");
-require("../../../../CONTROLLER/Encoder/User_Controller.php");
-require("../../../../CONTROLLER/Encoder/Encoder_Controller.php");
-require("../../../../CONTROLLER/Controller_Secure_Access.php");
+require("Require.php");
 
 
 
@@ -17,7 +11,18 @@ include "Includeables.php";
 	$user = $_SESSION['Logged_In_User'];
 	$encoder = new Encoder_Controller($user);//make an encoder object
 
-	$Companies = $encoder->Get_Company_For_Listing();
+	if(isset($_GET['Sort'])){
+		$Name_Start = $_GET['Name_Start'];
+		$Companies = $encoder->Get_Company_For_Listing($Name_Start);
+		$Num_Companies= mysqli_num_rows($Companies);
+	}
+	else{
+		$Companies = $encoder->Get_Company_For_Listing();
+		$Num_Companies = mysqli_num_rows($Companies);
+		$Name_Start = 'A';
+	}
+
+
 
 
 
@@ -26,15 +31,8 @@ include "Includeables.php";
 
 <div class="col-sm-12">
 
-	<div class="panel panel-default">
-		<div class="panel-body text-center">
 
-			<h4>Company List</h4>
-
-		</div>
-	</div>
-	<div class="col-sm-12 margin_top_51 ">
-		<hr>
+	<div class="col-sm-12 margin_top_10">
 
 
 		<div class="panel panel-primary list_header margin_top_10">
@@ -43,36 +41,90 @@ include "Includeables.php";
 
 			</div>
 		</div>
+
+		<?php
+
+
+		if($_SERVER['REQUEST_METHOD'] == "GET") {
+
+			if(isset($_GET['error'])){
+				$error_msg = $_GET['error'];
+				?>
+
+				<div class="alert alert-danger alert-dismissable">
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+					<strong>Warning!</strong><?php echo($error_msg);?>
+				</div>
+
+			<?php
+			}
+
+			if(isset($_GET['success'])){
+				$company_name = $_GET["Company_Name"];
+				$company_name_amharic = $_GET["Company_Name_Amharic"];
+				?>
+				<div class="alert alert-success alert-dismissable">
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+					<strong>You have Edited a company successfully.</strong>
+					<br/>Edited -- <?php echo("$company_name ($company_name_amharic)");?>
+					<br/>
+				</div>
+			<?php
+			}
+
+			if(isset($_GET['success_delete'])){
+
+				?>
+				<div class="alert alert-success alert-dismissable">
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+					<strong>You have deleted a company successfully</strong>
+
+					<br/>
+				</div>
+
+		<?php
+
+			}
+		}
+		?>
 		<div class="col-sm-12 text-center margin_top_20">
 
-			<button type="button" class="btn btn-success btn-xs"> A </button>
-			<button type="button" class="btn btn-success btn-xs"> B </button>
-			<button type="button" class="btn btn-success btn-xs"> C </button>
-			<button type="button" class="btn btn-success btn-xs"> D </button>
+			<a href="Company_List.php?Sort=1&Name_Start=A" class="btn btn-success btn-xs">A</a>
+			<a href="Company_List.php?Sort=1&Name_Start=B" class="btn btn-success btn-xs">B</a>
+			<a href="Company_List.php?Sort=1&Name_Start=C" class="btn btn-success btn-xs">C</a>
+			<a href="Company_List.php?Sort=1&Name_Start=D" class="btn btn-success btn-xs">D</a>
+			<a href="Company_List.php?Sort=1&Name_Start=E" class="btn btn-success btn-xs">E</a>
+			<a href="Company_List.php?Sort=1&Name_Start=F" class="btn btn-success btn-xs">F</a>
+			<a href="Company_List.php?Sort=1&Name_Start=G" class="btn btn-success btn-xs">G</a>
+			<a href="Company_List.php?Sort=1&Name_Start=H" class="btn btn-success btn-xs">H</a>
+			<a href="Company_List.php?Sort=1&Name_Start=I" class="btn btn-success btn-xs">I</a>
+			<a href="Company_List.php?Sort=1&Name_Start=J" class="btn btn-success btn-xs">J</a>
+			<a href="Company_List.php?Sort=1&Name_Start=K" class="btn btn-success btn-xs">K</a>
+			<a href="Company_List.php?Sort=1&Name_Start=L" class="btn btn-success btn-xs">L</a>
+			<a href="Company_List.php?Sort=1&Name_Start=M" class="btn btn-success btn-xs">M</a>
+			<a href="Company_List.php?Sort=1&Name_Start=N" class="btn btn-success btn-xs">N</a>
+			<a href="Company_List.php?Sort=1&Name_Start=O" class="btn btn-success btn-xs">O</a>
+			<a href="Company_List.php?Sort=1&Name_Start=P" class="btn btn-success btn-xs">P</a>
+			<a href="Company_List.php?Sort=1&Name_Start=Q" class="btn btn-success btn-xs">Q</a>
+			<a href="Company_List.php?Sort=1&Name_Start=R" class="btn btn-success btn-xs">R</a>
+			<a href="Company_List.php?Sort=1&Name_Start=S" class="btn btn-success btn-xs">S</a>
+			<a href="Company_List.php?Sort=1&Name_Start=T" class="btn btn-success btn-xs">T</a>
+			<a href="Company_List.php?Sort=1&Name_Start=U" class="btn btn-success btn-xs">U</a>
+			<a href="Company_List.php?Sort=1&Name_Start=V" class="btn btn-success btn-xs">V</a>
+			<a href="Company_List.php?Sort=1&Name_Start=W" class="btn btn-success btn-xs">W</a>
+			<a href="Company_List.php?Sort=1&Name_Start=X" class="btn btn-success btn-xs">X</a>
+			<a href="Company_List.php?Sort=1&Name_Start=Y" class="btn btn-success btn-xs">Y</a>
+			<a href="Company_List.php?Sort=1&Name_Start=Z" class="btn btn-success btn-xs">Z</a>
 
-			<button type="button" class="btn btn-success btn-xs"> E </button>
-			<button type="button" class="btn btn-success btn-xs"> F </button>
-			<button type="button" class="btn btn-success btn-xs"> G </button>
-			<button type="button" class="btn btn-success btn-xs"> H </button>
-			<button type="button" class="btn btn-success btn-xs"> I </button>
-			<button type="button" class="btn btn-success btn-xs"> J </button>
-			<button type="button" class="btn btn-success btn-xs"> K </button>
-			<button type="button" class="btn btn-success btn-xs"> L </button>
-			<button type="button" class="btn btn-success btn-xs"> M </button>
-			<button type="button" class="btn btn-success btn-xs"> N </button>
-			<button type="button" class="btn btn-success btn-xs"> O </button>
-			<button type="button" class="btn btn-success btn-xs"> P </button>
-			<button type="button" class="btn btn-success btn-xs"> Q </button>
 
-			<button type="button" class="btn btn-success btn-xs"> R </button>
-			<button type="button" class="btn btn-success btn-xs"> S </button>
-			<button type="button" class="btn btn-success btn-xs"> T </button>
-			<button type="button" class="btn btn-success btn-xs"> U </button>
-			<button type="button" class="btn btn-success btn-xs"> V </button>
-			<button type="button" class="btn btn-success btn-xs"> W </button>
-			<button type="button" class="btn btn-success btn-xs"> X </button>
-			<button type="button" class="btn btn-success btn-xs"> Y </button>
-			<button type="button" class="btn btn-success btn-xs"> Z </button>
+		</div>
+		<hr>
+		 <div class="row">
+			 <div class="col-md-5">Number of companies starting with <span class="btn btn-warning btn-xs"> <?php echo($Name_Start);?> </span>  </div>
+			 <div class="col-md-4"><h4><?php   echo($Num_Companies)?></h4></div>
+		 </div>
+		<hr>
+		<div>
 
 		</div>
 
@@ -97,10 +149,14 @@ include "Includeables.php";
 
 					if($Companies){
 						while($com = mysqli_fetch_array($Companies,MYSQLI_ASSOC)){
-							$Company_ID =$com["ID"];
-							$Company_Name = $com["Name"];
-							$Company_Name_Amharic = $com["Name_Amharic"];
-							$Company_Product_Service_Amharic = $com['Product_Service_Amharic'];
+							$Company_ID =$com["company_id"];
+							$Address_ID =$com["address_id"];
+							$Company_Name = $com["company_name"];
+							$Company_Name_Amharic = $com["company_name_amharic"];
+							$Registration_Date = $com["registration_date"];
+							$Category = $com["category"];
+							$Category_Amharic =$com["category_amharic"];
+							$Belong_to = $com["belong_to"];
 							$Count++;
 
 							?>
@@ -110,12 +166,33 @@ include "Includeables.php";
 
 									<td><?php echo("$Company_Name");?></td>
 									<td><?php echo("$Company_Name_Amharic");?></td>
-									<td><?php echo("$Company_Product_Service_Amharic");?></td>
+									<td><?php echo("$Category");?></td>
+									<td><?php echo("$Category_Amharic");?></td>
 
 									<td>
 										<p>
-											<button type="button" class="btn btn-warning btn-xs">Edit</button>
-											<button type="button" class="btn btn-danger btn-xs">Delete</button>
+
+
+											<?php
+											if($Belong_to == Belong::COMPANY_WITH_BUILDING ){
+
+												?>
+<a class="btn btn-warning btn-xs" href=" Edit_Company.php?CB=1&company_id=<?php echo($Company_ID);?>">Edit</a>
+<a class="btn btn-danger btn-xs" href="Delete_Company.php?Delete=1&company_id=<?php echo($Company_ID);?>&on_building=1">Delete</a>
+
+												<?php
+
+											}
+											else if($Belong_to == Belong::COMPANY_WITH_OUT_BUILDING){
+
+												?>
+<a class="btn btn-warning btn-xs" href="Edit_Company.php?CA=1&company_id=<?php echo($Company_ID);?>">Edit</a>
+<a class="btn btn-danger btn-xs" href="Delete_Company.php?Delete=1&company_id=<?php echo($Company_ID);?>">Delete</a>
+
+											<?php
+											}
+											?>
+
 
 										</p>
 									</td>
