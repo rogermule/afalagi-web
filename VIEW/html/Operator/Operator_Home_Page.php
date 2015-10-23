@@ -7,7 +7,9 @@ require_once("../../../MODEL/User_Type.php");
 require_once("../../../CONTROLLER/User_Controller.php");
 require_once("../../../CONTROLLER/Controller_Secure_Access.php");
 require_once("../../../CONTROLLER/SearchController.php");
-
+require_once("../../../CONTROLLER/Encoder/Sub_Encoder_Controller.php");
+require_once("../../../CONTROLLER/Encoder/Encoder_Controller.php");
+require_once("../../../MODEL/Belong.php");
 
 $title="Operator";
 include "Operator_Header.html";

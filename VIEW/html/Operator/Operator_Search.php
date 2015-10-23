@@ -2,11 +2,12 @@
 $user = $_SESSION['Logged_In_User'];
 $search_controller = new Encoder_Controller($user);//make an encoder object
 
-$controller = new SearchController();
+//$controller = new SearchController();
+//$result = $controller->genericSearch($searchValue,$searchOptions);
 
-$result = $controller->genericSearch($searchValue,$searchOptions);
+$searchresult = $search_controller->Get_Company_For_Search_Listing($searchValue);
 
-$num_of_result = mysqli_num_rows($result);
+$num_of_result = mysqli_num_rows($searchresult);
 
 ?>
 
@@ -31,12 +32,14 @@ $num_of_result = mysqli_num_rows($result);
                         $count = 0;
                         if($num_of_result>0){
 
-                            while($results = mysqli_fetch_array($result,MYSQL_ASSOC)){
-                                $company_id = $results['ID'];
-                                $company_name = $results['Company_Name'];
-                                $company_description = $results['Discription'];
-                                $company_type_id = $results['Company_Type'];
-                                $company_address = $results['Address'];
+                            while($results = mysqli_fetch_array($searchresult,MYSQL_ASSOC)){
+                                $company_id = $results['company_id'];
+                               $company_name = $results['company_name'];
+                                //$company_description = $results['Discription'];
+                                $company_type = $results['category'];
+                                $Belong_to = $results["belong_to"];
+
+                                //$company_address = $results['address_id'];
                                 //$company_city;
                                // $company_subcity;
                                // $company_sefer;
@@ -44,9 +47,7 @@ $num_of_result = mysqli_num_rows($result);
 
                                 $count++;
 
-
                                 include("Operator_Search_Single_View.php");
-
 
                             }
                         }
@@ -56,10 +57,6 @@ $num_of_result = mysqli_num_rows($result);
                         ?>
 
                     </ul>
-
-
-
-
 
                 </div>
             </div>

@@ -126,13 +126,13 @@ include "Includeables.php";
 
 	<div class="col-sm-12">
 
-	<div class="panel panel-default">
-		<div class="panel-body text-center">
+        <div class="panel panel-default">
+            <div class="panel-body text-center">
 
-			<h4>Edit Company</h4>
+                <h4>Edit Company</h4>
 
-		</div>
-	</div>
+            </div>
+        </div>
 
 
 
