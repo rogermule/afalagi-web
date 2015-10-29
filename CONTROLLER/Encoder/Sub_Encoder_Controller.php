@@ -2585,7 +2585,7 @@ from (select COM.ID as COM_ID,COM.Name as COM_NAME,COM.Name_Amharic as COM_Name_
 		on COM_CAT.category_id = CAT.id) as cat_spec
 
 		on COM_ID = COM_CAT_COM_ID
-where COM_Name like '$Word_Start%'
+where COM_Name like '%$Word_Start%'
 ORDER by company_name";
 
         $result  = mysqli_query($this->getDbc(),$query);
@@ -2597,10 +2597,6 @@ ORDER by company_name";
             return FALSE;
         }
     }
-
-
-
-
 
 
 

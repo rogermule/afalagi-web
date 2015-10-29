@@ -59,12 +59,69 @@ class SearchController{
         }
     }
 
+    function Get_Generic_Company($Name_Start = null){
+
+        $companyType = "";
+        $region = "";
+        $city = "";
+        $subcity = "";
+        $sefer = "";
+
+        $q = "select
+              from (select )";
+        $Word_Start = "A";
+
+        if($Name_Start != null){
+            $Word_Start = $Name_Start;
+        }
+        $query = "select *
+from (
+
+select COM_ID as company_id,COM_NAME as company_name,COM_Name_Amharic as company_name_amharic,
+        COM_REG_DATE as registration_date
+		,CAT_Name as category,CAT_Name_Amharic as category_amharic,ADDR_ID as address_id,Belong_to as belong_to
+from (select COM.ID as COM_ID,COM.Name as COM_NAME,COM.Name_Amharic as COM_Name_Amharic,COM.Registration_date as COM_REG_DATE,
+			 COM_ADDR.company_id as COM_ADDR_COM_ID, COM_ADDR.address_id as COM_ADDR_ADDR_ID,
+			 ADDR.ID as ADDR_ID,ADDR.Belong_to
+		from company as COM
+		inner join company_address as COM_ADDR
+		on COM.ID = COM_ADDR.company_id
+		inner join address as ADDR
+		on ADDR.ID = COM_ADDR.address_id) as com_addr_spec
+
+		inner join
+		(select COM_CAT.company_id as COM_CAT_COM_ID, COM_CAT.category_id as COM_CAT_CAT_ID,
+				CAT.ID as CAT_ID,CAT.Name as CAT_Name,CAT.Name_Amharic as CAT_Name_Amharic
+		from company_category as COM_CAT
+		inner join category as CAT
+		on COM_CAT.category_id = CAT.id) as cat_spec
+
+		on COM_ID = COM_CAT_COM_ID
+  ORDER by company_name
+
+  ) as company_details
+ inner join
+ on
+
+  ";
+
+        $result  = mysqli_query($this->getDbc(),$query);
+
+        if($result){
+            return $result;
+        }
+        else{
+            return FALSE;
+        }
+    }
+
+
 
     /* ------------ Company Category -------------- */
     function getCompanyCategoryeId($company_id){
         $company_category_id = "Unknown";
         $query = "SELECT *
-                    FROM company_category
+                    FROM category
                     WHERE Company_ID ='$company_id'";
 
         $result = mysqli_query($this->getDbc(),$query);
@@ -100,8 +157,9 @@ class SearchController{
     }
 
     function getCompanyTypeAll(){
-        $query = "SELECT *
+        $query = "SELECT ID,Name
                    FROM category
+                   order by Name
                    ";
 
         $result = mysqli_query($this->getDbc(),$query);
@@ -212,7 +270,7 @@ class SearchController{
 
     function getRegionAll(){
         $query = "SELECT *
-                  FROM region
+                  FROM region order by Name
                     ";
         $result = mysqli_query($this->getDbc(),$query);
 
@@ -269,7 +327,7 @@ class SearchController{
 
     function getCityAll(){
         $query = "SELECT ID,Name
-                  FROM city
+                  FROM city order by Name
                     ";
         $result = mysqli_query($this->getDbc(),$query);
 
@@ -324,7 +382,7 @@ class SearchController{
 
     function getSubCityAll(){
         $query = "SELECT *
-                  FROM sub_city
+                  FROM sub_city order by Name
                     ";
         $result = mysqli_query($this->getDbc(),$query);
 
@@ -377,6 +435,19 @@ class SearchController{
         return $company_sefer;
     }
 
+    function getSeferAll(){
+        $query = "SELECT *
+                  FROM sefer order by Name
+                    ";
+        $result = mysqli_query($this->getDbc(),$query);
+
+        if($result){
+            return $result;
+        }
+        else{
+            0;
+        }
+    }
 
     /*--------------- Phone Numbers  ---------------------------------- */
 
@@ -439,6 +510,10 @@ class SearchController{
     function getFaqCinema(){
 
     }
+
+
+
+
 
 
 }

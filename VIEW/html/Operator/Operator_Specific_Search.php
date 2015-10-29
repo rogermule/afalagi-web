@@ -15,8 +15,11 @@ include "Operator_Header.html";
 
 $controller = new SearchController();
 
-//$type = $controller->getCompanyTypeDrop();
-//$region = $controller->getRegionDrop();
+$type = $controller->getCompanyTypeAll();
+$region = $controller->getRegionAll();
+$city = $controller->getCityAll();
+$subcity = $controller->getSubCityAll();
+$sefer = $controller->getSeferAll();
 
 ?>
 
@@ -44,19 +47,17 @@ $controller = new SearchController();
 
             <form class="specific_search" name="myForm" role="form" action="Operator_Specific_Search.php" method="GET">
 
-                <input type=hidden name=st value=0>
-
                 <div class="row form-group">
                     <div class="col-lg-4">
-                        <label for="labelsearchfor" class="search_optionsSpecificLabel" id="labelsearchfor">Search Type: </label>
+                        <label for="labelsearchfor" class="search_optionsSpecificLabel" id="labelsearchfor">Company Type: </label>
                     </div>
                     <div class="col-lg-6 dropdown">
-                        <select class="form-control" name="searchfor">
+                        <select class="form-control" name="companytype">
                             <option value="none">--select one--</option>
                            <?php
                                 $options ="";
                                 while($results = mysqli_fetch_array($type,MYSQL_ASSOC)){
-                                        $options="<option value='".$results['Name']."'>".$results['Name']."</option>";
+                                        $options.="<option value='".$results['Name']."'>".$results['Name']."</option>";
                                 }
                             echo $options;
                             ?>
@@ -74,7 +75,7 @@ $controller = new SearchController();
                             <?php
                             $options ="";
                             while($results = mysqli_fetch_array($region,MYSQL_ASSOC)){
-                                $options="<option value='".$results['Name']."'>".$results['Name']."</option>";
+                                $options.="<option value='".$results['Name']."'>".$results['Name']."</option>";
                             }
                             echo $options;
                             ?>
@@ -92,8 +93,8 @@ $controller = new SearchController();
                             <option value="none">--select one--</option>
                             <?php
                             $options ="";
-                            while($results = mysqli_fetch_array($type,MYSQL_ASSOC)){
-                                $options="<option value='".$results['Name']."'>".$results['Name']."</option>";
+                            while($results = mysqli_fetch_array($city,MYSQL_ASSOC)){
+                                $options.="<option value='".$results['Name']."'>".$results['Name']."</option>";
                             }
                             echo $options;
                             ?>
@@ -111,8 +112,8 @@ $controller = new SearchController();
                             <option value="none">--select one--</option>
                             <?php
                             $options ="";
-                            while($results = mysqli_fetch_array($type,MYSQL_ASSOC)){
-                                $options="<option value='".$results['Name']."'>".$results['Name']."</option>";
+                            while($results = mysqli_fetch_array($subcity,MYSQL_ASSOC)){
+                                $options.="<option value='".$results['Name']."'>".$results['Name']."</option>";
                             }
                             echo $options;
                             ?>
@@ -130,8 +131,8 @@ $controller = new SearchController();
                             <option value="none">--select one--</option>
                             <?php
                             $options ="";
-                            while($results = mysqli_fetch_array($type,MYSQL_ASSOC)){
-                                $options="<option value='".$results['Name']."'>".$results['Name']."</option>";
+                            while($results = mysqli_fetch_array($sefer,MYSQL_ASSOC)){
+                                $options.="<option value='".$results['Name']."'>".$results['Name']."</option>";
                             }
                             echo $options;
                             ?>

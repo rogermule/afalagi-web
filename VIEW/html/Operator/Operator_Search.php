@@ -5,7 +5,9 @@ $search_controller = new Encoder_Controller($user);//make an encoder object
 //$controller = new SearchController();
 //$result = $controller->genericSearch($searchValue,$searchOptions);
 
-$searchresult = $search_controller->Get_Company_For_Search_Listing($searchValue);
+$searchdata = trim($searchValue);
+
+$searchresult = $search_controller->Get_Company_For_Search_Listing($searchdata);
 
 $num_of_result = mysqli_num_rows($searchresult);
 
@@ -35,20 +37,11 @@ $num_of_result = mysqli_num_rows($searchresult);
                             while($results = mysqli_fetch_array($searchresult,MYSQL_ASSOC)){
                                 $company_id = $results['company_id'];
                                $company_name = $results['company_name'];
-                                //$company_description = $results['Discription'];
                                 $company_type = $results['category'];
                                 $Belong_to = $results["belong_to"];
 
-                                //$company_address = $results['address_id'];
-                                //$company_city;
-                               // $company_subcity;
-                               // $company_sefer;
-                               // $company_phone;
-
                                 $count++;
-
                                 include("Operator_Search_Single_View.php");
-
                             }
                         }
                         else{
