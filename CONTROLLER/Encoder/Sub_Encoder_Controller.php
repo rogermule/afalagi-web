@@ -452,6 +452,8 @@ class Sub_Encoder_Controller extends User_Controller{
 	 * this function takes a street object
 	 * parameter and adds it to the database
 	 */
+
+
 	function Add_Street(Street $street){
 
 		$street_name = $street->getStreetName();
@@ -2549,12 +2551,7 @@ from (select COM.Name as Company_Name, COM.Name_Amharic as Company_Name_Amharic
 	}
 
 
-
-
-
   /* ---------------- For operators -------------------- */
-
-
 
 
     //this will return the company list from company table
@@ -2571,6 +2568,7 @@ from (select COM.ID as COM_ID,COM.Name as COM_NAME,COM.Name_Amharic as COM_Name_
 			 COM_ADDR.company_id as COM_ADDR_COM_ID, COM_ADDR.address_id as COM_ADDR_ADDR_ID,
 			 ADDR.ID as ADDR_ID,ADDR.Belong_to
 		from company as COM
+
 		inner join company_address as COM_ADDR
 		on COM.ID = COM_ADDR.company_id
 		inner join address as ADDR
