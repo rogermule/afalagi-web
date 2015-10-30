@@ -12,14 +12,18 @@ class Event {
 	private $Name_Amharic;
 	private $About_Event;
 	private $About_Event_Amharic;
+	private $Event_Start;
+	private $Event_End;
 
 
-	function __construct($name,$name_amharic,$about_event,$about_event_amharic){
+	function __construct($name,$name_amharic,$about_event,$about_event_amharic,$event_start,$event_end){
 
 		$this->Name = $name;
 		$this->Name_Amharic = $name_amharic;
 		$this->About_Event = $about_event;
 		$this->About_Event_Amharic = $about_event_amharic;
+		$this->Event_Start = $event_start;
+		$this->Event_End = $event_end;
 
 	}
 
@@ -87,6 +91,38 @@ class Event {
 	public function setNameAmharic($Name_Amharic)
 	{
 		$this->Name_Amharic = $Name_Amharic;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getEventStart()
+	{
+		return $this->Event_Start;
+	}
+
+	/**
+	 * @param mixed $Event_Start
+	 */
+	public function setEventStart($Event_Start)
+	{
+		$this->Event_Start = $Event_Start;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getEventEnd()
+	{
+		return $this->Event_End;
+	}
+
+	/**
+	 * @param mixed $Event_End
+	 */
+	public function setEventEnd($Event_End)
+	{
+		$this->Event_End = $Event_End;
 	}
 
 

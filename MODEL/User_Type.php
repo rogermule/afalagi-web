@@ -12,6 +12,7 @@ class User_Type {
 
 	const ADMIN ="ADMIN";
 	const ENCODER = "ENCODER";
+	const NORMAL_ENCODER = "NORMAL_ENCODER";
 	const OPERATOR = "OPERATOR";
 
 
