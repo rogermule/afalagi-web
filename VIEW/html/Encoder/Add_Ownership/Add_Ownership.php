@@ -1,22 +1,18 @@
 <?php
 
 require("Require.php");
-
 include("Encoder_Header.php");
-include("Encoder_Menu.html");
+include("Includables.php");
 
 $user = $_SESSION['Logged_In_User'];
 $encoder = new Encoder_Controller($user);//make an encoder object
 
 
-	$Ownership_Types =$encoder->Get_Ownerships();
-	$num_ownership_types = mysqli_num_rows($Ownership_Types);
-
 
 
 ?>
 
-<div class="col-sm-8 list_container margin_0">
+<div class="col-sm-7 list_container margin_0">
 
 	<div class="col-sm-12">
 
@@ -112,65 +108,7 @@ $encoder = new Encoder_Controller($user);//make an encoder object
 			</div>
 
 
-			<div class="col-sm-12 margin_top_51 ">
-				<hr>
 
-
-				<div class="panel panel-primary list_header margin_top_10">
-					<div class="panel-body text-center">
-
-						<h4>List of Company Ownership</h4>
-
-					</div>
-				</div>
-
-
-				<div class=" margin_top_30">
-					<table class="table table-hover">
-						<thead>
-
-						<th>#</th>
-						<th>Category Name</th>
-						<th>የስራ መስክ</th>
-
-						</thead>
-						<tbody>
-
-						<?php
-						$count = 0;
-						$company_type = "";
-						$company_type_amharic = "";
-						$Name = "";
-						$Name_Amharic = "";
-
-						if($Ownership_Types){
-							while($own_type = mysqli_fetch_array($Ownership_Types,MYSQLI_ASSOC)){
-								$count++;
-
-								$Name = $own_type['Name'];
-								$Name_Amharic = $own_type['Name_Amharic'];
-
-								?>
-
-								<tr>
-									<td><?php echo($count); ?></td>
-									<td><?php echo($Name); ?></td>
-									<td><?php echo($Name_Amharic); ?></td>
-								</tr>
-
-							<?php
-							}
-						}
-						?>
-
-
-						</tbody>
-					</table>
-				</div>
-
-
-
-			</div>
 
 		</div>
 

@@ -102,7 +102,15 @@ require("Require.php");
 								</select>
 							</div>
 							<div class="col-sm-2">
-								<a href="../Add_Building/Add_Building.php" class="btn btn-info">new</a>
+
+								<?php if(get_encoder_type() == User_Type::ENCODER){
+
+
+									?>
+					<a href="../Add_Building/Add_Building.php" class="btn btn-info">new</a>
+
+								<?php
+								}?>
 							</div>
 						</div>
 
@@ -112,7 +120,7 @@ require("Require.php");
 								<select class="form-control" id="Building_Floor" name="Building_Floor">
 
 									<option value="NOT_FILLED">- - - - - - - select Floor</option>
-<!--									<option value="THE WHOLE FLOOR">THE WHOLE FLOOR</option>-->
+
 
 									<?php
 									$count = 0;
@@ -160,7 +168,14 @@ require("Require.php");
 								</select>
 							</div>
 							<div class="col-sm-2">
-								<a href="../Add_Place/Add_Place_Region_inc.php" class="btn btn-info place">new</a>
+								<?php if(get_encoder_type() == User_Type::ENCODER){
+
+
+									?>
+									<a href="../Add_Place/Add_Place_Region_inc.php" class="btn btn-info place">new</a>
+								<?php
+								}?>
+
 							</div>
 						</div>
 
@@ -188,7 +203,14 @@ require("Require.php");
 								</select>
 							</div>
 							<div class="col-sm-2">
-								<a href="../Add_Place/Add_Place_City_inc.php" class="btn btn-info place">new</a>
+								<?php if(get_encoder_type() == User_Type::ENCODER){
+
+
+									?>
+									<a href="../Add_Place/Add_Place_City_inc.php" class="btn btn-info place">new</a>
+								<?php
+								}?>
+
 							</div>
 						</div>
 
@@ -217,7 +239,14 @@ require("Require.php");
 			                    </select>
 							</div>
 							<div class="col-sm-2">
-								<a href="../Add_Place/Add_Place_Sub_City_inc.php" class="btn btn-info place">new</a>
+								<?php if(get_encoder_type() == User_Type::ENCODER){
+
+
+									?>
+									<a href="../Add_Place/Add_Place_Sub_City_inc.php" class="btn btn-info place">new</a>
+								<?php
+								}?>
+
 							</div>
 						</div>
 
@@ -243,7 +272,14 @@ require("Require.php");
 								</select>
 							</div>
 							<div class="col-sm-2">
-								<a href="../Add_Place/Add_Place_Kebele_OR_Wereda_inc.php" class="btn btn-info place">new</a>
+								<?php if(get_encoder_type() == User_Type::ENCODER){
+
+
+									?>
+			<a href="../Add_Place/Add_Place_Wereda_inc.php" class="btn btn-info place">new</a>
+								<?php
+								}?>
+
 							</div>
 						</div>
 
@@ -271,7 +307,14 @@ require("Require.php");
 								</select>
 							</div>
 							<div class="col-sm-2">
-								<a href="../Add_Place/Add_Place_Sefer_inc.php" class="btn btn-info place">new</a>
+								<?php if(get_encoder_type() == User_Type::ENCODER){
+
+
+									?>
+<a href="../Add_Place/Add_Place_Sefer_inc.php" class="btn btn-info place">new</a>
+
+								<?php
+								}?>
 							</div>
 						</div>
 
@@ -300,7 +343,13 @@ require("Require.php");
 								</select>
 							</div>
 							<div class="col-sm-2">
-								<a href="../Add_Place/Add_Place_Street_inc.php" class="btn btn-info place">new</a>
+								<?php if(get_encoder_type() == User_Type::ENCODER){
+
+
+									?>
+			<a href="../Add_Place/Add_Place_Street_inc.php" class="btn btn-info place">new</a>
+ 								<?php
+								}?>
 							</div>
 						</div>
 
@@ -392,7 +441,14 @@ require("Require.php");
 								</select>
 							</div>
 							<div class="col-sm-2">
-								<a href="../Add_Category/Add_Category.php" class="btn btn-info">new</a>
+								<?php if(get_encoder_type() == User_Type::ENCODER){
+
+
+									?>
+									<a href="../Add_Category/Add_Category.php" class="btn btn-info">new</a>
+
+								<?php
+								}?>
 							</div>
 						</div>
 
@@ -427,7 +483,14 @@ require("Require.php");
 								</select>
 							</div>
 							<div class="col-sm-2">
-								<a href="../Add_Ownership/Add_Ownership.php" class="btn btn-info">new</a>
+								<?php if(get_encoder_type() == User_Type::ENCODER){
+
+
+									?>
+							<a href="../Add_Ownership/Add_Ownership.php" class="btn btn-info">new</a>
+
+								<?php
+								}?>
 							</div>
 						</div>
 
@@ -502,7 +565,36 @@ require("Require.php");
 							</div>
 						</div>
 
-						<div class="form-group">
+						<div class="form-group margin_top_51">
+
+							<label for="Registration_Expiration_Date"
+							       class="col-sm-4 control-label">Registration Type</label>
+
+							<div class="input-group date  col-sm-5 ">
+
+								<div class="col-sm-5">
+			<input  type="radio" name="Registration_Type" id="GOLD" value="GOLD"> <label for="GOLD">GOLD</label>
+								</div>
+
+								<div  class="col-sm-7" >
+				<input type="radio" name="Registration_Type" id="SILVER" value="SILVER">
+									<label for="SILVER">SILVER</label>
+								</div>
+
+								<div class="col-sm-5">
+									<input  type="radio" name="Registration_Type" id="BRONZE" value="BRONZE"> <label for="BRONZE">BRONZE</label>
+								</div>
+
+								<div  class="col-sm-7" >
+									<input type="radio" name="Registration_Type" id="NOT_OFFICIAL" value="NOT_OFFICIAL">
+									<label for="NOT_OFFICIAL">NOT OFFICIAL</label>
+								</div>
+
+ 							</div>
+
+						</div>
+
+						<div class="form-group margin_top_51">
 						<label for="Registration_Expiration_Date"
 						       class="col-sm-4 control-label">Registration Expiration Date</label>
 				            <div class="input-group date  col-sm-5 ">
@@ -513,7 +605,9 @@ require("Require.php");
 				            </div>
 			            </div>
 
-						<div class="form-group margin_top_30 margin_bottom_200">
+
+
+						<div class="form-group margin_top_51 margin_bottom_200">
 
 							<div class="col-sm-5 col-lg-offset-4">
 								<button type="submit" class="btn btn-success btn-block">
@@ -537,3 +631,4 @@ require("Require.php");
 <?php
 	include "Encoder_Footer.php";
 ?>
+

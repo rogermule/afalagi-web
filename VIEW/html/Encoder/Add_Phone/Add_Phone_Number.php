@@ -1,5 +1,6 @@
 <?php
 
+	include "Require.php";
 	include "Encoder_Header.php";
 	include "Includeables.php";
 
@@ -21,10 +22,6 @@
 
 			<?php
 
-			/**
-			 * if the get server request method has error set
-			 * inform the admin about the user
-			 */
 			if($_SERVER['REQUEST_METHOD'] == "GET") {
 
 				if(isset($_GET['error'])){

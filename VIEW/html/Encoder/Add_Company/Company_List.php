@@ -1,10 +1,5 @@
 <?php
-
-
 require("Require.php");
-
-
-
 include "Encoder_Header.php";
 include "Includeables.php";
 
@@ -21,25 +16,14 @@ include "Includeables.php";
 		$Num_Companies = mysqli_num_rows($Companies);
 		$Name_Start = 'A';
 	}
-
-
-
-
-
 ?>
-<div class="col-sm-7 list_container margin_0">
-
-<div class="col-sm-12">
-
-
-	<div class="col-sm-12 margin_top_10">
-
-
-		<div class="panel panel-primary list_header margin_top_10">
+<div class="col-sm-8 list_container margin_0">
+	<div class="col-sm-12">
+ 	<div class="col-sm-12 margin_top_10">
+ 		<div class="panel panel-primary list_header margin_top_10">
 			<div class="panel-body text-center">
 				<h4>List of Companies</h4>
-
-			</div>
+ 			</div>
 		</div>
 
 		<?php
@@ -120,23 +104,24 @@ include "Includeables.php";
 		</div>
 		<hr>
 		 <div class="row">
-			 <div class="col-md-5">Number of companies starting with <span class="btn btn-warning btn-xs"> <?php echo($Name_Start);?> </span>  </div>
-			 <div class="col-md-4"><h4><?php   echo($Num_Companies)?></h4></div>
+			 <div class="col-md-5">Number of companies starting with <span class="btn btn-danger indicator"> <?php echo($Name_Start);?> </span>  </div>
+			 <div class="col-md-3 indicator"><?php   echo($Num_Companies)?></div>
 		 </div>
 		<hr>
-		<div>
 
-		</div>
 
 		<div class=" margin_top_30">
 			<table class="table table-hover">
 				<thead>
 				<th>#</th>
+				<th>Reg</th>
+
 
 				<th>Company Name</th>
 				<th>የድርጅቱ ስም</th>
-				<th>የስራ ውጤት</th>
-				<th> Edit</th>
+				<th>የስራ መስክ</th>
+				<th>Stat</th>
+				<th>Edit</th>
 
 				</thead>
 				<tbody>
@@ -146,28 +131,72 @@ include "Includeables.php";
 					$Company_ID = "";
 					$Company_Name = "";
 					$Company_Name_Amharic = "";
+					$Registration_Type = "";
 
 					if($Companies){
 						while($com = mysqli_fetch_array($Companies,MYSQLI_ASSOC)){
 							$Company_ID =$com["company_id"];
-							$Address_ID =$com["address_id"];
+
 							$Company_Name = $com["company_name"];
 							$Company_Name_Amharic = $com["company_name_amharic"];
-							$Registration_Date = $com["registration_date"];
-							$Category = $com["category"];
-							$Category_Amharic =$com["category_amharic"];
+  							$Category_Amharic =$com["category_amharic"];
 							$Belong_to = $com["belong_to"];
-							$Count++;
+							$Registration_Type = $com['Registration_Type'];
+							$Registration_Stat = $com['Expiration_Date'];
+ 							$Count++;
 
 							?>
 
 								<tr>
 									<td><?php echo("$Count"); ?></td>
+									<td>
+										<?php
+										if($Registration_Type == Registration_Type::GOLD){
+											?>
+											<span class="glyphicon glyphicon-certificate gold"> G</span>
+											<?php
+										}
+										else if($Registration_Type == Registration_Type::SILVER){
+											?>
+											<span class="glyphicon glyphicon-certificate silver"> S</span>
+											<?php
+										}
+										else if($Registration_Type == Registration_Type::BRONZE){
+											?>
+											<span class="glyphicon glyphicon-certificate bronze"> B</span>
+										<?php
+										}
+										else if($Registration_Type == Registration_Type::NOT_OFFICIAL){
+											?>
+											<span class="glyphicon glyphicon-remove red"></span>
+										<?php
+										}
+
+
+										?>
+
+
+									</td>
 
 									<td><?php echo("$Company_Name");?></td>
 									<td><?php echo("$Company_Name_Amharic");?></td>
-									<td><?php echo("$Category");?></td>
+
 									<td><?php echo("$Category_Amharic");?></td>
+									<td>
+										 <?php if($Registration_Stat == Registration_Status::EXPIRED ){
+
+											 ?>
+								 <strong class="red">EXPIRED</strong>
+								<?php
+ 										 }
+									else{
+										?>
+										<strong class="green">NOT EXPIRED</strong>
+										<?php
+									}
+
+								 ?>
+									</td>
 
 									<td>
 										<p>
@@ -214,6 +243,7 @@ include "Includeables.php";
 
 	</div>
 
+</div>
 </div>
 
 

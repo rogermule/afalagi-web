@@ -1,6 +1,5 @@
+
 <?php
-
-
 require("Require.php");
 
 include "Encoder_Header.php";
@@ -59,6 +58,7 @@ include "Includeables.php";
 			$Com_Branch = $Company_Spec["Branch"];
 			$Com_Branch_Amharic = $Company_Spec["Branch_Amharic"];
 			$Com_Expiration_Date = $Company_Spec["Expiration_Date"];
+			$Com_Registration_Type = $Company_Spec["Registration_Type"];
 
 
 			//right_side
@@ -92,6 +92,7 @@ include "Includeables.php";
 			$Com_Branch = $Company_Spec["Branch"];
 			$Com_Branch_Amharic = $Company_Spec["Branch_Amharic"];
  			$Com_Expiration_Date = $Company_Spec["Expiration_Date"];
+			$Com_Registration_Type = $Company_Spec["Registration_Type"];
 
 			//contact
 			$Com_House_No = $Company_Spec["House_No"];
@@ -126,13 +127,13 @@ include "Includeables.php";
 
 	<div class="col-sm-12">
 
-        <div class="panel panel-default">
-            <div class="panel-body text-center">
+	<div class="panel panel-default">
+		<div class="panel-body text-center">
 
-                <h4>Edit Company</h4>
+			<h4>Edit Company</h4>
 
-            </div>
-        </div>
+		</div>
+	</div>
 
 
 
@@ -180,7 +181,15 @@ include "Includeables.php";
 			</select>
 		</div>
 		<div class="col-sm-2">
-			<a href="../Add_Building/Add_Building.php" class="btn btn-info">new</a>
+			<?php if(get_encoder_type() == User_Type::ENCODER){
+
+
+				?>
+				<a href="../Add_Building/Add_Building.php" class="btn btn-info">new</a>
+
+			<?php
+			}?>
+
 		</div>
 	</div>
 
@@ -190,7 +199,14 @@ include "Includeables.php";
 			<select class="form-control" id="Building_Floor" name="Building_Floor">
 
 				<option value="NOT_FILLED">- - - - - - - select Floor</option>
-				<option value="THE WHOLE FLOOR">THE WHOLE FLOOR</option>
+				<option value="THE WHOLE FLOOR" <?php
+				if(  isset($_GET['CB'])){
+					$Value = "THE WHOLE FLOOR";
+					if($Com_Floor == $Value){
+						echo("selected");
+					}
+				}
+				?>>THE WHOLE FLOOR</option>
 
 				<?php
 				$count = 0;
@@ -256,7 +272,15 @@ include "Includeables.php";
 			</select>
 		</div>
 		<div class="col-sm-2">
-			<a href="../Add_Place/Add_Place_Region_inc.php" class="btn btn-info place">new</a>
+			<?php if(get_encoder_type() == User_Type::ENCODER){
+
+
+				?>
+
+				<a href="../Add_Place/Add_Place_Region_inc.php" class="btn btn-info place">new</a>
+			<?php
+			}?>
+
 		</div>
 	</div>
 
@@ -292,7 +316,15 @@ include "Includeables.php";
 			</select>
 		</div>
 		<div class="col-sm-2">
-			<a href="../Add_Place/Add_Place_City_inc.php" class="btn btn-info place">new</a>
+			<?php if(get_encoder_type() == User_Type::ENCODER){
+
+
+				?>
+
+				<a href="../Add_Place/Add_Place_City_inc.php" class="btn btn-info place">new</a>
+			<?php
+			}?>
+
 		</div>
 	</div>
 
@@ -330,7 +362,15 @@ include "Includeables.php";
 			</select>
 		</div>
 		<div class="col-sm-2">
-			<a href="../Add_Place/Add_Place_Sub_City_inc.php" class="btn btn-info place">new</a>
+			<?php if(get_encoder_type() == User_Type::ENCODER){
+
+
+				?>
+
+				<a href="../Add_Place/Add_Place_Sub_City_inc.php" class="btn btn-info place">new</a>
+			<?php
+			}?>
+
 		</div>
 	</div>
 
@@ -365,7 +405,15 @@ include "Includeables.php";
 			</select>
 		</div>
 		<div class="col-sm-2">
-			<a href="../Add_Place/Add_Place_Kebele_OR_Wereda_inc.php" class="btn btn-info place">new</a>
+			<?php if(get_encoder_type() == User_Type::ENCODER){
+
+
+				?>
+
+				<a href="../Add_Place/Add_Place_Wereda_inc.php" class="btn btn-info place">new</a>
+			<?php
+			}?>
+
 		</div>
 	</div>
 
@@ -398,7 +446,15 @@ include "Includeables.php";
 			</select>
 		</div>
 		<div class="col-sm-2">
-			<a href="../Add_Place/Add_Place_Sefer_inc.php" class="btn btn-info place">new</a>
+			<?php if(get_encoder_type() == User_Type::ENCODER){
+
+
+				?>
+
+				<a href="../Add_Place/Add_Place_Sefer_inc.php" class="btn btn-info place">new</a>
+			<?php
+			}?>
+
 		</div>
 	</div>
 
@@ -436,7 +492,15 @@ include "Includeables.php";
 			</select>
 		</div>
 		<div class="col-sm-2">
-			<a href="../Add_Place/Add_Place_Street_inc.php" class="btn btn-info place">new</a>
+			<?php if(get_encoder_type() == User_Type::ENCODER){
+
+
+				?>
+
+				<a href="../Add_Place/Add_Place_Street_inc.php" class="btn btn-info place">new</a>
+			<?php
+			}?>
+
 		</div>
 	</div>
 
@@ -534,7 +598,15 @@ include "Includeables.php";
 			</select>
 		</div>
 		<div class="col-sm-2">
-			<a href="../Add_Category/Add_Category.php" class="btn btn-info">new</a>
+			<?php if(get_encoder_type() == User_Type::ENCODER){
+
+
+				?>
+
+				<a href="../Add_Category/Add_Category.php" class="btn btn-info">new</a>
+			<?php
+			}?>
+
 		</div>
 	</div>
 
@@ -568,7 +640,15 @@ include "Includeables.php";
 			</select>
 		</div>
 		<div class="col-sm-2">
-			<a href="../Add_Ownership/Add_Ownership.php" class="btn btn-info">new</a>
+			<?php if(get_encoder_type() == User_Type::ENCODER){
+
+
+				?>
+				<a href="../Add_Ownership/Add_Ownership.php" class="btn btn-info">new</a>
+
+			<?php
+			}?>
+
 		</div>
 	</div>
 	<hr>
@@ -642,7 +722,36 @@ include "Includeables.php";
 		</div>
 	</div>
 
-	<div class="form-group">
+
+	<div class="form-group margin_top_51">
+		<label for="Registration_Expiration_Date"
+		       class="col-sm-4 control-label">Registration Type</label>
+		<div class="input-group date  col-sm-5 ">
+
+			<div class="col-sm-5">
+				<input  type="radio" name="Registration_Type" id="GOLD" value="GOLD" <?php if($Com_Registration_Type == Registration_Type::GOLD){echo('checked');}?>> <label for="GOLD">GOLD</label>
+			</div>
+
+			<div  class="col-sm-7" >
+				<input type="radio" name="Registration_Type" id="SILVER" value="SILVER" <?php if($Com_Registration_Type == Registration_Type::SILVER){echo('checked');}?>>
+				<label for="SILVER">SILVER</label>
+			</div>
+
+			<div class="col-sm-5">
+				<input  type="radio" name="Registration_Type" id="BRONZE" value="BRONZE" <?php if($Com_Registration_Type == Registration_Type::BRONZE){echo('checked');}?>> <label for="BRONZE">BRONZE</label>
+			</div>
+
+			<div  class="col-sm-7" >
+				<input type="radio" name="Registration_Type" id="NOT_OFFICIAL" value="NOT_OFFICIAL" <?php if($Com_Registration_Type == Registration_Type::NOT_OFFICIAL){echo('checked');}?>>
+				<label for="NOT_OFFICIAL">NOT_OFFICIAL</label>
+			</div>
+
+		</div>
+	</div>
+
+
+
+	<div class="form-group margin_top_51">
 		<label for="Registration_Expiration_Date"
 		       class="col-sm-4 control-label">Registration Expiration Date</label>
 		<div class="input-group date  col-sm-5 ">

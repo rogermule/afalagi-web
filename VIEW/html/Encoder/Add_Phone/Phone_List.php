@@ -27,6 +27,60 @@ $encoder = new Encoder_Controller($user);//make an encoder object
 		<div class="col-sm-12 margin_top_20">
 
 
+			<?php
+
+			if($_SERVER['REQUEST_METHOD'] == "GET") {
+
+				if(isset($_GET['error'])){
+					$error_msg = $_GET['error'];
+					?>
+
+					<div class="alert alert-danger alert-dismissable">
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+						<strong>Warning!</strong><?php echo($error_msg);?>
+					</div>
+
+				<?php
+				}
+
+				if(isset($_GET['success'])){
+ 					?>
+					<div class="alert alert-success alert-dismissable">
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+						<strong>You have added a new Phone Added Successfully.</strong>
+
+					</div>
+
+				<?php
+
+				}
+				else if(isset($_GET['success_edit'])){
+					?>
+					<div class="alert alert-success alert-dismissable">
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+						<strong>You have successfully edited a phone.</strong>
+
+					</div>
+
+				<?php
+
+				}
+				else if(isset($_GET['success_delete'])){
+					?>
+					<div class="alert alert-success alert-dismissable">
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+						<strong>You have successfully deleted a phone.</strong>
+
+					</div>
+
+				<?php
+
+				}
+			}
+
+			?>
+
+
 
 			<div class="panel panel-primary list_header margin_top_10">
 				<div class="panel-body text-center">
@@ -70,10 +124,9 @@ $encoder = new Encoder_Controller($user);//make an encoder object
 								</td>
 								<td>
 									<p>
-										<button type="button" class="btn btn-warning btn-xs">Edit</button>
-										<button type="button" class="btn btn-danger btn-xs">Delete</button>
-
-									</p>
+										<a href="Edit_Phone.php?Phone_ID=<?php echo($Phone_ID);?>" class="btn btn-warning btn-xs">Edit</a>
+										<a href="Delete_Phone.php?Phone_ID=<?php echo($Phone_ID);?>" class="btn btn-danger btn-xs">Delete</a>
+ 									</p>
 								</td>
 
 							</tr>

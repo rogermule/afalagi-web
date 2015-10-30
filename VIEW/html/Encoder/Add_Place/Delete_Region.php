@@ -37,30 +37,23 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
 			</div>
 		</div>
 
-		<!--	    start of feedback place-->
-		<?php
+ 		<?php
 
 		if($_SERVER['REQUEST_METHOD'] == "GET") {
 
 			if(isset($_GET['error'])){
 				$error_msg = $_GET['error'];
 				?>
-
-				<div class="alert alert-danger alert-dismissable">
+ 				<div class="alert alert-danger alert-dismissable">
 					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 					<strong>Warning!</strong><?php echo($error_msg);?>
 				</div>
-
-			<?php
+ 			<?php
 			}
-
-
-		}
+ 		}
 
 		?>
-		<!--		end of the feed back place-->
-
-		<div class=" margin_top_20">
+ 		<div class=" margin_top_20">
 			<form class="form-horizontal" role="form" action="../../../../CONTROLLER/Encoder/Delete_Region.php" method="POST">
 
 
@@ -69,7 +62,7 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
 					<label for="Name" class="col-sm-6 control-label left"><?php echo($Region_Name);?></label>
  				</div>
 				<div class="form-group">
-					<label for="Name_Amharic" class="col-sm-6 control-label">ከተማ</label>
+					<label for="Name_Amharic" class="col-sm-6 control-label">ክልል</label>
 					<label for="Name" class="col-sm-6 control-label left"><?php echo($Region_Name_Amharic)?></label>
  				</div>
 
@@ -80,7 +73,7 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
 					<strong>Are You sure you want to delete <?php echo($Region_Name);?></strong>
 				</div>
 
-				<input type="hidden" name="Region_ID" value="<?php echo($Region_ID);?>">
+
 				<div class="form-group margin_top_20">
 
 

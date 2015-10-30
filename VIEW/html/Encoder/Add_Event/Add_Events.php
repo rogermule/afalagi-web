@@ -1,6 +1,6 @@
 <?php
 
-
+	include "Require.php";
 	include "Encoder_Header.php";
  	include "Includeables.php";
 
@@ -52,6 +52,18 @@
 		<?php
 
 		}
+
+		if(isset($_GET['success_edit'])){
+
+			?>
+			<div class="alert alert-success alert-dismissable">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				<strong>You have edited the event successfully.</strong>
+ 			</div>
+
+		<?php
+
+		}
 	}
 
 	?>
@@ -72,20 +84,14 @@
 					       id="Name" placeholder="Enter Event Name" >
 				</div>
 			</div>
-
-			<div class="form-group">
+ 			<div class="form-group">
 				<label for="Name_Amharic" class="col-sm-4 control-label">ስም</label>
 				<div class="col-sm-6">
 					<input name="Name_Amharic" type="text" class="form-control"
 					       id="Name_Amharic" placeholder="Enter Event Name" >
 				</div>
 			</div>
-
-
-
-
-
-			<div class="form-group">
+ 			<div class="form-group">
 				<label for="About_Event" class="col-sm-4 control-label">About Event</label>
 				<div class="col-sm-6">
 					<textarea name="About_Event" class="form-control"
@@ -93,9 +99,7 @@
 					          placeholder="About Event"></textarea>
 				</div>
 			</div>
-
-
-			<div class="form-group">
+ 			<div class="form-group">
 				<label for="About_Event_Amharic" class="col-sm-4 control-label">አጠቃላይ መረጃ</label>
 				<div class="col-sm-6">
 					<textarea name="About_Event_Amharic" class="form-control"
@@ -110,8 +114,7 @@
 					       id="Name" placeholder="yyyy/mm/dd" >
 				</div>
 			</div>
-
-			<div class="form-group margin_top_70">
+ 			<div class="form-group margin_top_70">
 				<label for="Event_End" class="col-sm-4 control-label">የኢቨንቱ መጨረሻ ቀን</label>
 				<div class="col-sm-6">
 					<input name="Event_End" type="text" class="form-control datepicker"
@@ -119,9 +122,7 @@
 				</div>
 			</div>
 
-
-
-			<div class="form-group margin_top_70">
+ 			<div class="form-group margin_top_70">
 
 				<div class="col-sm-6 col-lg-offset-4">
 					<button type="submit" class="btn btn-success btn-block">
@@ -129,8 +130,7 @@
 					</button>
 				</div>
 			</div>
-
-			<div class="margin_bottom_200">
+ 			<div class="margin_bottom_200">
 
 			</div>
 
@@ -142,11 +142,6 @@
 
 
 <div class="col-sm-12 margin_top_51 ">
-
-
-
-
-
 
 
 </div>

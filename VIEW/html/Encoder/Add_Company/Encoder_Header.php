@@ -14,7 +14,9 @@
 	<script>
 		$(document).ready( function(){
 			$('.datepicker').datepicker({
-				format:'yyyy/mm/dd'
+				format:'yyyy/mm/dd',
+				viewMode:'years'
+
 			});
 		});
 	</script>

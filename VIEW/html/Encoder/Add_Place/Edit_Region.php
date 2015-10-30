@@ -18,10 +18,11 @@ $encoder = new Encoder_Controller($user);//make an encoder object
 
 	$Single_Region = $encoder->Get_Single_Region($Region_ID);
 
-	$Single_Region = mysqli_fetch_array($Single_Region,MYSQL_ASSOC);
+	$Single_Region = mysqli_fetch_array($Single_Region,MYSQLI_ASSOC);
 
 	$Region_Name = $Single_Region['Name'];
 	$Region_Name_Amharic = $Single_Region['Name_Amharic'];
+
 
 
 

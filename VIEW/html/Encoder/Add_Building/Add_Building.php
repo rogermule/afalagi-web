@@ -32,12 +32,7 @@ include "Includeables.php";
 
 <!--start of the feedback place-->
 	<?php
-
-	/**
-	 * if the get server request method has error set
-	 * inform the admin about the user
-	 */
-	if($_SERVER['REQUEST_METHOD'] == "GET") {
+ 	if($_SERVER['REQUEST_METHOD'] == "GET") {
 
 		if(isset($_GET['error'])){
 			$error_msg = $_GET['error'];
@@ -186,7 +181,7 @@ include "Includeables.php";
 						</select>
 					</div>
 					<div class="col-sm-2">
-						<a href="../Add_Place/Add_Place_Kebele_OR_Wereda_inc.php" class="btn btn-info">new</a>
+						<a href="../Add_Place/Add_Place_Wereda_inc.php" class="btn btn-info">new</a>
 					</div>
 				</div>
 

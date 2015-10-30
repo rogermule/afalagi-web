@@ -181,9 +181,7 @@ $encoder = new Encoder_Controller($user);//make an encoder object
 
 					<div class="form-group margin_top_30 margin_bottom_200">
 						<div class="col-sm-3 col-sm-offset-3 ">
-							<button class="btn btn-info btn-block">
-								<strong>Cancel</strong>
-							</button>
+ 							<a href="Company_List.php" class="btn btn-info btn-block"><strong>Cancel</strong></a>
 						</div>
 
 						<div class="col-sm-3  ">
