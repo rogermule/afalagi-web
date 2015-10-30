@@ -38,8 +38,6 @@ class User_Controller{
 			$this->user->setUserID($row['ID']);
 			$this->user->setUserType($row['User_Type']);
 
-
-
 			//start session and put the user on the session
 			session_start();
 			$_SESSION["Logged_In_User"] = $this->user;

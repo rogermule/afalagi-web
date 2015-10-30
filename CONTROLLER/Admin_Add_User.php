@@ -30,7 +30,7 @@ function admin_redirect_success(User $new_user){
 	$new_user_type = $new_user->getUserType();//get user type
 
 
-	$dir = "VIEW/html/Admin/Admin_Add_Users.php?success=1&User_Name=$new_user_name&User_Type=$new_user_type";
+	$dir = "VIEW/html/Admin/Add_Employee.php?success=1";
 	$url = BASE_URL.$dir;
 	header("Location:$url");//redirect the admin to the Admin_Add_Users.php file
 	exit();
@@ -54,7 +54,7 @@ function admin_redirect_error($type_of_error){
 	else if($type_of_error == Error_Type::SAME_USER_NAME){
 		$error_type = "Error Same user name, Choose a different name.";
 	}
-	$dir = "VIEW/html/Admin/Admin_Add_Users.php?error=$error_type";
+	$dir = "VIEW/html/Admin/Add_Employee.php?error=$error_type";
 	$url = BASE_URL.$dir;
 	header("Location:$url");//redirect the admin to the Admin_Add_Users.php file
 	exit();
@@ -65,73 +65,33 @@ function admin_redirect_error($type_of_error){
 
 
 if($_SERVER['REQUEST_METHOD'] == "POST"){
-
-
-	/**
-	 * check if the user is logged in
-	 * check login status is from php file "controller secure access"
-	 * it checks if the use is logged in
-	 */
-	if(TRUE == check_login_status()){
-
-		/**
-		 * check if the type of the user is admin
-		 * get_user_type function is from a php file"Controller secure access"
-		 * it returns the type of the user
-		 */
-		$user_type = get_user_type();
-
-		/**
-		 * if the user type is admin instantiate an Admin_controller and do what you got to do
-		 */
-		if($user_type == User_Type::ADMIN){
-
-
-			/**
-			 * get the logged in user
-			 */
-			$user_admin = $_SESSION['Logged_In_User'];
-
-
-			/**
-			 * instantiate admin controller with the logged in user
-			 */
-			$admin_controller = new Admin_Controller($user_admin);
-
-			/**
-			 * get the user name from post
-			 */
-			if(empty($_POST['User_Name'])){
+  	if(TRUE == check_login_status()){
+ 		$user_type = get_user_type();
+ 		if($user_type == User_Type::ADMIN){
+ 			$user_admin = $_SESSION['Logged_In_User'];
+ 			$admin_controller = new Admin_Controller($user_admin);
+ 			if(empty($_POST['User_Name'])){
 				$errors[] = "User Name Should be filled";
 			}
 			else{
 				$User_Name = $_POST['User_Name'];
 			}
 
-			/**
-			 * get the password from post
-			 */
-			if(empty($_POST['User_Password'])){
+ 			if(empty($_POST['User_Password'])){
 				$errors[] = "Password should be filled";
 			}
 			else{
 				$User_Password = $_POST['User_Password'];
 			}
 
-			/**
-			 * get the phone number
-			 */
-			if(empty($_POST['User_Phone'])){
+ 			if(empty($_POST['User_Phone'])){
 				$errors[] = "Phone Number is required";
 			}
 			else{
 				$User_Phone = $_POST['User_Phone'];
 			}
 
-			/**
-			 * get the user type
-			 */
-			if(!isset($_POST['User_Type'])){
+ 			if(!isset($_POST['User_Type'])){
 				$errors[] = "User type is required";
 			}
 			else{
@@ -143,10 +103,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 				admin_redirect_error(Error_Type::SAME_USER_NAME);
 			}
 
-					/**
-					 * if there is no error
-					 */
-					if(empty($errors)){
+ 					if(empty($errors)){
 
 						/**
 						 * instantiate a new user
@@ -169,12 +126,10 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 							}
 
 						}
-					/**
-					 * if there are errors when filling the form
-					 */
-					else{
+ 					else{
 
 						admin_redirect_error(Error_Type::FORM);
+
 					}
 
 		}

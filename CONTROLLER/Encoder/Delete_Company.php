@@ -93,7 +93,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 		/**
 		 * if the user type is admin instantiate an Admin_controller and do what you got to do
 		 */
-		if($user_type == User_Type::ENCODER){
+		if(($user_type == User_Type::ENCODER) or ($user_type == User_Type::NORMAL_ENCODER)){
 
 
 			/**

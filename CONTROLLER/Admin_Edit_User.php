@@ -16,30 +16,15 @@ require("../MODEL/Error_Type.php");
 $errors = array();
 
 
-/**
- * @param User $new_user
- * this function takes a new added user and sends the user name and type of the
- * user to Admin_Add_User.php file
- */
-function admin_redirect_success(User $new_user){
-
-
-	$new_user_name = $new_user->getUserName();//get user name
-	$new_user_type = $new_user->getUserType();//get user type
-
-
-	$dir = "VIEW/html/Admin/Admin_Home_Page.php?success=1&User_Name=$new_user_name&User_Type=$new_user_type";
+function admin_redirect_success(){
+ 	$dir = "VIEW/html/Admin/Employee_List.php?success_edit=1";
 	$url = BASE_URL.$dir;
-	header("Location:$url");//redirect the admin to the Admin_Add_Users.php file
+	header("Location:$url");
 	exit();
-
 }
 
 
-/**
- * this function redirects the user
- */
-function admin_redirect_error($type_of_error){
+function admin_redirect_error($type_of_error,$user_id){
 
 
 	$error_type = "";
@@ -52,7 +37,7 @@ function admin_redirect_error($type_of_error){
 	else if($type_of_error == Error_Type::SAME_USER_NAME){
 		$error_type = "Error, Use a different name. User name exists before.";
 	}
-	$dir = "VIEW/html/Admin/Admin_Add_Users.php?error=$error_type";
+	$dir = "VIEW/html/Admin/Edit_Employee.php?User_ID=$user_id&error=$error_type";
 	$url = BASE_URL.$dir;
 	header("Location:$url");//redirect the admin to the Admin_Add_Users.php file
 	exit();
@@ -71,116 +56,66 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 	 */
 	if(TRUE == check_login_status()){
 
-		/**
-		 * check if the type of the user is admin
-		 * get_user_type function is from a php file"Controller secure access"
-		 * it returns the type of the user
-		 */
-		$user_type = get_user_type();
+	 		$user_type = get_user_type();
 
-		/**
-		 * if the user type is admin instantiate an Admin_controller and do what you got to do
-		 */
-		if($user_type == User_Type::ADMIN){
+ 		if($user_type == User_Type::ADMIN){
 
+ 			$user_admin = $_SESSION['Logged_In_User'];
 
-			/**
-			 * get the logged in user
-			 */
-			$user_admin = $_SESSION['Logged_In_User'];
-
-
-			/**
-			 * instantiate admin controller with the logged in user
-			 */
-			$admin_controller = new Admin_Controller($user_admin);
-
-			/**
-			 * get the user name from post
-			 */
-			if(empty($_POST['User_Name'])){
+ 			$admin_controller = new Admin_Controller($user_admin);
+ 			if(empty($_POST['User_Name'])){
 				$errors[] = "User Name Should be filled";
 			}
 			else{
 				$User_Name = $_POST['User_Name'];
 			}
 
-			/**
-			 * get the password from post
-			 */
-			if(empty($_POST['User_Password'])){
+ 			if(empty($_POST['User_Password'])){
 				$errors[] = "Password should be filled";
 			}
 			else{
 				$User_Password = $_POST['User_Password'];
 			}
 
-			/**
-			 * get the phone number
-			 */
-			if(empty($_POST['User_Phone'])){
+ 			if(empty($_POST['User_Phone'])){
 				$errors[] = "Phone Number is required";
 			}
 			else{
 				$User_Phone = $_POST['User_Phone'];
 			}
 
-			/**
-			 * get the user type
-			 */
-			if(!isset($_POST['User_Type'])){
+ 			if(!isset($_POST['User_Type'])){
 				$errors[] = "User type is required";
 			}
 			else{
 				$User_Type = $_POST['User_Type'];
 			}
 
-			if(!isset($_POST['ID'])){
+			if(!isset($_POST['User_ID'])){
 				$errors[] = "Please go back and refresh the site!";
 			}
 			else{
-				$User_ID = $_POST['ID'];
+				$User_ID = $_POST['User_ID'];
 			}
 
-			/**
-			 * check if the username exits before
-			 */
-			if($admin_controller->Check_User_Name_For_Edit($User_Name,$User_ID)){
+ 			if($admin_controller->Check_User_Name_For_Edit($User_Name,$User_ID)){
 				admin_redirect_error(Error_Type::SAME_USER_NAME);
 			}
+ 			if(empty($errors)){
 
-			/**
-			 * if there is no error
-			 */
-			if(empty($errors)){
+ 				$new_user= new User($User_Name,$User_Password,$User_Type,$User_Phone,$User_ID);
+  				$edited= $admin_controller->Edit_User($new_user);
 
-				/**
-				 * instantiate a new user
-				 */
-				$new_user= new User($User_Name,$User_Password,$User_Type,$User_Phone,$User_ID);
-
-				/**
-				 * Edit the user and a new user will be returned if the user is updated
-				 */
-				$edited= $admin_controller->Edit_User($new_user);
-
-				/**
-				 * inform the admin about the result
-				 */
-				if($edited){
-					admin_redirect_success($new_user);
+ 				if($edited){
+					admin_redirect_success();
 				}
 				else{
-					admin_redirect_error(Error_Type::DATA_BASE);
+					admin_redirect_error(Error_Type::DATA_BASE,$User_ID);
 				}
 
 			}
-			/**
-			 * if there are errors when filling the form
-			 */
-			else{
-
-				admin_redirect_error(Error_Type::FORM);
+ 			else{
+ 				admin_redirect_error(Error_Type::FORM,$User_ID);
 			}
 
 		}

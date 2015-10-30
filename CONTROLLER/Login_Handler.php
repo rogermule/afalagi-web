@@ -13,9 +13,6 @@ require("../MODEL/User_Type.php");
 $errors = array();
 
 
-
-
-//This will send the user to the index page with the appropriate
 function send_error($error_type){
 	$login_page = "Login.php";
 	$directory  = "VIEW/html/Login/";
@@ -31,8 +28,6 @@ function send_error($error_type){
 	exit();
 }
 
-//Redirect the user to there own home pages
-
 function redirect_user($user_type){
 
 	$home_page = "";
@@ -40,20 +35,21 @@ function redirect_user($user_type){
 
 	if($user_type == User_Type::OPERATOR){
 
-		$home_page = "Operator_Home_Page.php?searchtype=generic";
+		$home_page = "Operator_Home_Page.php";
 		$dir = "VIEW/html/Operator/";
 
 
 	}
-	else if($user_type == User_Type::ENCODER){
+	else if(($user_type == User_Type::ENCODER) OR ($user_type == User_Type::NORMAL_ENCODER) ){
 
-        $home_page = "Add_Place/Add_Place_Region_inc.php";
+		$home_page = "Add_Company/Company_List.php";
 		$dir = "VIEW/html/Encoder/";
 
 	}
+
 	else if($user_type == User_Type::ADMIN){
 
-		$home_page = "Admin_Home_Page.php";
+		$home_page = "Employee_List.php";
 		$dir = "VIEW/html/Admin/";
 
 	}
@@ -63,48 +59,32 @@ function redirect_user($user_type){
 	exit();
 }
 
+
+
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
-
-	//if the user name is empty add the error to the error array
-	if(empty($_POST['User_Name'])){
-
-		$errors[] = "You forgot to enter your name";
-
-	}
+ 	if(empty($_POST['User_Name'])){
+ 		$errors[] = "You forgot to enter your name";
+ 	}
 	else{
-		$user_name = $_POST['User_Name'];//get the user name
+		$user_name = $_POST['User_Name'];
 	}
 
-
-	//if the user forgot to enter the password add the error to the array
-	if(empty($_POST['User_Password'])){
+ 	if(empty($_POST['User_Password'])){
 		$errors[] = "You forgot to enter Your password";
 	}
 	else{
-		$user_password  = $_POST['User_Password'];//get the password
+		$user_password  = $_POST['User_Password'];
 	}
+
+
 
 	if(empty($errors)){
 
-		//if there is no error when filling the form initialize a user with the given credentials
-
-
 
 		$user = new User($user_name,$user_password);
-
-		$user_name = $user->getUserName();
-		$user_password = $user->getUserPassword();
-
-
-
-		//pass the user to the controller
-		$user_controller = new User_Controller($user);
-
-		//the login function of the user controller will return a bool
-		//if the returned value is true we can determine the type of the user
-		//and send the user to the appropriate place
-		$Logged_In = $user_controller->login();
+  		$user_controller = new User_Controller($user);
+  		$Logged_In = $user_controller->login();
 
 		if($Logged_In){
 			//get the new user
@@ -113,25 +93,25 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 			$user_type = $Logged_In_User->getUserType();
 
-			//after getting the user type make the appropriate type of users here
-			if($user_type == User_Type::OPERATOR){
+ 			if($user_type == User_Type::OPERATOR){
 
-
-				//redirect the user to the phone receptionist place
-				 redirect_user(User_Type::OPERATOR);
+ 				 redirect_user(User_Type::OPERATOR);
 
 			}
 	 		else if($user_type == User_Type::ENCODER){
 
-				//redirect the user to the encoder place
-			    redirect_user(User_Type::ENCODER);
+ 			    redirect_user(User_Type::ENCODER);
 
 			}
+		    else if($user_type == User_Type::NORMAL_ENCODER){
+
+ 			    redirect_user(User_Type::NORMAL_ENCODER);
+
+		    }
 			else if($user_type == User_Type::ADMIN){
 
-				//redirect the user to the admin place
-
-				redirect_user(User_Type::ADMIN);
+  				redirect_user(User_Type::ADMIN);
+				
 			}
 
 		}//if the user credentials are not correct

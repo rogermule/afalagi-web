@@ -33,6 +33,8 @@ require("../../MODEL/Contact.php");
 require("../../MODEL/Address_Direction.php");
 require("../../MODEL/Direction.php");
 
+require("../../MODEL/Registration_Type.php");
+
 
 require("User_Controller.php");//admin controller is going to extend this class so it should be included
 require("All_Controllers.php");
@@ -104,7 +106,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 		/**
 		 * if the user type is admin instantiate an Admin_controller and do what you got to do
 		 */
-		if($user_type == User_Type::ENCODER){
+		if(($user_type == User_Type::ENCODER) or ($user_type == User_Type::NORMAL_ENCODER)){
 
 
 			/**
@@ -373,8 +375,16 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 				$Branch_Amharic = mysqli_real_escape_string($database,trim($_POST['Branch_Amharic']));
 			}
 
+			//get the registration type
+			if(isset($_POST['Registration_Type'])){
+				$Registration_Type = $_POST['Registration_Type'];
+			}
+			else{
+				$errors[] = "Registration type should be filled";
+			}
 
-			//11 get the expiration date
+
+			//12 get the expiration date
 			if(empty($_POST['Registration_Expiration_Date'])){
 				$errors[] = "Registration expiration date should be filled";
 			}
@@ -382,6 +392,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 				$Registration_Expiration_Date =
 					mysqli_real_escape_string($database,trim($_POST['Registration_Expiration_Date']));
 			}
+
+
 
 
 
@@ -470,7 +482,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
 				if($with_building){
 
-					$added = $encoder_con->Add_Company_With_Building($Company_Name,$Company_Name_Amharic,$Category_ID,$Company_Type_ID,$Branch,$Branch_Amharic,$Working_Hours,$Working_Hours_Amharic,$Product_Description_And_Service,$Product_Description_And_Service_Amharic,$Registration_Expiration_Date,$Building_ID,$Building_Floor,$Contact_C);
+					$added = $encoder_con->Add_Company_With_Building($Company_Name,$Company_Name_Amharic,$Category_ID,$Company_Type_ID,$Branch,$Branch_Amharic,$Working_Hours,$Working_Hours_Amharic,$Product_Description_And_Service,$Product_Description_And_Service_Amharic,$Registration_Expiration_Date,$Registration_Type,$Building_ID,$Building_Floor,$Contact_C);
 
 
 				}
@@ -478,7 +490,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 				else if(!$with_building){
 
 					$Place_C = new Place($Region_ID,$City_ID,$Sub_City_ID,$Wereda_ID,$Sefer_ID,$Street_ID);
-					$added = $encoder_con->Add_Company_With_Out_Building($Company_Name,$Company_Name_Amharic,$Category_ID,$Company_Type_ID,$Branch,$Branch_Amharic,$Working_Hours,$Working_Hours_Amharic,$Product_Description_And_Service,$Product_Description_And_Service_Amharic,$Registration_Expiration_Date,$Contact_C,$Place_C,$Direction,$Direction_Amharic);
+					$added = $encoder_con->Add_Company_With_Out_Building($Company_Name,$Company_Name_Amharic,$Category_ID,$Company_Type_ID,$Branch,$Branch_Amharic,$Working_Hours,$Working_Hours_Amharic,$Product_Description_And_Service,$Product_Description_And_Service_Amharic,$Registration_Expiration_Date,$Registration_Type,$Contact_C,$Place_C,$Direction,$Direction_Amharic);
 
 				}
 

@@ -9,11 +9,11 @@
 require("../CONFIGURATION/Config.php");
 require(DB);
 require("../MODEL/User.php");
-require("../CONTROLLER/User_Controller.php");
+require("User_Controller.php");
 require("Controller_Secure_Access.php");
 
 
-//session_start();
+session_start();
 
 //if the user accessed the page with out permission it will be redirected to the home page
 if(!isset($_SESSION['Logged_In_User'])){

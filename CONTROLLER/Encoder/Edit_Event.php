@@ -1,34 +1,31 @@
 <?php
 
-
 require("../../CONFIGURATION/Config.php");//this file contains configurations files
 require(DB);//this will make the database class included
 require("../../MODEL/User.php");//user object will be created so it should be included in here
-require("../../MODEL/Event.php");
 require("User_Controller.php");//admin controller is going to extend this class so it should be included
 require("All_Controllers.php");
 require("../Controller_Secure_Access.php");//this will prevent this file from being accessed easily
 require("../../MODEL/User_Type.php");
 require("../../MODEL/Error_Type.php");
-
+require("../../MODEL/Event.php");
 $errors = array();
 
 
 
-function encoder_redirect_success(Event $event){
+function encoder_redirect_success(Event $new_Event){
 
-	$Name = $event->getName();
-	$Name_Amharic = $event->getNameAmharic();
+	$new_Event_name = $new_Event->getName();
 
-	$dir = "VIEW/html/Encoder/Add_Event/Add_Events.php?success=1&Name=$Name&Name_Amharic=$Name_Amharic";
+
+	$dir = "VIEW/html/Encoder/Add_Event/Event_List.php?success_edit=1";
 	$url = BASE_URL.$dir;
-	header("Location:$url");//redirect the encoder to the regions add place
+	header("Location:$url");//redirect the encoder to the Events add place
 	exit();
 
 }
 
-
-function encoder_place_redirect($type_of_error){
+function encoder_place_redirect($type_of_error,$Event_ID){
 
 
 	$error_type = "";
@@ -36,17 +33,16 @@ function encoder_place_redirect($type_of_error){
 		$error_type = "Fill out the form  correctly.";
 	}
 	else if($type_of_error == Error_Type::DATA_BASE){
-		$error_type = "Error when adding new Event.";
+		$error_type = "Error when adding new user.";
 	}
-	else if($type_of_error == Error_Type::SAME_REGISTERED_DATA){
-		$error_type = "Error Same Event type. Same Event cant be added";
+	else if($type_of_error == Error_Type::SAME_USER_NAME){
+		$error_type = "Error Same Event Name. Same Event name can not be added";
 	}
-	$dir = "VIEW/html/Encoder/Add_Event/Add_Events.php?error=$error_type";
+	$dir = "VIEW/html/Encoder/Add_Event/Edit_Event.php?error=$error_type&Event_ID=$Event_ID";
 	$url = BASE_URL.$dir;
-	header("Location:$url");//redirect the encoder to the regions
+	header("Location:$url");//redirect the encoder to the Events
 	exit();
 }
-
 
 if($_SERVER['REQUEST_METHOD'] == "POST"){
 
@@ -85,88 +81,98 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 			/**
 			 * get the user name from post
 			 */
-
-			//get name
 			if(empty($_POST['Name'])){
-				$errors[] = "Event Name Should be filled";
+				$errors[] = "Event should be filled";
 			}
 			else{
+				$Name = $_POST['Name'];
+ 			}
 
-				$Name = $_POST["Name"];
 
-			}
-
-			//get name amharic
+			//get event name in amharic
 			if(empty($_POST['Name_Amharic'])){
-				$errors[] = "Name of event in amharic should be filled";
+				$errors[] = "Amharic name should be filled";
 			}
 			else{
-				$Name_Amharic = $_POST["Name_Amharic"];
+				$Name_Amharic = $_POST['Name_Amharic'];
 			}
 
 			//get about event
 			if(empty($_POST['About_Event'])){
-				$errors[] = "Description in amharic should be filled";
+				$errors[] = "About event should be filled";
 			}
 			else{
-				$About_Event  = $_POST["About_Event"];
+				$About_Event = $_POST['About_Event'];
 			}
-
 
 			//get about event in amharic
 			if(empty($_POST['About_Event_Amharic'])){
-				$errors[] = "Description in amharic should be filled";
+				$errors[] = "About event in amharic should be filled";
 			}
 			else{
-				$About_Event_Amharic  = $_POST["About_Event_Amharic"];
+				$About_Event_Amharic = $_POST['About_Event_Amharic'];
 			}
 
-			//get the event start
+			//get event start
 			if(empty($_POST['Event_Start'])){
-				$Event_Start = '';
+				$errors[] = "Event start should be filled";
 			}
-			else if(!(empty($_POST['Event_Start']))){
+			else{
 				$Event_Start = $_POST['Event_Start'];
 			}
 
-			//get the event end
+			//get event end
 			if(empty($_POST['Event_End'])){
-				$Event_End = '';
-			}
-			else if(!(empty($_POST['Event_End']))){
+				$errors[] = "Event end should be filled";
+ 			}
+			else{
 				$Event_End = $_POST['Event_End'];
 			}
+
+
+			if(empty($_POST['Event_ID'])){
+				$errors[] ="Event ID should be filled";
+			}
+			else{
+				$Event_ID = $_POST['Event_ID'];
+			}
+
+
+
+
+
 
 
 
 			if(empty($errors)){
 
-				$Event_C = new Event($Name,$Name_Amharic,$About_Event,$About_Event_Amharic,$Event_Start,$Event_End);
 
-				if($encoder_con->Event_Exists($Event_C)){
-					encoder_place_redirect(Error_Type::SAME_REGISTERED_DATA);
+				$Event = new Event($Name,$Name_Amharic,$About_Event,$About_Event_Amharic,$Event_Start,$Event_End);
+
+				if($encoder_con->Event_Exists_For_Edit($Event,$Event_ID)){
+					encoder_place_redirect(Error_Type::SAME_USER_NAME,$Event_ID);
 				}
 
- 				$added = $encoder_con->Add_Event($Event_C);
 
-    			if($added){
-					encoder_redirect_success($Event_C);
+				$added = $encoder_con->Edit_Event($Event,$Event_ID);
+
+				/**
+				 * inform the encoder about the result
+				 */
+
+				if($added){
+					encoder_redirect_success($Event);
 				}
 				else{
-					encoder_place_redirect(Error_Type::DATA_BASE);
+					encoder_place_redirect(Error_Type::DATA_BASE,$Event_ID);
 				}
 
 			}
-			/**
-			 * if there are errors when filling the form
-			 */
 			else{
-				encoder_place_redirect(Error_Type::FORM);
+				encoder_place_redirect(Error_Type::FORM,$Event_ID);
 			}
 
 		}
 	}
 
 }
-
-

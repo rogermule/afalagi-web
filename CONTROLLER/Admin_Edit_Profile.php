@@ -16,15 +16,11 @@ require("../MODEL/Error_Type.php");
 $errors = array();
 
 
-/**
- * @param User $new_user
- * this function takes a new added user and sends the user name and type of the
- * user to Admin_Add_User.php file
- */
+
 function admin_redirect_success(){
 
 
-	$dir = "VIEW/html/Admin/Admin_Action_Handler.php?EDIT_PROFILE=1&success=1";
+	$dir = "VIEW/html/Admin/Employee_List.php?success_edit=1";
 	$url = BASE_URL.$dir;
 	header("Location:$url");//redirect the admin to the Admin_Add_Users.php file
 	exit();
@@ -32,9 +28,6 @@ function admin_redirect_success(){
 }
 
 
-/**
- * this function redirects the user
- */
 function admin_redirect_error($type_of_error){
 
 
@@ -42,6 +35,9 @@ function admin_redirect_error($type_of_error){
 
 	if($type_of_error == Error_Type::FORM){
 		$error_type = "Fill out the form  correctly.";
+	}
+	if($type_of_error == Error_Type::PRV_PASSWORD_DONT_MATCH){
+		$error_type = "previous password don't match.";
 	}
 
 	else if($type_of_error == Error_Type::DATA_BASE){
@@ -52,7 +48,7 @@ function admin_redirect_error($type_of_error){
 		$error_type = "Error, Use a different name. User name exists before.";
 	}
 
-	$dir = "VIEW/html/Admin/Admin_Action_Handler.php?EDIT_PROFILE=1&error=$error_type";
+	$dir = "VIEW/html/Admin/Edit_Admin.php?error=$error_type";
 	$url = BASE_URL.$dir;
 	header("Location:$url");//redirect the admin to the Admin_Add_Users.php file
 	exit();
@@ -64,67 +60,30 @@ function admin_redirect_error($type_of_error){
 if($_SERVER['REQUEST_METHOD'] == "POST"){
 
 
-	/**
-	 * check if the user is logged in
-	 * check login status is from php file "controller secure access"
-	 * it checks if the use is logged in
-	 */
-	if(TRUE == check_login_status()){
+ 	if(TRUE == check_login_status()){
 
-		/**
-		 * check if the type of the user is admin
-		 * get_user_type function is from a php file"Controller secure access"
-		 * it returns the type of the user
-		 */
-		$user_type = get_user_type();
+ 		$user_type = get_user_type();
 
-		/**
-		 * if the user type is admin instantiate an Admin_controller and do what you got to do
-		 */
-		if($user_type == User_Type::ADMIN){
+ 		if($user_type == User_Type::ADMIN){
+  			$user_admin = $_SESSION['Logged_In_User'];
+  			$admin_password = $user_admin->getUserPassword();
+ 			$admin_controller = new Admin_Controller($user_admin);
 
-
-			/**
-			 * get the logged in user
-			 */
-			$user_admin = $_SESSION['Logged_In_User'];
-
-
-			/**
-			 * this is the original password
-			 */
-			$admin_password = $user_admin->getUserPassword();
-
-
-			/**
-			 * instantiate admin controller with the logged in user
-			 */
-			$admin_controller = new Admin_Controller($user_admin);
-
-			/**
-			 * get the user name from post
-			 */
-			if(empty($_POST['User_Name'])){
+ 			if(empty($_POST['User_Name'])){
 				$errors[] = "User Name Should be filled";
 			}
 			else{
 				$User_Name = $_POST['User_Name'];
 			}
 
-			/**
-			 * get the password from post
-			 */
-			if(empty($_POST['Previous_Password'])){
+ 			if(empty($_POST['Previous_Password'])){
 				$errors[] = "Previous password should be filled";
 			}
 			else{
 				$Previous_Password = $_POST['Previous_Password'];
 			}
 
-			/**
-			 * get the phone number
-			 */
-			if(empty($_POST['New_Password'])){
+ 			if(empty($_POST['New_Password'])){
 				$errors[] = "New Password should be filled";
 			}
 			else{
@@ -133,15 +92,16 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
 
 
-			if(!isset($_POST['ID'])){
+			if(!isset($_POST['Admin_ID'])){
 				$errors[] = "Please go back and refresh the site!";
 			}
 			else{
-				$User_ID = $_POST['ID'];
+				$User_ID = $_POST['Admin_ID'];
 			}
 
 			if($admin_password != $Previous_Password){
 				$errors[] = "previous password don't match";
+				admin_redirect_error(Error_Type::PRV_PASSWORD_DONT_MATCH);
 			}
 
 			if($admin_controller->Check_User_Name_For_Edit($User_Name,$User_ID)){

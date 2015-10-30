@@ -5,9 +5,6 @@
 
 class Admin_Controller extends User_Controller{
 
-	/**
-	 * these are the variables that are going to be used repeatedly
-	 */
 
 	private $User_ID;
 	private $User_Name;//will hold the name of the user
@@ -15,13 +12,6 @@ class Admin_Controller extends User_Controller{
 	private $User_Phone;//will hold the user phone number
 	private $User_Type;//will hold the use type
 
-
-	/**
-	 * @param User $new_user
-	 * this function takes a user parameter and adds that user
-	 * if the user exists before or if there is any error it will return an indication
-	 * for the corresponding errors
-	 */
 	function Add_User(User $new_user){
 
 
@@ -67,17 +57,22 @@ class Admin_Controller extends User_Controller{
 	function Get_Users($user_type){
 
 		$query = "";
+		$user = "";
 
 		if($user_type == User_Type::ENCODER){
-			$query = "SELECT ID,User_Name,User_Type,User_Phone,DATE_FORMAT(User_Registration_Date,'%M %D %Y') as User_Registration_Date
-				      FROM User
-				      WHERE User_Type ='$user_type' ORDER BY User_Name";
+			 $user = $user_type;
 		}
 		else if($user_type == User_Type::OPERATOR){
-			$query = "SELECT ID,User_Name,User_Type,User_Phone,DATE_FORMAT(User_Registration_Date,'%M %D %Y') as User_Registration_Date
+			 $user = $user_type;
+		}
+
+		else if($user_type == User_Type::NORMAL_ENCODER){
+			$user =$user_type;
+		}
+
+		$query = "SELECT ID,User_Name,User_Type,User_Phone,DATE_FORMAT(User_Registration_Date,'%M %D %Y') as User_Registration_Date
 				      FROM User
 				      WHERE User_Type ='$user_type' ORDER BY User_Name";
-		}
 
 		$users = mysqli_query($this->getDbc(),$query);
 
@@ -85,7 +80,7 @@ class Admin_Controller extends User_Controller{
 			return $users;
 		}
 		else{
-			0;
+			return null;
 		}
 
 
@@ -111,8 +106,6 @@ class Admin_Controller extends User_Controller{
 		else if(mysqli_num_rows($result) == 0){
 			return FALSE;
 		}
-
-
 
 	}
 
