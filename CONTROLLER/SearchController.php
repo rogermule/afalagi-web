@@ -6,7 +6,7 @@
  * Time: 10:11 PM
  */
 
-include("../../../MODEL/DataBase.php");
+require(DB);
 define('PAGE_PER_NO',6); // number of results per page.
 
 
@@ -61,25 +61,14 @@ class SearchController{
 
     function Get_Generic_Company($Name_Start = null){
 
-        $companyType = "";
-        $region = "";
-        $city = "";
-        $subcity = "";
-        $sefer = "";
-
-        $q = "select
-              from (select )";
         $Word_Start = "A";
+
 
         if($Name_Start != null){
             $Word_Start = $Name_Start;
         }
-        $query = "select *
-from (
-
-select COM_ID as company_id,COM_NAME as company_name,COM_Name_Amharic as company_name_amharic,
-        COM_REG_DATE as registration_date
-		,CAT_Name as category,CAT_Name_Amharic as category_amharic,ADDR_ID as address_id,Belong_to as belong_to
+        $query = "select COM_ID as company_id,COM_NAME as company_name,COM_Name_Amharic as company_name_amharic, COM_REG_DATE as registration_date
+		,CAT_Name as category,CAT_Name_Amharic as category_amharic,ADDR_ID as address_id,Belong_to as belong_to,PAY_STAT.Registration_Type,if(PAY_STAT.Expiration_Date<CURDATE(),'EXPIRED','NOT_EXPIRED') as Expiration_Date
 from (select COM.ID as COM_ID,COM.Name as COM_NAME,COM.Name_Amharic as COM_Name_Amharic,COM.Registration_date as COM_REG_DATE,
 			 COM_ADDR.company_id as COM_ADDR_COM_ID, COM_ADDR.address_id as COM_ADDR_ADDR_ID,
 			 ADDR.ID as ADDR_ID,ADDR.Belong_to
@@ -97,13 +86,12 @@ from (select COM.ID as COM_ID,COM.Name as COM_NAME,COM.Name_Amharic as COM_Name_
 		on COM_CAT.category_id = CAT.id) as cat_spec
 
 		on COM_ID = COM_CAT_COM_ID
-  ORDER by company_name
 
-  ) as company_details
- inner join
- on
-
-  ";
+		inner join
+		payment_status as PAY_STAT
+		on COM_ID = PAY_STAT.ID
+where COM_Name like '%$Word_Start%'
+ORDER by company_name";;
 
         $result  = mysqli_query($this->getDbc(),$query);
 
@@ -115,6 +103,91 @@ from (select COM.ID as COM_ID,COM.Name as COM_NAME,COM.Name_Amharic as COM_Name_
         }
     }
 
+
+    function Get_Company_For_Search($company_id){
+        $query ="select *
+from
+		(select  C.ID as Company_ID,C.Name as Company_Name,C.Name_Amharic as Company_Name_Amharic,C.Registration_Date
+		 from company as C
+		 where ID = '$company_id')as com_spec
+ 		inner join
+ 		(select ABT_COM.ID as About_Company_ID, ABT_COM.Branch,ABT_COM.Branch_Amharic,ABT_COM.Working_Hours,ABT_COM.Working_Hours_Amharic
+		 from about_company as ABT_COM
+		 where Company_ID='$company_id') as abt_spec
+
+		inner join
+		(select COM_PRO_SER.ID as Company_Service_ID,Product_Service,COM_PRO_SER.Product_Service_Amharic
+		from company_product_service as COM_PRO_SER
+		where COM_PRO_SER.Company_ID = '$company_id'
+
+		)as pro_ser_spec
+
+		inner join
+
+		(select PS.ID as Payment_Status_ID,PS.Expiration_Date,PS.Registration_Type
+		from payment_status as PS
+		where PS.Company_ID = '$company_id') as pay_spec
+
+		inner join
+
+
+
+		(select C_CAT.ID as Company_Category_ID,C_CAT.Category_ID as Category_ID
+						from company_category as C_CAT
+						where C_CAT.Company_ID = '$company_id') as cat_spec
+ 		inner join
+
+		(select COM_OWN.ID as Company_Ownership_ID,COM_OWN.Ownership_ID Company_Type_ID
+						from company_ownership as COM_OWN
+						where COM_OWN.Company_ID = '$company_id'
+						) as com_type_spec
+
+		inner join
+
+			(select CON.ID as Contact_ID, CON.Email,CON.House_No,CON.FAX,CON.POBOX,CON.Telephone
+		  from contact as CON
+		  where CON.ID = ( select ADDR_CON.Contact_ID
+							from address_contact as ADDR_CON
+							where ADDR_CON.Address_ID = ( select COM_ADDR.Address_ID
+														  from company_address as COM_ADDR
+														  where COM_ADDR.Company_ID = '$company_id'
+ 									))) as con_spec
+ 		inner join
+
+			(select DIR.ID as Direction_ID,DIR.Direction,DIR.Direction_Amharic
+			from direction as DIR
+			where DIR.ID = (select ADDR_DIR.Direction_ID
+						    from address_direction as ADDR_DIR
+							where ADDR_DIR.Address_ID = ( select COM_ADDR.Address_ID
+													  from company_address as COM_ADDR
+													  where COM_ADDR.Company_ID = '$company_id'
+ 									))) as dir_spec
+ 		inner join
+
+			(select P.ID as Place_ID, P.Region,P.City,P.Sub_City,P.Sefer,P.Wereda,P.Street
+ 			from Place as P
+			where P.ID  = (select ADDR_P.Place_ID
+						from address_place as ADDR_P
+						where ADDR_P.Address_ID = ( select COM_ADDR.Address_ID
+													  from company_address as COM_ADDR
+													  where COM_ADDR.Company_ID = '$company_id'
+													))) as place_spec
+
+
+
+";
+
+
+
+        $result = mysqli_query($this->getDbc(),$query);
+
+        if($result){
+            return $result;
+        }
+        else{
+            return null;
+        }
+    }
 
 
     /* ------------ Company Category -------------- */

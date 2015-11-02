@@ -24,7 +24,7 @@ $sefer = $controller->getSeferAll();
 ?>
 
 
-	<div class="margin_top_70">
+    <div class="margin_top_51" />
 		<?php
 		include('Operator_Navigation.html');
 		?>
@@ -35,17 +35,18 @@ $sefer = $controller->getSeferAll();
            include('Operator_Menu.php');
 
         ?>
+            <?php include('Company_Menu.html'); ?>
 
-		<div class="col-sm-7 col-sm-offset-1">
+		<div class="col-sm-7">
 
 		<div class="row col-sm-12 operator_search">
 
-				<h2 class="afalagi_text">Afalagi Specific Search</h2>
+				<h2 class="afalagi_text">Afalagi General Search</h2>
 
             <br />
 
 
-            <form class="specific_search" name="myForm" role="form" action="Operator_Specific_Search.php" method="GET">
+            <form class="specific_search" name="myForm" role="form" action="Company_General_Search.php" method="GET">
 
                 <div class="row form-group">
                     <div class="col-lg-4">

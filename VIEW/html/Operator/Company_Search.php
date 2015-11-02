@@ -1,13 +1,13 @@
 <?php
 $user = $_SESSION['Logged_In_User'];
-$search_controller = new Encoder_Controller($user);//make an encoder object
+$search_controller = new SearchController();//make an encoder object
 
 //$controller = new SearchController();
 //$result = $controller->genericSearch($searchValue,$searchOptions);
 
 $searchdata = trim($searchValue);
 
-$searchresult = $search_controller->Get_Company_For_Search_Listing($searchdata);
+$searchresult = $search_controller->Get_Generic_Company($searchdata);
 
 $num_of_result = mysqli_num_rows($searchresult);
 
@@ -41,7 +41,7 @@ $num_of_result = mysqli_num_rows($searchresult);
                                 $Belong_to = $results["belong_to"];
 
                                 $count++;
-                                include("Operator_Search_Single_View.php");
+                                include("Company_Search_Single_View.php");
                             }
                         }
                         else{

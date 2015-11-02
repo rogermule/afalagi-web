@@ -63,7 +63,7 @@ $company_phone =  $Company_Spec["Telephone"];
         if($Belong_to == Belong::COMPANY_WITH_BUILDING ){
 
             ?>
-            <a class="btn btn-warning btn-xs" href="View_In_Detail.php?CB=1&company_id=<?php echo($company_id);?>">View More</a>
+            <a class="btn btn-warning btn-xs" href="Company_View_In_Detail.php?CB=1&company_id=<?php echo($company_id);?>">View More</a>
 
         <?php
 
@@ -71,7 +71,7 @@ $company_phone =  $Company_Spec["Telephone"];
         else if($Belong_to == Belong::COMPANY_WITH_OUT_BUILDING){
 
             ?>
-            <a class="btn btn-warning btn-xs" href="View_In_Detail.php?CA=1&company_id=<?php echo($company_id);?>">View More</a>
+            <a class="btn btn-warning btn-xs" href="Company_View_In_Detail.php?CA=1&company_id=<?php echo($company_id);?>">View More</a>
 
         <?php
         }

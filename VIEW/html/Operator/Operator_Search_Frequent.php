@@ -50,7 +50,7 @@ $num_of_result = mysqli_num_rows($result);
 
                                 $count++;
 
-                                include("Operator_Search_Single_View.php");
+                                include("Company_Search_Single_View.php");
                             }
                         }
                         else{

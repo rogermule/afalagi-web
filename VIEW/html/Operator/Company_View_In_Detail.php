@@ -91,7 +91,7 @@ if($_SERVER['REQUEST_METHOD']== 'GET'){
     else if(isset($_GET['CB'])){
 
         $Company_ID = $_GET['company_id'];
-        $single_company = $encoder->Get_Company_With_Building($Company_ID);
+        $single_company = $encoder->Get_Company_For_Search($Company_ID);
         $Company_Spec = mysqli_fetch_array($single_company,MYSQLI_ASSOC);
 
         //company spec
@@ -156,8 +156,7 @@ if($_SERVER['REQUEST_METHOD']== 'GET'){
 
 ?>
 
-
-<div class="margin_top_70">
+<div class="margin_top_51" />
 
 <?php
 include('Operator_Navigation.html');
@@ -168,15 +167,14 @@ include('Operator_Navigation.html');
 
 include('Operator_Menu.php');
 
+include("Company_Menu.html");
 ?>
 
-<div class="col-sm-8 col-sm-offset-1">
+<div class="col-sm-8 ">
 
 <div class="col-sm-9 list_container margin_0">
 
 <div class="col-sm-12">
-
-<div class=" margin_top_20">
 
 <div class="panel panel-primary">
 <div class="panel-heading">

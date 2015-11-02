@@ -1,12 +1,13 @@
 <!--start of frequently asked questions menu-->
 
+<div class="col-sm-2">
 
     <div class="list-group border_raduis_0">
 
 
         <p class="btn btn-info" > Frequently Asked Questions </p>
         <?php
-        $dir= '<a href="Operator_Home_Page.php?faq=building" class="list-group-item left_menu ';
+        $dir= '<a href="Company_Specific_Search.php?faq=building" class="list-group-item encoder_menu ';
         if($active_menu=="building"){
             $dir.='active">';
         }
@@ -21,7 +22,7 @@
         </a>
 
         <?php
-            $dir= '<a href="Operator_Home_Page.php?faq=company" class="list-group-item left_menu ';
+            $dir= '<a href="Company_Specific_Search.php?faq=company" class="list-group-item encoder_menu ';
             if($active_menu=="company"){
                 $dir.='active">';
             }
@@ -39,7 +40,7 @@
 
 
         <?php
-        $dir= '<a href="Operator_Specific_Search.php" class="list-group-item left_menu ';
+        $dir= '<a href="Company_General_Search.php" class="list-group-item encoder_menu ';
         if($active_menu=="hotel"){
             $dir.='active">';
         }
@@ -56,7 +57,7 @@
         </a>
 
         <?php
-        $dir= '<a href="Operator_Specific_Search.php" class="list-group-item left_menu ';
+        $dir= '<a href="Company_General_Search.php" class="list-group-item encoder_menu ';
         if($active_menu=="telephone"){
             $dir.='active">';
         }
@@ -73,7 +74,7 @@
         </a>
 
         <?php
-        $dir= '<a href="Operator_Specific_Search.php" class="list-group-item left_menu ';
+        $dir= '<a href="Company_General_Search.php" class="list-group-item encoder_menu ';
         if($active_menu=="event"){
             $dir.='active">';
         }
@@ -92,7 +93,7 @@
 
 
         <?php
-        $dir= '<a href="Operator_Specific_Search.php" class="list-group-item left_menu ';
+        $dir= '<a href="Company_General_Search.php" class="list-group-item encoder_menu ';
         if($active_menu=="hospital"){
             $dir.='active">';
         }
@@ -111,7 +112,7 @@
 
 
         <?php
-        $dir= '<a href="Operator_Specific_Search.php" class="list-group-item left_menu ';
+        $dir= '<a href="Company_General_Search.php" class="list-group-item encoder_menu ';
         if($active_menu=="school"){
             $dir.='active">';
         }
@@ -129,7 +130,7 @@
 
 
         <?php
-        $dir= '<a href="Operator_Specific_Search.php" class="list-group-item left_menu ';
+        $dir= '<a href="Company_General_Search.php" class="list-group-item encoder_menu ';
         if($active_menu=="street"){
             $dir.='active">';
         }
@@ -148,7 +149,7 @@
 
 
         <?php
-        $dir= '<a href="Operator_Specific_Search.php" class="list-group-item left_menu ';
+        $dir= '<a href="Company_General_Search.php" class="list-group-item encoder_menu ';
         if($active_menu=="bank"){
             $dir.='active">';
         }
@@ -167,7 +168,7 @@
 
 
         <?php
-        $dir= '<a href="Operator_Specific_Search.php" class="list-group-item left_menu ';
+        $dir= '<a href="Company_General_Search.php" class="list-group-item encoder_menu ';
         if($active_menu=="cinema"){
             $dir.='active">';
         }
@@ -184,4 +185,5 @@
         </a>
     </div>
 
+    </div>
 <!--end of the left side menu-->

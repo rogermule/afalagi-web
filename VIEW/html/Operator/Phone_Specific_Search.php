@@ -1,16 +1,6 @@
 <?php
 
-
-require_once("../../../CONFIGURATION/Config.php");
-require_once("../../../MODEL/User.php");
-require_once("../../../MODEL/User_Type.php");
-require_once("../../../CONTROLLER/User_Controller.php");
-require_once("../../../CONTROLLER/Controller_Secure_Access.php");
-require_once("../../../CONTROLLER/SearchController.php");
-require_once("../../../CONTROLLER/Encoder/Sub_Encoder_Controller.php");
-require_once("../../../CONTROLLER/Encoder/Encoder_Controller.php");
-require_once("../../../MODEL/Belong.php");
-
+require_once("Requires.php");
 $title="Operator";
 include "Operator_Header.html";
 $active_menu = "generic";
@@ -22,7 +12,7 @@ if(isset($_GET["faq"])){
 ?>
 
 
-<div class="margin_top_70">
+    <div class="margin_top_51" />
 
 		<?php
 		include('Operator_Navigation.html');
@@ -34,8 +24,9 @@ if(isset($_GET["faq"])){
            include('Operator_Menu.php');
 
         ?>
+<?php include('Phone_Menu.html'); ?>
 
-        <div class="col-sm-7 col-sm-offset-1">
+        <div class="col-sm-7">
 
     <?php
 
@@ -45,7 +36,7 @@ if(!isset($_GET["viewmore"])){   ?>
                     <h2 class="afalagi_text">Afalagi Generic Search</h2>
                     <br />
 
-                     <form class="" role="form" action="Operator_Home_Page.php" method="GET">
+                     <form class="" role="form" action="Company_Specific_Search.php" method="GET">
                        <div class="row">
                             <div class="col-lg-12 input-group">
                                     <input type="text" name="search" class="form-control" placeholder="Enter Company Name ...">
@@ -83,7 +74,7 @@ if(!isset($_GET["viewmore"])){   ?>
 
             $searchValue = $_GET["search"];
             $searchOptions = $_GET["search_options"];
-            include("Operator_Search.php");
+            include("Company_Search.php");
         }
     ?>
 
@@ -97,24 +88,8 @@ if(!isset($_GET["viewmore"])){   ?>
 
     ?>
 
-    <!-- for view more -->
-
-    <?php
-        if(isset($_GET["viewmore"])){
-            $name = $_GET["name"];
-            $desc = $_GET["desc"];
-            $type = $_GET["type"];
-            $region = $_GET["region"];
-            $city = $_GET["city"];
-            $subcity = $_GET["subcity"];
-            $sefer = $_GET["sefer"];
-            $phone = $_GET["phone"];
-            include("View_More.php");
-        }
 
 
-
-    ?>
 
 <?php
 
