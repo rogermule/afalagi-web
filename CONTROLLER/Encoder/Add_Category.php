@@ -5,6 +5,7 @@ require("../../CONFIGURATION/Config.php");//this file contains configurations fi
 require(DB);//this will make the database class included
 require("../../MODEL/User.php");//user object will be created so it should be included in here
 require("../../MODEL/Category.php");
+require("../../MODEL/GeneralCategory.php");
 require("User_Controller.php");//admin controller is going to extend this class so it should be included
 require("All_Controllers.php");
 require("../Controller_Secure_Access.php");//this will prevent this file from being accessed easily
@@ -94,8 +95,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 			}
 			else{
 				$category_name = $_POST['Category_Name'];
-
-			}
+ 			}
 
 			if(empty($_POST['Category_Name_Amharic'])){
 				$errors[] = "Category name in amharic should be filled";
@@ -104,11 +104,19 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 				$category_name_amharic = $_POST["Category_Name_Amharic"];
 			}
 
+			//get the general category
+			if(isset($_POST['General_Category'])){
+ 				$General_Category = $_POST['General_Category'];
+ 			}
+			else{
+				$errors[] = "General category should be filled";
+
+			}
 
 
 			if(empty($errors)){
 
-				$category = new Category($category_name,$category_name_amharic);
+				$category = new Category($category_name,$category_name_amharic,$General_Category);
 
 				if($encoder_con->Category_Exists($category)){
 					encoder_place_redirect(Error_Type::SAME_CATEGORY_NAME);

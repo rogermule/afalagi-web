@@ -80,8 +80,10 @@ $num_category = mysqli_num_rows($category);
 			<table class="table table-hover">
 				<thead>
 				<th>#</th>
-				<th>Category Name</th>
 				<th>የስራ መስክ</th>
+				<th>Category Name</th>
+
+				<th>ጠቅላላ የስራ መስክ</th>
 				<th>Edit</th>
 				</thead>
 				<tbody>
@@ -97,11 +99,18 @@ $num_category = mysqli_num_rows($category);
 						$category_name = $cat['Name'];
 						$category_name_amharic = $cat['Name_Amharic'];
 						$category_id = $cat['ID'];
+						$General_Category = $cat['General_Category'];
  						?>
  						<tr>
 							<td><?php echo($count); ?></td>
+						    <td><?php echo($category_name_amharic); ?></td>
 							<td><?php echo($category_name); ?></td>
-							<td><?php echo($category_name_amharic); ?></td>
+
+						    <td><?php if($General_Category == "NULL"){
+								    echo("_");
+							    } else{
+								    echo($General_Category);
+							    }?></td>
 							<td>
 		<a href="Edit_Category.php?Category_ID=<?php echo($category_id);?>" class="btn btn-xs btn-warning">Edit</a>
 		<a href="Delete_Category.php?Category_ID=<?php echo($category_id);?>" class="btn btn-xs btn-danger">Delete</a>

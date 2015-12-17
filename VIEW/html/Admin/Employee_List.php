@@ -42,6 +42,7 @@ require('Admin_Menu2.html');
 
 				<br/>
 			</div>
+
 		<?php
 		}
 		if(isset($_GET['success_delete'])){

@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 <html>
-
 <head lang="en">
-
     <meta charset="UTF-8">
     <title></title>
     <link href="../../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../css/Admin.css" rel="stylesheet">
     <link href="../../css/custome_common.css" rel="stylesheet">
-
+    <link href="../../css/Admin.css" rel="stylesheet">
 </head>
-
 <body class="back_ground_addis">
+
+
 
 <div class="container  margin_top_70">
 
@@ -19,14 +17,13 @@
 		<a class="navbar-brand white active">Afalagi Login</a>
 		<p class="navbar-text white">We serve any thing with a single call.</p>
 		<ul class="nav navbar-nav navbar-right">
+ 			<li class="nav active"><a href="about.html">About</a></li>
+ 		</ul>
+ 	</div>
 
-			<li class="nav"><a href="about.html">About</a></li>
 
-		</ul>
 
-	</div>
-
-<!--  start of the the body  -->
+<!--    start of the the body-->
 
     <div class="margin_top_20">
 
@@ -43,6 +40,7 @@
 					//this  will be seen if there is any kind of error
 
 		            if($_SERVER['REQUEST_METHOD'] == "GET"){
+
 			            if(isset($_GET['error'])){
 				            if($_GET['error'] == 'credential_error'){
 					            ?>
@@ -59,21 +57,25 @@
 				            <?php
 				            }
 			            }
+
 		            }
+
 	            ?>
+
 
                 <form action="../../../CONTROLLER/Login_Handler.php" method="POST">
 
                     <div class="form-group">
-                        <label for="user_name">User Name</label>
+                        <label for="user_name">ስም</label>
                         <input type="text"
                                id="user_name"
                                name="User_Name"
                                class="form-control"
                                placeholder="enter user name "/>
                     </div>
+
                     <div class="form-group">
-                        <label for="password">Password</label>
+                        <label for="password">የይለፍ ቃል</label>
                         <input type="password"
                                id="password"
                                name="User_Password"
@@ -93,16 +95,15 @@
 
 
 <!--    start of the fotter-->
-   <div>
+    <div></div>
 
- </div>
+
 
 </div>
 
 
-<script src="../../js/jquery.min.js"> </script>
-
-<script src="../../js/bootstrap.min.js"> </script>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
 
 </body>
 </html>

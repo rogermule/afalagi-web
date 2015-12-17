@@ -10,11 +10,30 @@ class Category {
 
 	private $Category_Name;
 	private $Category_Name_Amharic;
+	private $General_Category;
 
-	function __construct($category_name,$category_name_amharic){
+	function __construct($category_name,$category_name_amharic,$general_category = null){
 
 		$this->Category_Name = $category_name;
 		$this->Category_Name_Amharic = $category_name_amharic;
+ 		$this->General_Category = $general_category;
+
+	}
+
+	/**
+	 * @return null
+	 */
+	public function getGeneralCategory()
+	{
+		return $this->General_Category;
+	}
+
+	/**
+	 * @param null $General_Category
+	 */
+	public function setGeneralCategory($General_Category)
+	{
+		$this->General_Category = $General_Category;
 	}
 
 	/**

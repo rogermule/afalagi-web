@@ -19,7 +19,7 @@ include("includables.php");
 
         <div class="panel panel-default">
             <div class="panel-body text-center">
-                <h4>Add Wereda</h4>
+                <h4>Add Wereda ( ወረዳ መጨመርያ )</h4>
 
             </div>
         </div>

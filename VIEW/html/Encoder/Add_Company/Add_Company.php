@@ -30,7 +30,7 @@ require("Require.php");
 		<div class="panel panel-default">
 			<div class="panel-body text-center">
 
-				<h4>Add Company</h4>
+				<h4>Add Company (ድርጅት መጨመርያ)</h4>
 
 			</div>
 		</div>
@@ -79,21 +79,23 @@ require("Require.php");
 
 
 						<div class="form-group">
-							<label for="Building" class="col-sm-4 control-label">Building</label>
-							<div class="col-sm-5">
+							<label for="Building" class="col-sm-4 control-label">Building(ህንጻ)</label>
+							<div class="col-sm-6">
 								<select class="form-control " id="Building" name="Building">
-									<option value="NOT_FILLED">- - - - - - - select building</option>
+									<option value="NOT_FILLED">- - - - select building (ህንጻ ይምረጡ)</option>
 									<?php
 									$Building_ID = "";
 									$Building_Name = "";
+									$Building_Name_Amharic = "";
 
 									if($buildings){
 										while($bul = mysqli_fetch_array($buildings,MYSQLI_ASSOC)){
 											$Building_ID = $bul['ID'];
 											$Building_Name = $bul['Name'];
+											$Building_Name_Amharic = $bul['Name_Amharic'];
 
 											?>
-											<option value="<?php echo($Building_ID);?>"><?php echo($Building_Name);?></option>
+											<option value="<?php echo($Building_ID);?>"><?php echo($Building_Name." (".$Building_Name_Amharic.") ");?></option>
 										<?php
 										}
 									}
@@ -115,11 +117,12 @@ require("Require.php");
 						</div>
 
 						<div class="form-group">
-							<label for="Building_Floor" class="col-sm-4 control-label">Building Floor</label>
-							<div class="col-sm-5">
+							<label for="Building_Floor" class="col-sm-4 control-label">Building Floor (ፍሎር)</label>
+							<div class="col-sm-6">
 								<select class="form-control" id="Building_Floor" name="Building_Floor">
 
-									<option value="NOT_FILLED">- - - - - - - select Floor</option>
+									<option value="NOT_FILLED">- - - - select Floor ( ፍሎር ይምረጡ)</option>
+									<option value="THE_WHOLE_FLOOR">THE WHOLE FLOOR</option>
 
 
 									<?php
@@ -143,22 +146,24 @@ require("Require.php");
 						<hr>
 
 						<div class="form-group">
-							<label for="Region" class="col-sm-4 control-label">Region</label>
-							<div class="col-sm-5">
+							<label for="Region" class="col-sm-4 control-label">Region (ክልል)</label>
+							<div class="col-sm-6">
 								<select class="form-control place" id="Region" name="Region"  >
 
-									<option value="NOT_FILLED" >- - - - - - - select region</option>
+									<option value="NOT_FILLED" >- - - - select region (ክልል ይምረጡ)</option>
 									<?php
 									$Region_ID = "";
 									$Region_Name = "";
+									$Region_Name_Amharic = "";
 
 									if($Regions){
 										while($reg = mysqli_fetch_array($Regions,MYSQLI_ASSOC)){
 											$Region_ID = $reg['ID'];
 											$Region_Name = $reg['Name'];
+											$Region_Name_Amharic = $reg['Name_Amharic'];
 
 											?>
-											<option value="<?php echo($Region_ID);?>"><?php echo($Region_Name);?></option>
+											<option value="<?php echo($Region_ID);?>"><?php echo($Region_Name." (".$Region_Name_Amharic." )");?></option>
 										<?php
 										}
 									}
@@ -180,21 +185,23 @@ require("Require.php");
 						</div>
 
 						<div class="form-group">
-							<label for="City" class="col-sm-4 control-label">City</label>
-							<div class="col-sm-5">
+							<label for="City" class="col-sm-4 control-label">City (ከተማ)</label>
+							<div class="col-sm-6">
 								<select class="form-control place" id="City" name="City">
-									<option value="NOT_FILLED">- - - - - - - select city</option>
+									<option value="NOT_FILLED">- - - - select city (ከተማ ይምረጡ)</option>
 									<?php
 									$City_ID = "";
 									$City_Name = "";
+									$City_Name_Amharic = "";
 
 									if($Cities){
 										while($cit = mysqli_fetch_array($Cities,MYSQLI_ASSOC)){
 											$City_ID = $cit['ID'];
 											$City_Name = $cit['Name'];
+											$City_Name_Amharic = $cit['Name_Amharic'];
 
 											?>
-											<option value="<?php echo($City_ID);?>"><?php echo($City_Name);?></option>
+											<option value="<?php echo($City_ID);?>"><?php echo($City_Name." (".$City_Name_Amharic." )");?></option>
 										<?php
 										}
 									}
@@ -204,9 +211,7 @@ require("Require.php");
 							</div>
 							<div class="col-sm-2">
 								<?php if(get_encoder_type() == User_Type::ENCODER){
-
-
-									?>
+ 									?>
 									<a href="../Add_Place/Add_Place_City_inc.php" class="btn btn-info place">new</a>
 								<?php
 								}?>
@@ -215,21 +220,23 @@ require("Require.php");
 						</div>
 
 						<div class="form-group">
-							<label for="Sub_City" class="col-sm-4 control-label">Sub City</label>
-							<div class="col-sm-5">
+							<label for="Sub_City" class="col-sm-4 control-label">Sub City (ክ/ከተማ)</label>
+							<div class="col-sm-6">
 								<select class="form-control place" id="Sub_City" name="Sub_City">
 
-									<option value="NOT_FILLED">- - - - - - - select Sub city</option>
+									<option value="NOT_FILLED">- - - - select Sub city ( ክ/ከተማ ይምረጡ ) </option>
 									<?php
 									$SubCity_ID = "";
 									$SubCity_Name = "";
+									$SubCity_Name_Amharic = "";
 
 									if($SubCities){
 										while($SubCit = mysqli_fetch_array($SubCities,MYSQLI_ASSOC)){
 											$SubCity_ID = $SubCit['ID'];
 											$SubCity_Name = $SubCit['Name'];
+											$SubCity_Name_Amharic = $SubCit['Name_Amharic'];
 											?>
-											<option value="<?php echo($SubCity_ID);?>"><?php echo($SubCity_Name);?></option>
+											<option value="<?php echo($SubCity_ID);?>"><?php echo($SubCity_Name."( ".$SubCity_Name_Amharic." )");?></option>
 										<?php
 										}
 									}
@@ -251,10 +258,10 @@ require("Require.php");
 						</div>
 
 			            <div class="form-group">
-							<label for="Wereda" class="col-sm-4 control-label">Kebele/Wereda</label>
-							<div class="col-sm-5">
+							<label for="Wereda" class="col-sm-4 control-label">Wereda (ወረዳ) </label>
+							<div class="col-sm-6">
 								<select class="form-control place" id="Wereda" name="Wereda">
-									<option value="NOT_FILLED">- - - - - - - select Kebele/Wereda</option>
+									<option value="NOT_FILLED">- - - - select wereda (ወረዳ ይምረጡ) </option>
 									<?php
 									$Wereda_ID = "";
 									$Wereda_Name = "";
@@ -271,6 +278,7 @@ require("Require.php");
 									?>
 								</select>
 							</div>
+
 							<div class="col-sm-2">
 								<?php if(get_encoder_type() == User_Type::ENCODER){
 
@@ -284,21 +292,23 @@ require("Require.php");
 						</div>
 
 						<div class="form-group">
-							<label for="Sefer" class="col-sm-4 control-label">Sefer</label>
-							<div class="col-sm-5">
+							<label for="Sefer" class="col-sm-4 control-label">Sefer (ሰፈር)</label>
+							<div class="col-sm-6">
 								<select class="form-control place" id="Sefer" name="Sefer">
-									<option value="NOT_FILLED">- - - - - - - select sefer</option>
+									<option value="NOT_FILLED">- - - - select sefer (ሰፈር ይምረጡ)</option>
 									<?php
 									$Sefer_ID = "";
 									$Sefer_Name = "";
+									$Sefer_Name_Amharic ="";
 
 									if($Sefers){
 										while($sef = mysqli_fetch_array($Sefers,MYSQLI_ASSOC)){
 											$Sefer_ID = $sef['ID'];
 											$Sefer_Name = $sef['Name'];
+											$Sefer_Name_Amharic = $sef['Name_Amharic'];
 
 											?>
-											<option value="<?php echo($Sefer_ID);?>"><?php echo($Sefer_Name);?></option>
+	<option value="<?php echo($Sefer_ID);?>"><?php echo($Sefer_Name." (".$Sefer_Name_Amharic." )");?></option>
 										<?php
 										}
 									}
@@ -319,22 +329,24 @@ require("Require.php");
 						</div>
 
 						<div class="form-group">
-							<label for="Street" class="col-sm-4 control-label">Street</label>
-							<div class="col-sm-5">
+							<label for="Street" class="col-sm-4 control-label">Street (መንገድ)</label>
+							<div class="col-sm-6">
 								<select class="form-control place" id="Street" name="Street">
-									<option value="NOT_FILLED">- - - - - - - select street</option>
+									<option value="NOT_FILLED">- - - - select street (መንገድ ይምረጡ)</option>
 
 									<?php
 									$Street_ID = "";
 									$Street_Name = "";
+									$Street_Name_Amharic = "";
 
 									if($Street){
 										while($str = mysqli_fetch_array($Street,MYSQLI_ASSOC)){
 											$Street_ID = $str['ID'];
 											$Street_Name = $str['Name'];
+											$Street_Name_Amharic = $str['Name_Amharic'];
 
 											?>
-											<option value="<?php echo($Street_ID);?>"><?php echo($Street_Name);?></option>
+											<option value="<?php echo($Street_ID);?>"><?php echo($Street_Name." (".$Street_Name_Amharic." )");?></option>
 										<?php
 										}
 									}
@@ -356,7 +368,7 @@ require("Require.php");
 						<div class="form-group">
 							<label for="Direction"
 							       class="col-sm-4 control-label">Direction to the company</label>
-							<div class="col-sm-5">
+							<div class="col-sm-6">
 
 								<textarea name="Direction" class="form-control place"
 								          rows="3"  id="Direction"
@@ -367,7 +379,7 @@ require("Require.php");
 						<div class="form-group">
 							<label for="Direction_Amharic"
 							       class="col-sm-4 control-label ">አቅጣጫ</label>
-							<div class="col-sm-5">
+							<div class="col-sm-6">
 
 								<textarea name="Direction_Amharic" class="form-control place"
 								          rows="3"  id="Direction_Amharic"
@@ -378,61 +390,63 @@ require("Require.php");
 						<hr>
 
 						<div class="form-group">
-							<label for="House_Number" class="col-sm-4 control-label">House number</label>
-							<div class="col-sm-5">
+							<label for="House_Number" class="col-sm-4 control-label">House number (የቤት ቁጥር)</label>
+							<div class="col-sm-6">
 								<input name="House_Number" type="text" class="form-control"
 								       id="House_Number" placeholder="Enter House Number" >
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label for="POBOX" class="col-sm-4 control-label">PO-BOX</label>
-							<div class="col-sm-5">
+							<label for="POBOX" class="col-sm-4 control-label">PO-BOX (ፓስታ)</label>
+							<div class="col-sm-6">
 								<input name="POBOX" type="text" class="form-control"
 								       id="POBOX" placeholder="Enter POBOX" >
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label for="Telephone" class="col-sm-4 control-label">Telephone</label>
-							<div class="col-sm-5">
+							<label for="Telephone" class="col-sm-4 control-label">Telephone (ስልክ)</label>
+							<div class="col-sm-6">
 								<input name="Telephone" type="text" class="form-control"
 								       id="Telephone" placeholder="Enter Phone" >
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label for="FAX" class="col-sm-4 control-label">FAX</label>
-							<div class="col-sm-5">
+							<label for="FAX" class="col-sm-4 control-label">FAX (ፋክስ)</label>
+							<div class="col-sm-6">
 								<input name="FAX" type="text" class="form-control"
 								       id="FAX" placeholder="Enter FAX" >
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label for="Email" class="col-sm-4 control-label">Email</label>
-							<div class="col-sm-5">
+							<label for="Email" class="col-sm-4 control-label">Email/Website(ኢሜል/ድህረ ገጸ)</label>
+							<div class="col-sm-6">
 								<input name="Email" type="text" class="form-control"
-								       id="Email" placeholder="Enter Email" >
+								       id="Email" placeholder="Enter Email or website" >
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label for="Category" class="col-sm-4 control-label">Category</label>
-							<div class="col-sm-5">
+							<label for="Category" class="col-sm-4 control-label">Category (የስራ መስክ)</label>
+							<div class="col-sm-6">
 								<select class="form-control" id="Category" name="Category">
-									<option value="NOT_FILLED">- - - - - - - select category</option>
+									<option value="NOT_FILLED">- - - - select category (የስራ መስክ ይምረጡ)</option>
 									<?php
 									$Category_ID = "";
 									$Category_Name = "";
+									$Category_Name_Amharic = "";
 
 									if($categories){
 										while($cat = mysqli_fetch_array($categories,MYSQLI_ASSOC)){
 											$Category_ID = $cat['ID'];
 											$Category_Name = $cat['Name'];
+											$Category_Name_Amharic = $cat['Name_Amharic'];
 
 											?>
-											<option value="<?php echo($Category_ID);?>"><?php echo($Category_Name);?></option>
+											<option value="<?php echo($Category_ID);?>"><?php echo($Category_Name."( ".$Category_Name_Amharic." )");?></option>
 										<?php
 										}
 									}
@@ -440,11 +454,12 @@ require("Require.php");
 									?>
 								</select>
 							</div>
+
+
+
 							<div class="col-sm-2">
 								<?php if(get_encoder_type() == User_Type::ENCODER){
-
-
-									?>
+ 									?>
 									<a href="../Add_Category/Add_Category.php" class="btn btn-info">new</a>
 
 								<?php
@@ -453,29 +468,27 @@ require("Require.php");
 						</div>
 
 						<div class="form-group">
-							<label for="Company_Type" class="col-sm-4 control-label">Company ownership Type</label>
-							<div class="col-sm-5">
+							<label for="Company_Type" class="col-sm-4 control-label">Company ownership Type <br>(የድርጅቱ ባለቤትነት)</label>
+							<div class="col-sm-6">
 								<select class="form-control" id="Company_Type" name="Company_Type">
-									<option value="NOT_FILLED">- - - - - - - select company type</option>
+									<option value="NOT_FILLED">- - - - select company type (ባለቤትነት አይምረጡ)</option>
 									<?php
-
-
-									$Name = "";
+ 									$Name = "";
 									$Name_Amharic = "";
 
-									if($company_ownership){
+
+ 									if($company_ownership){
 										while($com_own = mysqli_fetch_array($company_ownership,MYSQLI_ASSOC)){
-
-
-											$ID = $com_own["ID"];
+ 											$ID = $com_own["ID"];
 											$Name = $com_own["Name"];
+											$Name_Amharic = $com_own["Name_Amharic"];
+ 											?>
 
+									<option value="<?php echo($ID);?>">
 
-											?>
-
-									<option value="<?php echo($ID);?>"><?php echo($Name);?></option>
-
-										<?php
+										<?php echo($Name."( ".$Name_Amharic." )");?>
+									</option>
+ 										<?php
 										}
 									}
 
@@ -494,11 +507,15 @@ require("Require.php");
 							</div>
 						</div>
 
+
+
+
+
 						<hr>
 
 						<div class="form-group">
 							<label for="Company_Name" class="col-sm-4 control-label">Company Name</label>
-							<div class="col-sm-5">
+							<div class="col-sm-6">
 								<input name="Company_Name" type="text" class="form-control"
 								       id="Company_Name" placeholder="Enter Company Name" >
 							</div>
@@ -506,7 +523,7 @@ require("Require.php");
 
 						<div class="form-group">
 							<label for="Company_Name_Amharic" class="col-sm-4 control-label">የድርጅቱ ስም</label>
-							<div class="col-sm-5">
+							<div class="col-sm-6">
 								<input name="Company_Name_Amharic" type="text" class="form-control"
 								       id="Company_Name_Amharic" placeholder="የድርጅቱ ስም ያሰገቡ " >
 							</div>
@@ -514,7 +531,7 @@ require("Require.php");
 
 						<div class="form-group">
 							<label for="Working_Hours" class="col-sm-4 control-label">Working Hours</label>
-							<div class="col-sm-5">
+							<div class="col-sm-6">
 								<input name="Working_Hours" type="text" class="form-control"
 								       id="Working_Hours" placeholder="Enter working hours" >
 							</div>
@@ -522,7 +539,7 @@ require("Require.php");
 
 						<div class="form-group">
 							<label for="Working_Hours_Amharic" class="col-sm-4 control-label">የስራ ሰዓት</label>
-							<div class="col-sm-5">
+							<div class="col-sm-6">
 								<input name="Working_Hours_Amharic" type="text" class="form-control"
 								       id="Working_Hours_Amharic" placeholder="የስራ ሰዓት ያስገቡ " >
 							</div>
@@ -531,7 +548,7 @@ require("Require.php");
 						<div class="form-group">
 							<label for="Product_Description_And_Service"
 							       class="col-sm-4 control-label">Company Services</label>
-							<div class="col-sm-5">
+							<div class="col-sm-6">
 			                    <textarea name="Product_Description_And_Service" class="form-control"
 								          rows="3"  id="Product_Description_And_Service"
 								          placeholder="Enter product description or service"></textarea>
@@ -541,7 +558,7 @@ require("Require.php");
 						<div class="form-group">
 							<label for="Product_Description_And_Service_Amharic"
 							       class="col-sm-4 control-label">የስራ ውጤት ማብራርያ</label>
-							<div class="col-sm-5">
+							<div class="col-sm-6">
 
 								<textarea name="Product_Description_And_Service_Amharic" class="form-control"
 								          rows="3"  id="Product_Description_And_Service_Amharic"
@@ -551,7 +568,7 @@ require("Require.php");
 
 						<div class="form-group">
 							<label for="Branch" class="col-sm-4 control-label">Branch</label>
-							<div class="col-sm-5">
+							<div class="col-sm-6">
 								<input name="Branch" type="text" class="form-control"
 								       id="Branch" placeholder="Enter Branch" >
 							</div>
@@ -559,7 +576,7 @@ require("Require.php");
 
 						<div class="form-group">
 							<label for="Branch_Amharic" class="col-sm-4 control-label">ቅርንጫፍ</label>
-							<div class="col-sm-5">
+							<div class="col-sm-6">
 								<input name="Branch_Amharic" type="text" class="form-control"
 								       id="Branch" placeholder="ቅርንጫፍ ያስገቡ" >
 							</div>
@@ -568,26 +585,26 @@ require("Require.php");
 						<div class="form-group margin_top_51">
 
 							<label for="Registration_Expiration_Date"
-							       class="col-sm-4 control-label">Registration Type</label>
+							       class="col-sm-4 control-label">Registration Type <br> (የምዝገባው አይነት)</label>
 
 							<div class="input-group date  col-sm-5 ">
 
-								<div class="col-sm-5">
-			<input  type="radio" name="Registration_Type" id="GOLD" value="GOLD"> <label for="GOLD">GOLD</label>
+								<div class="col-sm-12">
+			<input  type="radio" name="Registration_Type" id="GOLD" value="GOLD"> <label for="GOLD">GOLD (ወርቅ)</label>
 								</div>
 
-								<div  class="col-sm-7" >
+								<div  class="col-sm-12" >
 				<input type="radio" name="Registration_Type" id="SILVER" value="SILVER">
-									<label for="SILVER">SILVER</label>
+									<label for="SILVER">SILVER (ነሃስ)</label>
 								</div>
 
-								<div class="col-sm-5">
-									<input  type="radio" name="Registration_Type" id="BRONZE" value="BRONZE"> <label for="BRONZE">BRONZE</label>
+								<div class="col-sm-12">
+									<input  type="radio" name="Registration_Type" id="BRONZE" value="BRONZE"> <label for="BRONZE">BRONZE (ብር)</label>
 								</div>
 
-								<div  class="col-sm-7" >
+								<div  class="col-sm-12" >
 									<input type="radio" name="Registration_Type" id="NOT_OFFICIAL" value="NOT_OFFICIAL">
-									<label for="NOT_OFFICIAL">NOT OFFICIAL</label>
+									<label for="NOT_OFFICIAL">NOT OFFICIAL (ያልከፈለ)</label>
 								</div>
 
  							</div>
@@ -596,7 +613,7 @@ require("Require.php");
 
 						<div class="form-group margin_top_51">
 						<label for="Registration_Expiration_Date"
-						       class="col-sm-4 control-label">Registration Expiration Date</label>
+						       class="col-sm-4 control-label">Registration Expiration Date <br>(ምዝገባው የሚያልቅበት ቀን)</label>
 				            <div class="input-group date  col-sm-5 ">
 								<input name="Registration_Expiration_Date"
 								       type="text" class="form-control datepicker"

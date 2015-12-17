@@ -35,8 +35,8 @@ function redirect_user($user_type){
 
 	if($user_type == User_Type::OPERATOR){
 
-		$home_page = "Company_Specific_Search.php";
-		$dir = "VIEW/html/Operator/";
+		$home_page = "Generic_Search.php";
+		$dir = "VIEW/html/Operator/Generic_Search/";
 
 
 	}

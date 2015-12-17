@@ -1,5 +1,5 @@
 body{
-    background-image: url("../html/img/1.jpg");
+    background-color: #ffffff;
 }
 
 .text_center{
@@ -10,6 +10,15 @@ body{
     margin: 0px;
 }
 
+.padding_0{
+    padding: 0px;
+}
+.padding_5{
+    padding-top: 5px;
+}
+.margin_top_5{
+    margin-top: 5px;
+}
 
 .margin_top_10{
     margin-top: 10px;
@@ -31,6 +40,19 @@ body{
 
 .margin_120{
     margin-top: 120px;
+}
+
+.margin_bottom_200{
+    margin-bottom: 200px;
+}
+
+.margin_4p{
+    margin-left: 4%;
+}
+
+.margin-t-b-20{
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 
@@ -55,6 +77,9 @@ body{
 .blue{
     color: blue;
 }
+.dark_blue{
+    color: #3414B4;
+}
 
 
 /*this are for text alignements*/
@@ -71,185 +96,37 @@ body{
 
 
 .s_17px{
-    font-size: 17px;
+    font-size: 12px;
+    font-weight: 700;
 }
 .s_20px{
     font-size: 20px;
 }
 
 
-
-
-
-/* this will affect the operator's navigation */
-
-.navbar {
-    background-color: #7df589;
-    border-color: #7df589;
+.float_right{
+    text-align: right;
 }
-
-.navbar-inverse .navbar-text {
-    color: #000;
-}
-
-.nav .navbar-nav .navbar-right {
-    background-color: #7df589;
-    border-color: #7df589;
-}
-
-
-.logout{
-    text-emphasis: filled;
-}
-.glyphicon-log-out{
-    padding-top: 15px;
-}
-
-
-/* this will affect the operators*/
-
-.afalagi_text{
-    text-align: center;
-    background-color: #7df589;
-}
-
-.afalagi_search{
-    align-items: center;
-    color: #000;
-    text-align: center;
-}
-
-.search_options{
-    padding-top: 15px;
-    padding-left: 0px;
-
-}
-.search_optionsLabel{
-    padding-top: 25px;
-    padding-left: 35px;
-}
-.search_optionsSpecificLabel{
-    padding-top:7px;
-    padding-left: 35px;
-}
-
-.operator_search{
-    padding-left: 30px;
-    padding-bottom: 50px;
-    background-color: #f3f3f3;
-    margin-right: 20px;
-}
-
-.operator_search_input_area{
-    align-self: center;
-    margin-left: 30px;
-}
-
-.specific_search {
-    background-color: #f3f3e1;
+.float_left{
     text-align: left;
-    color: #080808;
-    font-size: 16px;
-    padding-left: 100px;
-    padding-top: 0px;
-    padding-right: 20px;
-}
-.bt_specific_search{
-    background-color: #7df589;
-    border-color: #7df589;
-    color: black;
-}
-
-/*    */
-.dropdown-menu-right {
-
-    padding-left: 100px;
-
 }
 
 
-.left_menu{
-    padding: 20px 20px;
+.gray{
+    color: #d9d9d9;
 }
 
-.list-group-item{
-    transition: 0.1s;
-    background-color: #f6f2f2;
-
-}
-.list-group-item:hover{
-
-    border-left: 10px solid #7df589;
-    background-color: #fbfbfb;
-}
-a.list-group-item:hover,
-a.list-group-item:focus {
-    text-decoration: none;
-    background-color: #7df589;
+.white{
     color: white;
-    z-index: 2;
-    border-color: #428bca;
-
-}
-
-.list-group-item.active,
-.list-group-item.active:hover,
-.list-group-item.active:focus {
-    z-index: 2;
-    color: #000;
-    background-color: #7df589;
-    border-color: #428bca;
 }
 
 
 
-@media (min-width: 768px) {
-    .dl-horizontal-search dt {
-        float: left;
-        width: 160px;
-        overflow: hidden;
-        clear: left;
-        text-align: right;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-    .dl-horizontal-search dd {
-        margin-left: 180px;
-    }
-    .dl-horizontal-search dd:before,
-    .dl-horizontal-search dd:after {
-        display: table;
-        content: " ";
-    }
-    .dl-horizontal-search dd:after {
-        clear: both;
-    }
-    .dl-horizontal-search dd:before,
-    .dl-horizontal dd:after {
-        display: table;
-        content: " ";
-    }
-    .dl-horizontal-search dd:after {
-        clear: both;
-    }
-}
-
-
-.dl-horizontal-search{
-    color: #808080;
-
-}
 
 
 
-.frequently_asked{
-    background-color: #7df589;
-    text-align: center;
-    font-size: 18px;
-    font-style: italic;
-    color: blue;
 
-}
+
 
 
 

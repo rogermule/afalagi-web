@@ -148,20 +148,22 @@ include "Includeables.php";
 	<form class="form-horizontal" role="form"
 	      action="../../../../CONTROLLER/Encoder/Edit_Company.php" method="POST">
 
-<div>
+	<div>
 	<div class="form-group">
-		<label for="Building" class="col-sm-4 control-label">Building</label>
-		<div class="col-sm-5">
+		<label for="Building" class="col-sm-4 control-label">Building(ህንጻ)</label>
+		<div class="col-sm-6">
 			<select class="form-control " id="Building" name="Building">
 				<option value="NOT_FILLED">- - - - - - - select building</option>
 				<?php
 				$Building_ID = "";
 				$Building_Name = "";
+				$Building_Name_Amharic = "";
 
 				if($buildings){
 					while($bul = mysqli_fetch_array($buildings,MYSQLI_ASSOC)){
 						$Building_ID = $bul['ID'];
 						$Building_Name = $bul['Name'];
+						$Building_Name_Amharic = $bul['Name_Amharic'];
 
 						?>
 						<option <?php
@@ -172,7 +174,7 @@ include "Includeables.php";
 									}
 								}
 
-						?>  value="<?php echo($Building_ID);?>"><?php echo($Building_Name);?></option>
+						?>  value="<?php echo($Building_ID);?>"><?php echo($Building_Name." (".$Building_Name_Amharic.") ");?></option>
 					<?php
 					}
 				}
@@ -194,14 +196,14 @@ include "Includeables.php";
 	</div>
 
 	<div class="form-group">
-		<label for="Building_Floor" class="col-sm-4 control-label">Building Floor</label>
-		<div class="col-sm-5">
+		<label for="Building_Floor" class="col-sm-4 control-label">Building Floor (ፍሎር)</label>
+		<div class="col-sm-6">
 			<select class="form-control" id="Building_Floor" name="Building_Floor">
 
 				<option value="NOT_FILLED">- - - - - - - select Floor</option>
-				<option value="THE WHOLE FLOOR" <?php
+				<option value="THE_WHOLE_FLOOR" <?php
 				if(  isset($_GET['CB'])){
-					$Value = "THE WHOLE FLOOR";
+					$Value = "THE_WHOLE_FLOOR";
 					if($Com_Floor == $Value){
 						echo("selected");
 					}
@@ -238,19 +240,21 @@ include "Includeables.php";
 	<hr>
 
 	<div class="form-group">
-		<label for="Region" class="col-sm-4 control-label">Region</label>
-		<div class="col-sm-5">
+		<label for="Region" class="col-sm-4 control-label">Region (ክልል)</label>
+		<div class="col-sm-6">
 			<select class="form-control place" id="Region" name="Region"  >
 
 				<option value="NOT_FILLED" >- - - - - - - select region</option>
 				<?php
 				$Region_ID = "";
 				$Region_Name = "";
+				$Region_Name_Amharic = "";
 
 				if($Regions){
 					while($reg = mysqli_fetch_array($Regions,MYSQLI_ASSOC)){
 						$Region_ID = $reg['ID'];
 						$Region_Name = $reg['Name'];
+						$Region_Name_Amharic = $reg['Name_Amharic'];
 
 						?>
 						<option <?php
@@ -262,7 +266,7 @@ include "Includeables.php";
 							}
 
 
-							?> value="<?php echo($Region_ID);?>"> <?php echo($Region_Name);?> </option>
+							?> value="<?php echo($Region_ID);?>"> <?php echo($Region_Name." (".$Region_Name_Amharic." )");?> </option>
 					<?php
 					}
 				}
@@ -285,18 +289,19 @@ include "Includeables.php";
 	</div>
 
 	<div class="form-group">
-		<label for="City" class="col-sm-4 control-label">City</label>
-		<div class="col-sm-5">
+		<label for="City" class="col-sm-4 control-label">City (ከተማ)</label>
+		<div class="col-sm-6">
 			<select class="form-control place" id="City" name="City">
 				<option value="NOT_FILLED">- - - - - - - select city</option>
 				<?php
 				$City_ID = "";
 				$City_Name = "";
-
+				$City_Name_Amharic = "";
 				if($Cities){
 					while($cit = mysqli_fetch_array($Cities,MYSQLI_ASSOC)){
 						$City_ID = $cit['ID'];
 						$City_Name = $cit['Name'];
+						$City_Name_Amharic = $cit['Name_Amharic'];
 
 						?>
 						<option <?php
@@ -307,7 +312,7 @@ include "Includeables.php";
 						}
 
 
-						?> value="<?php echo($City_ID);?>"><?php echo($City_Name);?></option>
+						?> value="<?php echo($City_ID);?>"><?php echo($City_Name." (".$City_Name_Amharic." )");?></option>
 					<?php
 					}
 				}
@@ -329,19 +334,22 @@ include "Includeables.php";
 	</div>
 
 	<div class="form-group">
-		<label for="Sub_City" class="col-sm-4 control-label">Sub City</label>
-		<div class="col-sm-5">
+		<label for="Sub_City" class="col-sm-4 control-label">Sub City (ክ/ከተማ)
+		</label>
+		<div class="col-sm-6">
 			<select class="form-control place" id="Sub_City" name="Sub_City">
 
 				<option value="NOT_FILLED">- - - - - - - select Sub city</option>
 				<?php
 				$SubCity_ID = "";
 				$SubCity_Name = "";
+				$SubCity_Name_Amharic = "";
 
 				if($SubCities){
 					while($SubCit = mysqli_fetch_array($SubCities,MYSQLI_ASSOC)){
 						$SubCity_ID = $SubCit['ID'];
 						$SubCity_Name = $SubCit['Name'];
+						$SubCity_Name_Amharic = $SubCit['Name_Amharic'];
 						?>
 						<option <?php
 
@@ -352,7 +360,7 @@ include "Includeables.php";
 						}
 
 
-						?>  value="<?php echo($SubCity_ID);?>"><?php echo($SubCity_Name);?></option>
+						?>  value="<?php echo($SubCity_ID);?>"><?php echo($SubCity_Name."( ".$SubCity_Name_Amharic." )");?></option>
 					<?php
 					}
 				}
@@ -375,13 +383,14 @@ include "Includeables.php";
 	</div>
 
 	<div class="form-group">
-		<label for="Wereda" class="col-sm-4 control-label">Kebele/Wereda</label>
-		<div class="col-sm-5">
+		<label for="Wereda" class="col-sm-4 control-label">Wereda (ወረዳ) </label>
+		<div class="col-sm-6">
 			<select class="form-control place" id="Wereda" name="Wereda">
 				<option value="NOT_FILLED">- - - - - - - select Kebele/Wereda</option>
 				<?php
 				$Wereda_ID = "";
 				$Wereda_Name = "";
+
 
 				if($Weredas){
 					while($Wer = mysqli_fetch_array($Weredas,MYSQLI_ASSOC)){
@@ -418,18 +427,20 @@ include "Includeables.php";
 	</div>
 
 	<div class="form-group">
-		<label for="Sefer" class="col-sm-4 control-label">Sefer</label>
-		<div class="col-sm-5">
+		<label for="Sefer" class="col-sm-4 control-label">Sefer (ሰፈር)</label>
+		<div class="col-sm-6">
 			<select class="form-control place" id="Sefer" name="Sefer">
 				<option value="NOT_FILLED">- - - - - - - select sefer</option>
 				<?php
 				$Sefer_ID = "";
 				$Sefer_Name = "";
+				$Sefer_Name_Amharic ="";
 
 				if($Sefers){
 					while($sef = mysqli_fetch_array($Sefers,MYSQLI_ASSOC)){
 						$Sefer_ID = $sef['ID'];
 						$Sefer_Name = $sef['Name'];
+						$Sefer_Name_Amharic = $sef['Name_Amharic'];
  						?>
 						<option <?php
 						if(isset($_GET['CA'])){
@@ -437,7 +448,7 @@ include "Includeables.php";
 								echo("selected");
 							}
 						}
- 						?> value="<?php echo($Sefer_ID);?>"><?php echo($Sefer_Name);?></option>
+ 						?> value="<?php echo($Sefer_ID);?>"><?php echo($Sefer_Name." (".$Sefer_Name_Amharic." )");?></option>
 					<?php
 					}
 				}
@@ -459,19 +470,21 @@ include "Includeables.php";
 	</div>
 
 	<div class="form-group">
-		<label for="Street" class="col-sm-4 control-label">Street</label>
-		<div class="col-sm-5">
+		<label for="Street" class="col-sm-4 control-label">Street (መንገድ)</label>
+		<div class="col-sm-6">
 			<select class="form-control place" id="Street" name="Street">
 				<option value="NOT_FILLED">- - - - - - - select street</option>
 
 				<?php
 				$Street_ID = "";
 				$Street_Name = "";
+				$Street_Name_Amharic = "";
 
 				if($Street){
 					while($str = mysqli_fetch_array($Street,MYSQLI_ASSOC)){
 						$Street_ID = $str['ID'];
 						$Street_Name = $str['Name'];
+						$Street_Name_Amharic = $str['Name_Amharic'];
 
 						?>
 						<option <?php
@@ -483,7 +496,7 @@ include "Includeables.php";
 						}
 
 
-						?> value="<?php echo($Street_ID);?>"><?php echo($Street_Name);?></option>
+						?> value="<?php echo($Street_ID);?>"><?php echo($Street_Name." (".$Street_Name_Amharic." )");?></option>
 					<?php
 					}
 				}
@@ -507,7 +520,7 @@ include "Includeables.php";
 	<div class="form-group">
 		<label for="Direction"
 		       class="col-sm-4 control-label">Direction to the company</label>
-		<div class="col-sm-5">
+		<div class="col-sm-6">
 
 			<textarea name="Direction" class="form-control place"
 			          rows="3"  id="Direction"
@@ -518,7 +531,7 @@ include "Includeables.php";
 	<div class="form-group">
 		<label for="Direction_Amharic"
 		       class="col-sm-4 control-label ">አቅጣጫ</label>
-		<div class="col-sm-5">
+		<div class="col-sm-6">
 
 			<textarea name="Direction_Amharic" class="form-control place"
 			          rows="3"  id="Direction_Amharic"
@@ -529,58 +542,60 @@ include "Includeables.php";
 	<hr>
 
 	<div class="form-group">
-		<label for="House_Number" class="col-sm-4 control-label">House number</label>
-		<div class="col-sm-5">
+		<label for="House_Number" class="col-sm-4 control-label">House number (የቤት ቁጥር)</label>
+		<div class="col-sm-6">
 			<input name="House_Number" type="text" class="form-control"
 			       id="House_Number" placeholder="Enter House Number" value="<?php echo($Com_House_No);?>">
 		</div>
 	</div>
 
 	<div class="form-group">
-		<label for="POBOX" class="col-sm-4 control-label">PO-BOX</label>
-		<div class="col-sm-5">
+		<label for="POBOX" class="col-sm-4 control-label">PO-BOX (ፓስታ)</label>
+		<div class="col-sm-6">
 			<input name="POBOX" type="text" class="form-control"
 			       id="POBOX" placeholder="Enter POBOX" value="<?php echo($Com_POBOX);?>" >
 		</div>
 	</div>
 
 	<div class="form-group">
-		<label for="Telephone" class="col-sm-4 control-label">Telephone</label>
-		<div class="col-sm-5">
+		<label for="Telephone" class="col-sm-4 control-label">Telephone (ስልክ)</label>
+		<div class="col-sm-6">
 			<input name="Telephone" type="text" class="form-control"
 			       id="Telephone" placeholder="Enter Phone" value="<?php echo($Com_Telephone);?>" >
 		</div>
 	</div>
 
 	<div class="form-group">
-		<label for="FAX" class="col-sm-4 control-label">FAX</label>
-		<div class="col-sm-5">
+		<label for="FAX" class="col-sm-4 control-label">FAX (ፋክስ)</label>
+		<div class="col-sm-6">
 			<input name="FAX" type="text" class="form-control"
 			       id="FAX" placeholder="Enter FAX" value="<?php echo($Com_Fax);?>" >
 		</div>
 	</div>
 
 	<div class="form-group">
-		<label for="Email" class="col-sm-4 control-label">Email</label>
-		<div class="col-sm-5">
+		<label for="Email" class="col-sm-4 control-label">Email/Website(ኢሜል/ድህረ ገጸ)</label>
+		<div class="col-sm-6">
 			<input name="Email" type="text" class="form-control"
-			       id="Email" placeholder="Enter Email" value="<?php echo($Com_Email);?>" >
+			       id="Email" placeholder="Enter Email web site" value="<?php echo($Com_Email);?>" >
 		</div>
 	</div>
 
 	<div class="form-group">
-		<label for="Category" class="col-sm-4 control-label">Category</label>
-		<div class="col-sm-5">
+		<label for="Category" class="col-sm-4 control-label">Category (የስራ መስክ)</label>
+		<div class="col-sm-6">
 			<select class="form-control" id="Category" name="Category">
 				<option value="NOT_FILLED">- - - - - - - select category</option>
 				<?php
 				$Category_ID = "";
 				$Category_Name = "";
+				$Category_Name_Amharic = "";
 
 				if($categories){
 					while($cat = mysqli_fetch_array($categories,MYSQLI_ASSOC)){
 						$Category_ID = $cat['ID'];
 						$Category_Name = $cat['Name'];
+						$Category_Name_Amharic = $cat['Name_Amharic'];
 
 						?>
 						<option  <?php
@@ -589,7 +604,7 @@ include "Includeables.php";
 							echo("selected");
 						}
 
-						?>  value="<?php echo($Category_ID);?>"><?php echo($Category_Name);?></option>
+						?>  value="<?php echo($Category_ID);?>"><?php echo($Category_Name."( ".$Category_Name_Amharic." )");?></option>
 					<?php
 					}
 				}
@@ -611,27 +626,29 @@ include "Includeables.php";
 	</div>
 
 	<div class="form-group">
-		<label for="Company_Type" class="col-sm-4 control-label">Company ownership Type</label>
-		<div class="col-sm-5">
+		<label for="Company_Type" class="col-sm-4 control-label">Company ownership Type <br> (የድርጅቱ ባለቤትነት)</label>
+		<div class="col-sm-6">
 			<select class="form-control" id="Company_Type" name="Company_Type">
 				<option value="NOT_FILLED">- - - - - - - select company type</option>
 				<?php
 
 
 				$Name = "";
-				$Name_Amharic = "";
+				$Name = $com_own["Name"];
+				$Name_Amharic  = "";
 
 				if($company_ownership){
 					while($com_own = mysqli_fetch_array($company_ownership,MYSQLI_ASSOC)){
  						$Own_ID = $com_own["ID"];
-						$Own_Type_Name = $com_own["Name"];
+						$Name = $com_own["Name"];
+						$Name_Amharic = $com_own["Name_Amharic"];
  						?>
 
 						<option <?php
  						if($Own_ID == $Com_Company_Type_ID){
 							echo("selected");
 						}
- 						?> value="<?php echo($Own_ID);?>"><?php echo($Own_Type_Name);?></option>
+ 						?> value="<?php echo($Own_ID);?>"><?php echo($Name." ( ".$Name_Amharic." )");?></option>
 
 					<?php
 					}
@@ -655,7 +672,7 @@ include "Includeables.php";
 
 	<div class="form-group">
 		<label for="Company_Name" class="col-sm-4 control-label">Company Name</label>
-		<div class="col-sm-5">
+		<div class="col-sm-6">
 			<input name="Company_Name" type="text" class="form-control"
 			       id="Company_Name" placeholder="Enter Company Name" value="<?php echo($Com_Company_Name);?>" >
 		</div>
@@ -663,7 +680,7 @@ include "Includeables.php";
 
 	<div class="form-group">
 		<label for="Company_Name_Amharic" class="col-sm-4 control-label">የድርጅቱ ስም</label>
-		<div class="col-sm-5">
+		<div class="col-sm-6">
 			<input name="Company_Name_Amharic" type="text" class="form-control"
 			       id="Company_Name_Amharic" placeholder="የድርጅቱ ስም ያሰገቡ " value="<?php echo($Com_Company_Name_Amharic);?>" >
 		</div>
@@ -671,7 +688,7 @@ include "Includeables.php";
 
 	<div class="form-group">
 		<label for="Working_Hours" class="col-sm-4 control-label">Working Hours</label>
-		<div class="col-sm-5">
+		<div class="col-sm-6">
 			<input name="Working_Hours" type="text" class="form-control"
 			       id="Working_Hours" placeholder="Enter working hours" value="<?php echo($Com_Working_Hours);?>" >
 		</div>
@@ -679,7 +696,7 @@ include "Includeables.php";
 
 	<div class="form-group">
 		<label for="Working_Hours_Amharic" class="col-sm-4 control-label">የስራ ሰዓት</label>
-		<div class="col-sm-5">
+		<div class="col-sm-6">
 			<input name="Working_Hours_Amharic" type="text" class="form-control"
 			       id="Working_Hours_Amharic" placeholder="የስራ ሰዓት ያስገቡ " value="<?php echo($Com_Working_Hours_Amharic);?>" >
 		</div>
@@ -688,7 +705,7 @@ include "Includeables.php";
 	<div class="form-group">
 		<label for="Product_Description_And_Service"
 		       class="col-sm-4 control-label">Company Services</label>
-		<div class="col-sm-5">
+		<div class="col-sm-6">
 			<textarea name="Product_Description_And_Service" class="form-control"
 			          rows="3"  id="Product_Description_And_Service"
 			          placeholder="Enter product description or service"><?php echo($Com_Company_Service);?></textarea>
@@ -698,7 +715,7 @@ include "Includeables.php";
 	<div class="form-group">
 		<label for="Product_Description_And_Service_Amharic"
 		       class="col-sm-4 control-label">የስራ ውጤት ማብራርያ</label>
-		<div class="col-sm-5">
+		<div class="col-sm-6">
 
 			<textarea name="Product_Description_And_Service_Amharic" class="form-control"
 			          rows="3"  id="Product_Description_And_Service_Amharic"
@@ -708,7 +725,7 @@ include "Includeables.php";
 
 	<div class="form-group">
 		<label for="Branch" class="col-sm-4 control-label">Branch</label>
-		<div class="col-sm-5">
+		<div class="col-sm-6">
 			<input name="Branch" type="text" class="form-control"
 			       id="Branch" placeholder="Enter Branch" value="<?php echo($Com_Branch);?>" >
 		</div>
@@ -716,7 +733,7 @@ include "Includeables.php";
 
 	<div class="form-group">
 		<label for="Branch_Amharic" class="col-sm-4 control-label">ቅርንጫፍ</label>
-		<div class="col-sm-5">
+		<div class="col-sm-6">
 			<input name="Branch_Amharic" type="text" class="form-control"
 			       id="Branch" placeholder="ቅርንጫፍ ያስገቡ"  value="<?php echo($Com_Branch_Amharic);?>" >
 		</div>
@@ -725,25 +742,25 @@ include "Includeables.php";
 
 	<div class="form-group margin_top_51">
 		<label for="Registration_Expiration_Date"
-		       class="col-sm-4 control-label">Registration Type</label>
+		       class="col-sm-4 control-label">Registration Type <br> (የምዝገባው አይነት)</label>
 		<div class="input-group date  col-sm-5 ">
 
-			<div class="col-sm-5">
-				<input  type="radio" name="Registration_Type" id="GOLD" value="GOLD" <?php if($Com_Registration_Type == Registration_Type::GOLD){echo('checked');}?>> <label for="GOLD">GOLD</label>
+			<div class="col-sm-12">
+				<input  type="radio" name="Registration_Type" id="GOLD" value="GOLD" <?php if($Com_Registration_Type == Registration_Type::GOLD){echo('checked');}?>> <label for="GOLD"> GOLD (ወርቅ)</label>
 			</div>
 
-			<div  class="col-sm-7" >
+			<div  class="col-sm-12" >
 				<input type="radio" name="Registration_Type" id="SILVER" value="SILVER" <?php if($Com_Registration_Type == Registration_Type::SILVER){echo('checked');}?>>
-				<label for="SILVER">SILVER</label>
+				<label for="SILVER">SILVER (ነሃስ)</label>
 			</div>
 
-			<div class="col-sm-5">
-				<input  type="radio" name="Registration_Type" id="BRONZE" value="BRONZE" <?php if($Com_Registration_Type == Registration_Type::BRONZE){echo('checked');}?>> <label for="BRONZE">BRONZE</label>
+			<div class="col-sm-12">
+				<input  type="radio" name="Registration_Type" id="BRONZE" value="BRONZE" <?php if($Com_Registration_Type == Registration_Type::BRONZE){echo('checked');}?>> <label for="BRONZE">BRONZE (ብር)</label>
 			</div>
 
-			<div  class="col-sm-7" >
+			<div  class="col-sm-12" >
 				<input type="radio" name="Registration_Type" id="NOT_OFFICIAL" value="NOT_OFFICIAL" <?php if($Com_Registration_Type == Registration_Type::NOT_OFFICIAL){echo('checked');}?>>
-				<label for="NOT_OFFICIAL">NOT_OFFICIAL</label>
+				<label for="NOT_OFFICIAL">NOT OFFICIAL (ያልከፈለ)</label>
 			</div>
 
 		</div>

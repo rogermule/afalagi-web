@@ -24,7 +24,7 @@ include "Includeables.php";
 
 	<div class="panel panel-default">
 		<div class="panel-body text-center">
-			<h4>Add Building</h4>
+			<h4>Add Building ( ህንጻ መጨመርያ )</h4>
 
 		</div>
 	</div>
@@ -73,21 +73,23 @@ include "Includeables.php";
 
 
 				<div class="form-group">
-					<label for="Region" class="col-sm-4 control-label">Region</label>
+					<label for="Region" class="col-sm-4 control-label">Region (ክልል)</label>
 					<div class="col-sm-5">
 						<select class="form-control" id="Region" name="Region">
-							<option value="NOT_FILLED" >- - - - - - - select region</option>
+							<option value="NOT_FILLED" >- - - - select region (ክልል ይምረጡ)</option>
  							<?php
 						        $Region_ID = "";
 								$Region_Name = "";
+						        $Region_Name_Amharic = "";
 
 						        if($Regions){
 							        while($reg = mysqli_fetch_array($Regions,MYSQLI_ASSOC)){
 								        $Region_ID = $reg['ID'];
 								        $Region_Name = $reg['Name'];
+								        $Region_Name_Amharic = $reg['Name_Amharic'];
 
 								        ?>
-								        <option value="<?php echo($Region_ID);?>"><?php echo($Region_Name);?></option>
+								        <option value="<?php echo($Region_ID);?>"><?php echo($Region_Name." (".$Region_Name_Amharic." )");?></option>
 							            <?php
 							        }
 						        }
@@ -103,21 +105,23 @@ include "Includeables.php";
 				</div>
 
 				<div class="form-group">
-					<label for="City" class="col-sm-4 control-label">City</label>
+					<label for="City" class="col-sm-4 control-label">City (ከተማ)</label>
 					<div class="col-sm-5">
 						<select class="form-control" id="City" name="City">
-							<option value="NOT_FILLED">- - - - - - - select city</option>
+							<option value="NOT_FILLED">- - - - select city (ከተማ ይምረጡ)</option>
 							<?php
 							$City_ID = "";
 							$City_Name = "";
+							$City_Name_Amharic = "";
 
 							if($City){
 								while($cit = mysqli_fetch_array($City,MYSQLI_ASSOC)){
 									$City_ID = $cit['ID'];
 									$City_Name = $cit['Name'];
+									$City_Name_Amharic = $cit['Name_Amharic'];
 
 									?>
-									<option value="<?php echo($City_ID);?>"><?php echo($City_Name);?></option>
+									<option value="<?php echo($City_ID);?>"><?php echo($City_Name." (".$City_Name_Amharic." )");?></option>
 								<?php
 								}
 							}
@@ -132,20 +136,24 @@ include "Includeables.php";
 				</div>
 
 				<div class="form-group">
-					<label for="Sub_City" class="col-sm-4 control-label">Sub City</label>
+					<label for="Sub_City" class="col-sm-4 control-label">Sub City (ክ/ከተማ)</label>
 					<div class="col-sm-5">
 						<select class="form-control" id="Sub_City" name="Sub_City">
-							<option value="NOT_FILLED">- - - - - - - select Sub city</option>
+							<option value="NOT_FILLED">- - - - select Sub city ( ክ/ከተማ ይምረጡ </option>
 							<?php
 							$SubCity_ID = "";
 							$SubCity_Name = "";
+							$SubCity_Name_Amharic = "";
 
 							if($Sub_City){
 								while($SubCit = mysqli_fetch_array($Sub_City,MYSQLI_ASSOC)){
 									$SubCity_ID = $SubCit['ID'];
 									$SubCity_Name = $SubCit['Name'];
+									$SubCity_Name_Amharic = $SubCit['Name_Amharic'];
 									?>
-								<option value="<?php echo($SubCity_ID);?>"><?php echo($SubCity_Name);?></option>
+								<option value="<?php echo($SubCity_ID);?>">
+									<?php echo($SubCity_Name."( ".$SubCity_Name_Amharic." )");?>
+								</option>
 								<?php
 								}
 							}
@@ -160,10 +168,10 @@ include "Includeables.php";
 				</div>
 
 				<div class="form-group">
-					<label for="Wereda" class="col-sm-4 control-label">Kebele/Wereda</label>
+					<label for="Wereda" class="col-sm-4 control-label">Wereda (ወረዳ)</label>
 					<div class="col-sm-5">
 						<select class="form-control" id="Wereda" name="Wereda">
-							<option value="NOT_FILLED">- - - - - - - select Wereda/Kebele</option>
+							<option value="NOT_FILLED">- - - - select wereda (ወረዳ ይምረጡ) </option>
 							<?php
 							$Wereda_ID = "";
 							$Wereda_Name = "";
@@ -186,20 +194,22 @@ include "Includeables.php";
 				</div>
 
 				<div class="form-group">
-					<label for="Sefer" class="col-sm-4 control-label">Sefer</label>
+					<label for="Sefer" class="col-sm-4 control-label">Sefer (ሰፈር)</label>
 					<div class="col-sm-5">
 						<select class="form-control" id="Sefer" name="Sefer">
-							<option value="NOT_FILLED"class="not_filled">- - - - - - - select sefer</option>
+							<option value="NOT_FILLED"class="not_filled">- - - - select sefer (ሰፈር ይምረጡ)</option>
 							<?php
 							$Sefer_ID = "";
 							$Sefer_Name = "";
+							$Sefer_Name_Amharic ="";
 
 							if($Sefer){
 								while($sef = mysqli_fetch_array($Sefer,MYSQLI_ASSOC)){
 									$Sefer_ID = $sef['ID'];
 									$Sefer_Name = $sef['Name'];
+									$Sefer_Name_Amharic = $sef['Name_Amharic'];
  									?>
-									<option value="<?php echo($Sefer_ID);?>"><?php echo($Sefer_Name);?></option>
+									<option value="<?php echo($Sefer_ID);?>"><?php echo($Sefer_Name." (".$Sefer_Name_Amharic." )");?></option>
 								<?php
 								}
 							}
@@ -213,24 +223,22 @@ include "Includeables.php";
 				</div>
 
 				<div class="form-group">
-					<label for="Street" class="col-sm-4 control-label">Street</label>
+					<label for="Street" class="col-sm-4 control-label">Street (መንገድ)</label>
 					<div class="col-sm-5">
 						<select class="form-control" id="Street" name="Street">
-							<option value="NOT_FILLED">- - - - - - - select Street</option>
-
-
-
-							<?php
+							<option value="NOT_FILLED">- - - - select street (መንገድ ይምረጡ)</option>
+ 							<?php
 							$Street_ID = "";
 							$Street_Name = "";
+						    $Street_Name_Amharic = "";
 
 							if($Street){
 								while($Str = mysqli_fetch_array($Street,MYSQLI_ASSOC)){
 									$Street_ID = $Str['ID'];
 									$Street_Name = $Str['Name'];
-
+									$Street_Name_Amharic = $str['Name_Amharic'];
 									?>
-									<option value="<?php echo($Street_ID);?>"><?php echo($Street_Name);?></option>
+									<option value="<?php echo($Street_ID);?>"><?php echo($Street_Name." (".$Street_Name_Amharic." )");?></option>
 								<?php
 								}
 							}
@@ -310,7 +318,7 @@ include "Includeables.php";
 
 				<div class="form-group">
 					<label for="Parking_Area"
-					       class="col-sm-4 control-label">Parking Area</label>
+					       class="col-sm-4 control-label">Parking Area (ፓርኪንግ ቦታ)</label>
 
 					<div class="col-sm-4 col-sm-offset-1">
 
@@ -318,7 +326,7 @@ include "Includeables.php";
 
 							<div class="radio">
 								<label>
-									<input type="radio" value="1" name="Parking_Area"> yes
+									<input type="radio" value="1" name="Parking_Area"> yes(አለው)
 								</label>
 							</div>
 
@@ -330,7 +338,7 @@ include "Includeables.php";
 
 							<div class="radio">
 								<label>
-									<input type="radio" value="0" name="Parking_Area" > no
+									<input type="radio" value="0" name="Parking_Area" > no (የለውም)
 								</label>
 							</div>
 

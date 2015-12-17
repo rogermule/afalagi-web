@@ -13,6 +13,9 @@ $event = $encoder->Get_TODAY_Events();
 $today = date("Y/m/d");
 
 
+
+
+
 ?>
 
 <div class="col-sm-7 list_container margin_0">
@@ -102,6 +105,8 @@ $today = date("Y/m/d");
  		</div>
  	</div>
 </div>
+
+
 <?php
 include "Encoder_Footer.php";
 ?>

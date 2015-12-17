@@ -9,13 +9,15 @@ $encoder = new Encoder_Controller($user);//make an encoder object
 
 if(isset($_GET['Category_ID'])){
 	$Category_ID =$_GET['Category_ID'];
+	$Single_Category = $encoder->Get_Single_Category($Category_ID);
+
+	$Single_Category = mysqli_fetch_array($Single_Category,MYSQLI_ASSOC);
+
+	$Name = $Single_Category['Name'];
+	$Name_Amharic = $Single_Category['Name_Amharic'];
+	$General_Category = $Single_Category['General_Category'];
 }
-$Single_Category = $encoder->Get_Single_Category($Category_ID);
 
-$Single_Category = mysqli_fetch_array($Single_Category,MYSQLI_ASSOC);
-
-$Name = $Single_Category['Name'];
-$Name_Amharic = $Single_Category['Name_Amharic'];
 
 
 
@@ -91,6 +93,20 @@ $Name_Amharic = $Single_Category['Name_Amharic'];
 								<div class="col-sm-5">
 									<input name="Name_Amharic" type="text" class="form-control"
 									       id="House_NO" placeholder="የስራ መስክ ያስገቡ" value="<?php echo($Name_Amharic);?>" >
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-5 col-sm-offset-4">
+									<input type="radio" name="General_Category" id="EDUCATIONAL" value="<?php echo(GeneralCategory::EDUCATIONAL);?>" <?php if($General_Category == GeneralCategory::EDUCATIONAL){echo("checked=\"\"");}?>> <label for="EDUCATIONAL"><?php echo(GeneralCategory::EDUCATIONAL);?> ( የትምህርት ተቋም )</label>
+								</div>
+								<div class="col-sm-5 col-sm-offset-4">
+									<input  type="radio" name="General_Category" id="HEALTH" value="<?php echo(GeneralCategory::HEALTH);?>"<?php if($General_Category == GeneralCategory::HEALTH){echo("checked=\"\"");}?>> <label for="HEALTH"><?php echo(GeneralCategory::HEALTH);?> ( የጤና ተቋም )</label>
+								</div>
+								<div class="col-sm-5 col-sm-offset-4">
+									<input type="radio" name="General_Category" id="RECREATIONAL" value="<?php echo(GeneralCategory::RECREATIONAL);?>" <?php if($General_Category == GeneralCategory::RECREATIONAL){echo("checked=\"\"");}?>> <label for="RECREATIONAL"><?php echo(GeneralCategory::RECREATIONAL);?> ( የመዝናኛ ተቋም )</label>
+								</div>
+								<div class="col-sm-5 col-sm-offset-4">
+									<input type="radio" name="General_Category" id="NULL" value="<?php echo(GeneralCategory::NULL);?>" <?php if($General_Category == GeneralCategory::NULL){echo("checked=\"\"");}?>> <label for="NULL"><?php echo(GeneralCategory::NULL);?> ( ሌላ )</label>
 								</div>
 							</div>
 

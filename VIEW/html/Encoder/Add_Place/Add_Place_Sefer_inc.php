@@ -17,7 +17,7 @@ include("includables.php");
 
         <div class="panel panel-default">
             <div class="panel-body text-center">
-                <h4>Add Sefer</h4>
+                <h4>Add Sefer (ሰፈር መጨመርያ)</h4>
 
             </div>
         </div>

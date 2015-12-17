@@ -1,18 +1,8 @@
 <?php
 
-class Sub_Encoder_Controller extends User_Controller{
+class Sub_Encoder_Controller extends Sub_Sub_Encoder_Controller{
 
 
-
-	//about region
-
-	/**
-	 * @param Region $region
-	 * @return bool
-	 * this function takes region as a parameter and checks if the region exits in the database
-	 * if the region exists before it will return true
-	 * else it will return false
-	 */
 	function Region_Exists(Region $region){
 		$Region = $region->getRegionName();
 
@@ -387,8 +377,9 @@ class Sub_Encoder_Controller extends User_Controller{
 
 		$category_name = $category->getCategoryName();
 		$category_name_amharic = $category->getCategoryNameAmharic();
+		$General_Category = $category->getGeneralCategory();
 
-		$query = "INSERT INTO category (Name,Name_Amharic) VALUES ('$category_name','$category_name_amharic')";
+		$query = "INSERT INTO category (Name,Name_Amharic,General_Category) VALUES ('$category_name','$category_name_amharic','$General_Category')";
 
 		$result = mysqli_query($this->getDbc(),$query);
 
@@ -420,6 +411,170 @@ class Sub_Encoder_Controller extends User_Controller{
 
 
 
+
+	function Specialization_Exists(Specialization $specialization){
+
+		$specialization_name = $specialization->getName();
+
+		$query = "select * from specialization where Name = '$specialization_name'";
+
+		$result = mysqli_query($this->getDbc(),$query);
+
+		if(mysqli_num_rows($result) >= 1){
+			return TRUE;
+
+		}
+		else if(mysqli_num_rows($result) == 0){
+			return FALSE;
+		}
+
+	}
+
+
+	function Specialization_Exists_For_Edit(Specialization $specialization,$Specialization_ID){
+
+		$Name = $specialization->getName();
+
+		$query = "select * from specialization where Name = '$Name' AND ID != '$Specialization_ID'";
+
+		$result = mysqli_query($this->getDbc(),$query);
+
+		if(mysqli_num_rows($result) >= 1){
+			return TRUE;
+		}
+		else if(mysqli_num_rows($result) >= 1){
+			return FALSE;
+		}
+
+	}
+
+	function Edit_Specialization(Specialization $specialization,$Specialization_ID){
+
+		$Name = $specialization->getName();
+		$Name_Amharic =$specialization->getNameAmharic();
+
+		$General_Category = $specialization->getGeneralCategory();
+
+
+		$query0 = "START TRANSACTION";
+		$result0 = mysqli_query($this->getDbc(),$query0);
+
+
+		//update the specialization
+
+		$query1 = "update specialization set Name = '$Name',Name_Amharic = '$Name_Amharic',General_Category='$General_Category' where ID = '$Specialization_ID'";
+		$result1 = mysqli_query($this->getDbc(),$query1);
+
+
+
+
+		if($result0 AND $result1 ){
+			$query3 = "COMMIT";
+			mysqli_query($this->getDbc(),$query3);
+			return TRUE;
+		}
+
+		else{
+			$query3 = "ROLLBACK";
+			mysqli_query($this->getDbc(),$query3);
+			return FALSE;
+		}
+
+
+
+	}
+
+
+
+	function Add_Specialization(Specialization $specialization){
+
+		$Name = $specialization->getName();
+		$Name_Amharic = $specialization->getNameAmharic();
+ 		$General_Category = $specialization->getGeneralCategory();
+
+
+		$query0 = "START TRANSACTION";
+ 		$result0 = mysqli_query($this->getDbc(),$query0);
+
+		//insert into the specialization table
+		$query1 ="insert into specialization (Name,Name_Amharic,General_Category) VALUE ('$Name','$Name_Amharic','$General_Category')";
+ 		$result1 = mysqli_query($this->getDbc(),$query1);
+
+
+ 		if($result0 AND $result1 ){
+			$query3 = "COMMIT";
+			mysqli_query($this->getDbc(),$query3);
+			 return TRUE;
+		}
+
+		else{
+			$query_roll = "ROLLBACK";
+			mysqli_query($this->getDbc(),$query_roll);
+			echo("Rolled back");
+			return FALSE;
+
+		}
+
+	}
+
+	function Delete_Specialization($Specialization_ID){
+
+		//begin transaction
+		$query0 = "START TRANSACTION";
+		$result0 = mysqli_query($this->getDbc(),$query0);
+
+		//delete the specialization
+ 		$query1 = "Delete from specialization where ID = '$Specialization_ID'";
+		$result1 = mysqli_query($this->getDbc(),$query1);
+
+
+		if($result0 AND $result1){
+			$query2 = "COMMIT";
+			mysqli_query($this->getDbc(),$query2);
+			return TRUE;
+		}
+
+		else{
+			$query_roll = "ROLLBACK";
+			mysqli_query($this->getDbc(),$query_roll);
+			echo("Rolled back");
+			return FALSE;
+ 		}
+
+
+	}
+
+	function Get_Single_Specialization($Specialization_ID){
+		$query = "select * from specialization where ID = '$Specialization_ID'";
+
+		$result  =  mysqli_query($this->getDbc(),$query);
+
+		if($result){
+			return $result;
+		}
+		else{
+			return FALSE;
+		}
+	}
+
+	function Get_All_Specialization(){
+
+		$query = "select * from specialization";
+
+		$result  =  mysqli_query($this->getDbc(),$query);
+
+		if($result){
+			return $result;
+		}
+		else{
+			return FALSE;
+		}
+
+
+
+	}
+
+
 	//about street
 
 	/**
@@ -444,6 +599,7 @@ class Sub_Encoder_Controller extends User_Controller{
 		}
 
 	}
+
 
 
 	/**
@@ -661,29 +817,7 @@ class Sub_Encoder_Controller extends User_Controller{
 	}
 
 
- 	function Increment_Address($belong){
 
-		$type = "ADDRESS";
-		if($belong == Belong::BUILDING){
- 			$type = "BUILDING";
- 		}
-		else if($belong == Belong::COMPANY_WITH_OUT_BUILDING){
-			$type = "COMPANY_WITH_OUT_BUILDING";
-		}
-		else if($belong == Belong::COMPANY_WITH_BUILDING){
-			$type = "COMPANY_WITH_BUILDING";
-		}
-
-		$query = "INSERT INTO Address (Belong_To) VALUES('$type')";
- 		$result = mysqli_query($this->getDbc(),$query);
-
-		if($result){
-			return TRUE;
-		}
-		else{
-			return FALSE;
-		}
- 	}
 
 
   	function Add_Building_Address(Building_Address $building_address){
@@ -2317,23 +2451,34 @@ class Sub_Encoder_Controller extends User_Controller{
 		$query10 = "DELETE from Address WHERE ID='$Address_ID'";
 		$result10 =mysqli_query($this->getDbc(),$query10);
 
+		//check if the company has specialization
+		if($this->Company_Has_Specialization($Company_ID)){
+			$spec_ID =  $this->Get_Company_Specialization_ID($Company_ID);
+			$query_spec = "DELETE from company_specialization where ID = '$spec_ID'";
+
+			$result_speci = mysqli_query($this->getDbc(),$query_spec);
+
+		}
+		else{
+			$result_speci = TRUE;
+		}
+
 
 		//delete the company
 		$query11 = "DELETE from Company WHERE ID='$Company_ID'";
 		$result11 =mysqli_query($this->getDbc(),$query11);
 
 		if($result1 AND $result2 AND $result3 AND $result4 AND $result5 AND $result6
-			AND $result7 AND $result8 AND $result9 AND $result10 AND $result11 ){
+			AND $result7 AND $result8 AND $result9 AND $result10 AND $result11 AND $result_speci){
 			$query = "COMMIT";
 			mysqli_query($this->getDbc(),$query);
-
-			echo('commited');
+//			echo('commited');
 			return TRUE;
 		}
 		else{
 			$query = "ROLLBACK";
 			mysqli_query($this->getDbc(),$query);
-			echo("Rolled back");
+//			echo("Rolled back");
 			return FALSE;
 
 		}
@@ -2535,399 +2680,4 @@ from (select COM.Name as Company_Name, COM.Name_Amharic as Company_Name_Amharic
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /* ---------------- For operators -------------------- */
-
-
-
-
-    //this will return the company list from company table
-    function Get_Company_For_Search_Listing($Name_Start = null){
-
-        $Word_Start = "A";
-
-        if($Name_Start != null){
-            $Word_Start = $Name_Start;
-        }
-        $query = "select COM_ID as company_id,COM_NAME as company_name,COM_Name_Amharic as company_name_amharic, COM_REG_DATE as registration_date
-		,CAT_Name as category,CAT_Name_Amharic as category_amharic,ADDR_ID as address_id,Belong_to as belong_to
-from (select COM.ID as COM_ID,COM.Name as COM_NAME,COM.Name_Amharic as COM_Name_Amharic,COM.Registration_date as COM_REG_DATE,
-			 COM_ADDR.company_id as COM_ADDR_COM_ID, COM_ADDR.address_id as COM_ADDR_ADDR_ID,
-			 ADDR.ID as ADDR_ID,ADDR.Belong_to
-		from company as COM
-		inner join company_address as COM_ADDR
-		on COM.ID = COM_ADDR.company_id
-		inner join address as ADDR
-		on ADDR.ID = COM_ADDR.address_id) as com_addr_spec
-
-
-		inner join
-		(select COM_CAT.company_id as COM_CAT_COM_ID, COM_CAT.category_id as COM_CAT_CAT_ID,
-				CAT.ID as CAT_ID,CAT.Name as CAT_Name,CAT.Name_Amharic as CAT_Name_Amharic
-		from company_category as COM_CAT
-		inner join category as CAT
-		on COM_CAT.category_id = CAT.id) as cat_spec
-
-		on COM_ID = COM_CAT_COM_ID
-where COM_Name like '$Word_Start%'
-ORDER by company_name";
-
-        $result  = mysqli_query($this->getDbc(),$query);
-
-        if($result){
-            return $result;
-        }
-        else{
-            return FALSE;
-        }
-    }
-
-
-
-
-
-
-
-
-    /* --------------- for search ------------------ */
-
-    function Get_Company_For_Search( $company_id){
-
-        $query ="select *
-from
-		(select  C.ID as Company_ID,C.Name as Company_Name,C.Name_Amharic as Company_Name_Amharic,C.Registration_Date
-		 from company as C
-		 where ID = '$company_id')as com_spec
- 		inner join
- 		(select ABT_COM.ID as About_Company_ID, ABT_COM.Branch,ABT_COM.Branch_Amharic,ABT_COM.Working_Hours,ABT_COM.Working_Hours_Amharic
-		 from about_company as ABT_COM
-		 where Company_ID='$company_id') as abt_spec
-
-		inner join
-		(select COM_PRO_SER.ID as Company_Service_ID,Product_Service,COM_PRO_SER.Product_Service_Amharic
-		from company_product_service as COM_PRO_SER
-		where COM_PRO_SER.Company_ID = '$company_id'
-
-		)as pro_ser_spec
-
-		inner join
-
-		(select PS.ID as Payment_Status_ID,PS.Expiration_Date
-		from payment_status as PS
-		where PS.Company_ID = '$company_id') as pay_spec
-
-		inner join
-
-		(select C_CAT.ID as Company_Category_ID,C_CAT.Category_ID as Category_ID
-						from company_category as C_CAT
-						where C_CAT.Company_ID = '$company_id') as cat_spec
- 		inner join
-
-		(select COM_OWN.ID as Company_Ownership_ID,COM_OWN.Ownership_ID Company_Type_ID
-						from company_ownership as COM_OWN
-						where COM_OWN.Company_ID = '$company_id'
-						) as com_type_spec
-
-		inner join
-
-			(select CON.ID as Contact_ID, CON.Email,CON.House_No,CON.FAX,CON.POBOX,CON.Telephone
-		  from contact as CON
-		  where CON.ID = ( select ADDR_CON.Contact_ID
-							from address_contact as ADDR_CON
-							where ADDR_CON.Address_ID = ( select COM_ADDR.Address_ID
-														  from company_address as COM_ADDR
-														  where COM_ADDR.Company_ID = '$company_id'
- 									))) as con_spec
- 		inner join
-
-			(select DIR.ID as Direction_ID,DIR.Direction,DIR.Direction_Amharic
-			from direction as DIR
-			where DIR.ID = (select ADDR_DIR.Direction_ID
-						    from address_direction as ADDR_DIR
-							where ADDR_DIR.Address_ID = ( select COM_ADDR.Address_ID
-													  from company_address as COM_ADDR
-													  where COM_ADDR.Company_ID = '$company_id'
- 									))) as dir_spec
- 		inner join
-
-			(select P.ID as Place_ID, P.Region,P.City,P.Sub_City,P.Sefer,P.Wereda,P.Street
- 			from Place as P
-			where P.ID  = (select ADDR_P.Place_ID
-						from address_place as ADDR_P
-						where ADDR_P.Address_ID = ( select COM_ADDR.Address_ID
-													  from company_address as COM_ADDR
-													  where COM_ADDR.Company_ID = '$company_id'
-													))) as place_spec
-
-
-
-";
-
-
-
-        $result = mysqli_query($this->getDbc(),$query);
-
-        if($result){
-            return $result;
-        }
-        else{
-            return null;
-        }
-    }
-
-
-
-
-    function getRegion($region_id){
-        $company_region = "Unknown";
-        $query = "SELECT *
-                    FROM region
-                    WHERE id ='$region_id'";
-
-        $result = mysqli_query($this->getDbc(),$query);
-
-        if($result){
-            while($results = mysqli_fetch_array($result,MYSQL_ASSOC)){
-                $company_region = $results['Name'];
-            }
-        }
-        else{
-            $company_region = "Error getting info";
-        }
-        return $company_region;
-
-    }
-
-    function getCity($city_id){
-        $company_city = "Unknown";
-        $query = "SELECT *
-                    FROM city
-                    WHERE id ='$city_id'";
-
-        $result = mysqli_query($this->getDbc(),$query);
-
-        if($result){
-            while($results = mysqli_fetch_array($result,MYSQL_ASSOC)){
-                $company_city = $results['Name'];
-            }
-        }
-        else{
-            $company_city = "Error getting info";
-        }
-        return $company_city;
-
-    }
-
-    function getSubCity($subcity_id){
-        $company_sub_city = "Unknown";
-        $query = "SELECT *
-                    FROM sub_city
-                    WHERE id ='$subcity_id'";
-
-        $result = mysqli_query($this->getDbc(),$query);
-
-        if($result){
-            while($results = mysqli_fetch_array($result,MYSQL_ASSOC)){
-                $company_sub_city = $results['Name'];
-            }
-        }
-        else{
-            $company_sub_city = "Error getting info";
-        }
-        return $company_sub_city;
-    }
-
-    function getSefer($sefer_id){
-        $company_sefer = "Unknown";
-        $query = "SELECT *
-                    FROM sefer
-                    WHERE id ='$sefer_id'";
-
-        $result = mysqli_query($this->getDbc(),$query);
-
-        if($result){
-            while($results = mysqli_fetch_array($result,MYSQL_ASSOC)){
-                $company_sefer = $results['Name'];
-            }
-        }
-        else{
-            $company_sefer = "Error getting info";
-        }
-        return $company_sefer;
-    }
-
-
-
-    function getBuilding($building_id){
-        $building = "Unknown";
-        $query = "SELECT *
-                    FROM building
-                    WHERE id ='$building_id'";
-
-        $result = mysqli_query($this->getDbc(),$query);
-
-        if($result){
-            while($results = mysqli_fetch_array($result,MYSQL_ASSOC)){
-                $building = $results['Name'];
-            }
-        }
-        else{
-            $building = "Error getting info";
-        }
-        return $building;
-    }
-
-    function getStreet($street_id){
-        $street = "Unknown";
-        $query = "SELECT *
-                    FROM street
-                    WHERE id ='$street_id'";
-
-        $result = mysqli_query($this->getDbc(),$query);
-
-        if($result){
-            while($results = mysqli_fetch_array($result,MYSQL_ASSOC)){
-                $street = $results['Name'];
-            }
-        }
-        else{
-            $street = "Error getting info";
-        }
-        return $street;
-    }
-
-
-    function getCategory($category_id){
-        $category = "Unknown";
-        $query = "SELECT *
-                    FROM category
-                    WHERE id ='$category_id'";
-
-        $result = mysqli_query($this->getDbc(),$query);
-
-        if($result){
-            while($results = mysqli_fetch_array($result,MYSQL_ASSOC)){
-                $category = $results['Name'];
-            }
-        }
-        else{
-            $category = "Error getting info";
-        }
-        return $category;
-    }
-
-
-
-    function getOwnershipType($type_id){
-        $owner = "Unknown";
-        $query = "SELECT *
-                    FROM ownership
-                    WHERE id ='$type_id'";
-
-        $result = mysqli_query($this->getDbc(),$query);
-
-        if($result){
-            while($results = mysqli_fetch_array($result,MYSQL_ASSOC)){
-                $owner = $results['Name'];
-            }
-        }
-        else{
-            $owner = "Error getting info";
-        }
-        return $owner;
-    }
-
-    function getPlaceID($address_id){
-        $placeid = "Unknown";
-        $query = "SELECT *
-                    FROM address_place
-                    WHERE Address_ID ='$address_id'";
-
-        $result = mysqli_query($this->getDbc(),$query);
-
-        if($result){
-            while($results = mysqli_fetch_array($result,MYSQL_ASSOC)){
-                $placeid = $results['Place_ID'];
-            }
-        }
-        else{
-            $placeid = "Error getting info";
-        }
-        return $placeid;
-    }
-
-    function getPlace($place_id){
-        $query = "SELECT *
-                    FROM place
-                    WHERE ID ='$place_id'";
-
-        $result = mysqli_query($this->getDbc(),$query);
-
-        if($result){
-            return $result;
-        }
-        return "Error";
-    }
-
-
-
-    function getDirectionID($address_id){
-        $directionid = "Unknown";
-        $query = "SELECT *
-                    FROM address_direction
-                    WHERE Address_ID ='$address_id'";
-
-        $result = mysqli_query($this->getDbc(),$query);
-
-        if($result){
-            while($results = mysqli_fetch_array($result,MYSQL_ASSOC)){
-                $directionid = $results['Direction_ID'];
-            }
-        }
-        else{
-            $directionid = "Error getting info";
-        }
-        return $directionid;
-    }
-
-    function getDirection($direction_id){
-        $query = "SELECT *
-                    FROM direction
-                    WHERE ID ='$direction_id'";
-
-        $result = mysqli_query($this->getDbc(),$query);
-
-        if($result){
-            return $result;
-        }
-        return "Error";
-    }
 }

@@ -38,8 +38,7 @@ $Building = $encoder->Get_Building_For_Edit($Building_ID);
 	$Wereda_ID_E =$Building['Wereda'];
 	$Sefer_ID_E = $Building['Sefer'];
 	$Street_ID_E =$Building['Street'];
-
-	$Direction_ID_E = $Building['DIR_ID'];
+ 	$Direction_ID_E = $Building['DIR_ID'];
 	$Direction_E = $Building['Direction'];
 	$Direction_Amharic_E = $Building['Direction_Amharic'];
 
@@ -111,23 +110,26 @@ if($_SERVER['REQUEST_METHOD'] == "GET") {
 
 
 <div class="form-group">
-	<label for="Region" class="col-sm-4 control-label">Region</label>
+	<label for="Region" class="col-sm-4 control-label">Region (ክልል)</label>
 	<div class="col-sm-5">
 		<select class="form-control" id="Region" name="Region">
-			<option value="NOT_FILLED" >- - - - - - - select region</option>
+			<option value="NOT_FILLED" >- - - - select region (ክልል ይምረጡ)</option>
 			<?php
 			$Region_ID = "";
 			$Region_Name = "";
+			$Region_Name_Amharic = "";
+
 
 			if($Regions){
 				while($reg = mysqli_fetch_array($Regions,MYSQLI_ASSOC)){
 					$Region_ID = $reg['ID'];
 					$Region_Name = $reg['Name'];
+					$Region_Name_Amharic = $reg['Name_Amharic'];
 
 					?>
 					<option value="<?php echo($Region_ID);?>" <?php if($Region_ID == $Region_ID_E){
 						echo("selected");
-					} ?> > <?php echo($Region_Name);?></option>
+					} ?> > <?php echo($Region_Name." (".$Region_Name_Amharic." )");?></option>
 				<?php
 				}
 			}
@@ -143,23 +145,25 @@ if($_SERVER['REQUEST_METHOD'] == "GET") {
 </div>
 
 <div class="form-group">
-	<label for="City" class="col-sm-4 control-label">City</label>
+	<label for="City" class="col-sm-4 control-label">City (ከተማ)</label>
 	<div class="col-sm-5">
 		<select class="form-control" id="City" name="City">
-			<option value="NOT_FILLED">- - - - - - - select city</option>
+			<option value="NOT_FILLED">- - - - select city (ከተማ ይምረጡ)</option>
 			<?php
 			$City_ID = "";
 			$City_Name = "";
+			$City_Name_Amharic = "";
 
 			if($City){
 				while($cit = mysqli_fetch_array($City,MYSQLI_ASSOC)){
 					$City_ID = $cit['ID'];
 					$City_Name = $cit['Name'];
+					$City_Name_Amharic = $cit['Name_Amharic'];
 
 					?>
 					<option value="<?php echo($City_ID);?>"  <?php if($City_ID == $City_ID_E){
 						echo("selected");
-					}?>><?php echo($City_Name);?></option>
+					}?>><?php echo($City_Name." (".$City_Name_Amharic." )");?></option>
 				<?php
 				}
 			}
@@ -174,22 +178,24 @@ if($_SERVER['REQUEST_METHOD'] == "GET") {
 </div>
 
 <div class="form-group">
-	<label for="Sub_City" class="col-sm-4 control-label">Sub City</label>
+	<label for="Sub_City" class="col-sm-4 control-label">Sub City (ክ/ከተማ)</label>
 	<div class="col-sm-5">
 		<select class="form-control" id="Sub_City" name="Sub_City">
-			<option value="NOT_FILLED">- - - - - - - select Sub city</option>
+			<option value="NOT_FILLED">- - - - select Sub city ( ክ/ከተማ ይምረጡ )</option>
 			<?php
 			$SubCity_ID = "";
 			$SubCity_Name = "";
+			$SubCity_Name_Amharic = "";
 
 			if($Sub_City){
 				while($SubCit = mysqli_fetch_array($Sub_City,MYSQLI_ASSOC)){
 					$SubCity_ID = $SubCit['ID'];
 					$SubCity_Name = $SubCit['Name'];
+					$SubCity_Name_Amharic = $SubCit['Name_Amharic'];
 					?>
 					<option value="<?php echo($SubCity_ID);?>" <?php if($SubCity_ID == $Sub_City_ID_E){
 						echo("selected");
-					}?> ><?php echo($SubCity_Name);?></option>
+					}?> ><?php echo($SubCity_Name."( ".$SubCity_Name_Amharic." )");?></option>
 				<?php
 				}
 			}
@@ -204,10 +210,10 @@ if($_SERVER['REQUEST_METHOD'] == "GET") {
 </div>
 
 <div class="form-group">
-	<label for="Wereda" class="col-sm-4 control-label">Kebele/Wereda</label>
+	<label for="Wereda" class="col-sm-4 control-label">Wereda (ወረዳ)</label>
 	<div class="col-sm-5">
 		<select class="form-control" id="Wereda" name="Wereda">
-			<option value="NOT_FILLED">- - - - - - - select Wereda/Kebele</option>
+			<option value="NOT_FILLED">- - - - select wereda (ወረዳ ይምረጡ) </option>
 			<?php
 			$Wereda_ID = "";
 			$Wereda_Name = "";
@@ -232,22 +238,24 @@ if($_SERVER['REQUEST_METHOD'] == "GET") {
 </div>
 
 <div class="form-group">
-	<label for="Sefer" class="col-sm-4 control-label">Sefer</label>
+	<label for="Sefer" class="col-sm-4 control-label">Sefer (ሰፈር)</label>
 	<div class="col-sm-5">
 		<select class="form-control" id="Sefer" name="Sefer">
-			<option value="NOT_FILLED" class="not_filled">- - - - - - - select sefer</option>
+			<option value="NOT_FILLED" class="not_filled">- - - - select sefer (ሰፈር ይምረጡ)</option>
 			<?php
 			$Sefer_ID = "";
 			$Sefer_Name = "";
+			$Sefer_Name_Amharic ="";
 
 			if($Sefer){
 				while($sef = mysqli_fetch_array($Sefer,MYSQLI_ASSOC)){
 					$Sefer_ID = $sef['ID'];
 					$Sefer_Name = $sef['Name'];
+					$Sefer_Name_Amharic = $sef['Name_Amharic'];
 					?>
 					<option value="<?php echo($Sefer_ID);?>" <?php if($Sefer_ID == $Sefer_ID_E){
 						echo("selected");
-					}?>  ><?php echo($Sefer_Name);?></option>
+					}?>  ><?php echo($Sefer_Name." (".$Sefer_Name_Amharic." )");?></option>
 				<?php
 				}
 			}
@@ -261,26 +269,28 @@ if($_SERVER['REQUEST_METHOD'] == "GET") {
 </div>
 
 <div class="form-group">
-	<label for="Street" class="col-sm-4 control-label">Street</label>
+	<label for="Street" class="col-sm-4 control-label">Street (መንገድ)</label>
 	<div class="col-sm-5">
 		<select class="form-control" id="Street" name="Street">
-			<option value="NOT_FILLED">- - - - - - - select Street</option>
+			<option value="NOT_FILLED">- - - - select street (መንገድ ይምረጡ)</option>
 
 
 
 			<?php
 			$Street_ID = "";
 			$Street_Name = "";
+			$Street_Name_Amharic = "";
 
 			if($Street){
 				while($Str = mysqli_fetch_array($Street,MYSQLI_ASSOC)){
 					$Street_ID = $Str['ID'];
 					$Street_Name = $Str['Name'];
+					$Street_Name_Amharic = $str['Name_Amharic'];
 
 					?>
 					<option value="<?php echo($Street_ID);?>" <?php if($Street_ID == $Street_ID_E){
 						echo("selected");
-					}?>><?php echo($Street_Name);?></option>
+					}?>><?php echo($Street_Name." (".$Street_Name_Amharic." )");?></option>
 				<?php
 				}
 			}
@@ -361,7 +371,7 @@ if($_SERVER['REQUEST_METHOD'] == "GET") {
 
 <div class="form-group">
 	<label for="Parking_Area"
-	       class="col-sm-4 control-label">Parking Area</label>
+	       class="col-sm-4 control-label">Parking Area (ፓርኪንግ ቦታ)</label>
 
 	<div class="col-sm-4 col-sm-offset-1">
 
@@ -371,7 +381,7 @@ if($_SERVER['REQUEST_METHOD'] == "GET") {
 				<label>
 					<input type="radio" value="1" name="Parking_Area" <?php if($Parking_Area == 1){
 						echo("checked");
-					}?>> yes
+					}?>> yes (አለው)
 				</label>
 			</div>
 
@@ -385,7 +395,7 @@ if($_SERVER['REQUEST_METHOD'] == "GET") {
 				<label>
 					<input type="radio" value="0" name="Parking_Area" <?php if($Parking_Area == 0){
 						echo("checked");
-					}?> > no
+					}?> > no (የለውም)
 				</label>
 			</div>
 

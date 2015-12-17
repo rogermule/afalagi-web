@@ -30,7 +30,7 @@ include "Includeables.php";
 		<div class="panel panel-default">
 			<div class="panel-body text-center">
 
-				<h4>Building List</h4>
+				<h4>Building List ( የህንጻ ዝርዝር )</h4>
 
 			</div>
 		</div>
@@ -91,12 +91,7 @@ include "Includeables.php";
 
 
 
-			<div class="panel panel-primary list_header margin_top_10">
-				<div class="panel-body text-center">
-					<h4>List of Buildings</h4>
 
-				</div>
-			</div>
 			<div class="col-sm-12 text-center margin_top_20">
 
 				<a href="Building_List.php?Sort=1&Name_Start=A" class="btn btn-success btn-xs">A</a>

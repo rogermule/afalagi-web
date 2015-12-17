@@ -15,7 +15,7 @@
 
 	<div class="panel panel-default">
 		<div class="panel-body text-center">
-			<h4>Add Category</h4>
+			<h4>Add Category (የስራ መስክ መጨመርያ)</h4>
 
 		</div>
 	</div>
@@ -36,18 +36,14 @@
 			}
 
 			if(isset($_GET['success'])){
-
-
-				$category_name = $_GET['Category_Name'];
-
-				?>
+ 				$category_name = $_GET['Category_Name'];
+ 				?>
 				<div class="alert alert-success alert-dismissable">
 					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 					<strong>You have added a new Category successfully.</strong>
 					<br/>New Category --- <?php echo("$category_name");?>
 				</div>
-
-			<?php
+ 			<?php
 
 			}
 		}
@@ -79,6 +75,21 @@
 					<div class="col-sm-5">
 						<input name="Category_Name_Amharic" type="text" class="form-control"
 						       id="House_NO" placeholder="የስራ መስክ ያስገቡ" >
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-sm-5 col-sm-offset-4">
+						<input type="radio" name="General_Category" id="EDUCATIONAL" value="<?php echo(GeneralCategory::EDUCATIONAL);?>"> <label for="EDUCATIONAL"><?php echo(GeneralCategory::EDUCATIONAL);?> ( የትምህርት ተቋም )</label>
+					</div>
+					<div class="col-sm-5 col-sm-offset-4">
+						<input type="radio" name="General_Category" id="HEALTH" value="<?php echo(GeneralCategory::HEALTH);?>"> <label for="HEALTH"><?php echo(GeneralCategory::HEALTH);?> ( የጤና ተቋም )</label>
+					</div>
+					<div class="col-sm-5 col-sm-offset-4">
+						<input type="radio" name="General_Category" id="RECREATIONAL" value="<?php echo(GeneralCategory::RECREATIONAL);?>"> <label for="RECREATIONAL"><?php echo(GeneralCategory::RECREATIONAL);?> ( የመዝናኛ ተቋም )</label>
+					</div>
+					<div class="col-sm-5 col-sm-offset-4">
+						<input type="radio" name="General_Category" id="NULL" value="<?php echo(GeneralCategory::NULL);?>"> <label for="NULL"><?php echo(GeneralCategory::NULL);?> ( ሌላ )</label>
 					</div>
 				</div>
 

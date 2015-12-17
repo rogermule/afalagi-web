@@ -70,9 +70,9 @@ $Ownerships =$encoder->Get_Ownerships();
 
 		?>
 
-		<div class="panel panel-primary list_header margin_top_10">
+		<div class="panel panel-primary  margin_top_10">
 			<div class="panel-body text-center">
-				<h4>List of Ownership</h4>
+				<h4>List of Ownership ( የድርጅት ባለቤትነት አይነት ዝርዝር)</h4>
 			</div>
 		</div>
 		<div class=" margin_top_30">

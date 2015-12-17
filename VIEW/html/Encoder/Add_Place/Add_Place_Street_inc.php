@@ -26,7 +26,7 @@ $encoder = new Encoder_Controller($user);//make an encoder object
 
 			<div class="panel panel-default">
 				<div class="panel-body text-center">
-					<h4>Add Street</h4>
+					<h4>Add Street (የመንገድ መጨመርያ)</h4>
 
 				</div>
 			</div>

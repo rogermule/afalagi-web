@@ -20,9 +20,9 @@ include "Includeables.php";
 <div class="col-sm-8 list_container margin_0">
 	<div class="col-sm-12">
  	<div class="col-sm-12 margin_top_10">
- 		<div class="panel panel-primary list_header margin_top_10">
+ 		<div class="panel panel-default margin_top_10">
 			<div class="panel-body text-center">
-				<h4>List of Companies</h4>
+				<h4>Sorted Company List (የድርጅት ዝርዝር በስም)</h4>
  			</div>
 		</div>
 
@@ -104,8 +104,11 @@ include "Includeables.php";
 		</div>
 		<hr>
 		 <div class="row">
-			 <div class="col-md-5">Number of companies starting with <span class="btn btn-danger indicator"> <?php echo($Name_Start);?> </span>  </div>
-			 <div class="col-md-3 indicator"><?php   echo($Num_Companies)?></div>
+			 <div class="col-md-6">
+				 Number of companies (የድርጅትች ብዛት በ ) <span class="btn btn-danger indicator">
+					 <?php echo($Name_Start);?> </span> ( የሚጀምሩ ) =
+			 </div>
+			 <div class="col-md-1 indicator"><?php   echo($Num_Companies)?></div>
 		 </div>
 		<hr>
 

@@ -8,8 +8,6 @@ $user = $_SESSION['Logged_In_User'];
 $encoder = new Encoder_Controller($user);//make an encoder object
 
 
-
-
 ?>
 
 <div class="col-sm-7 list_container margin_0">
@@ -18,7 +16,7 @@ $encoder = new Encoder_Controller($user);//make an encoder object
 
 		<div class="panel panel-default">
 			<div class="panel-body text-center">
-				<h4>Add Company Type</h4>
+				<h4>Add Company Ownership Type( የድርጅት ባለቤትነት አይነት ያስገቡ )</h4>
 
 			</div>
 		</div>

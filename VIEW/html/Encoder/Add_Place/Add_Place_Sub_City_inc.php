@@ -19,7 +19,7 @@ include("includables.php");
 
         <div class="panel panel-default">
             <div class="panel-body text-center">
-                <h4>Add Sub Cities</h4>
+                <h4>Add Sub Cities (ክ/ከተማ መጨመርያ)</h4>
 
             </div>
         </div>

@@ -21,7 +21,7 @@ include("includables.php");
 
         <div class="panel panel-default">
             <div class="panel-body text-center">
-                <h4>Add Regions</h4>
+                <h4>Add Regions (ክልል መጨመርያ)</h4>
 
             </div>
         </div>
@@ -137,7 +137,7 @@ include("includables.php");
         <hr>
         <div class="panel panel-primary list_header">
             <div class="panel-body text-center">
-                <h4>List of Regions</h4>
+                <h4>List of Regions ( የክልል ዝርዝር )</h4>
 
             </div>
         </div>

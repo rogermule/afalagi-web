@@ -62,7 +62,7 @@ function encoder_place_redirect($type_of_error){
 		$error_type = "Data fill error";
 	}
 	else if($type_of_error == Error_Type::DATA_BASE){
-		$error_type = "Error when adding new Company.";
+		$error_type = "Error when Deleting company.";
 	}
 	else if($type_of_error == Error_Type::SAME_REGISTERED_DATA){
 		$error_type = "Error Same Company Name. The Company is Registered Before";
@@ -236,6 +236,18 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 						$Company_Category_ID,
 						$Contact_ID,
 						$Address_Building_Floor_ID);
+
+
+				}
+
+				//check if the company has specialization
+				//if the company has specialization delete the specializations
+
+				if($encoder_con->Company_Has_Specialization($Company_ID)){
+
+					//get the specialization id and delete the specialization with the acquired ID
+					$spec_ID =  $encoder_con->Get_Company_Specialization_ID($Company_ID);
+					$encoder_con->Delete_Specialization($spec_ID);
 
 
 				}

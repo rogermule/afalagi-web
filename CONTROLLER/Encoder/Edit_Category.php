@@ -9,6 +9,7 @@ require("../Controller_Secure_Access.php");//this will prevent this file from be
 require("../../MODEL/User_Type.php");
 require("../../MODEL/Error_Type.php");
 require("../../MODEL/Category.php");
+require("../../MODEL/GeneralCategory.php");
 $errors = array();
 
 
@@ -102,11 +103,19 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 				$Category_ID = $_POST['Category_ID'];
 			}
 
+			//get the gereal category
+			if(isset($_POST['General_Category'])){
+				$General_Category = $_POST['General_Category'];
+			}
+			else{
+				$errors[] = "General category should be filed";
+			}
+
 
 			if(empty($errors)){
 
 
-				$Category = new Category($Name,$Name_Amharic);
+				$Category = new Category($Name,$Name_Amharic,$General_Category);
 				if($encoder_con->Category_Exists_For_Edit($Category,$Category_ID)){
 					encoder_place_redirect(Error_Type::SAME_USER_NAME,$Category_ID);
 				}

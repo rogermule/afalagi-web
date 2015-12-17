@@ -20,7 +20,7 @@ include("includables.php");
 
         <div class="panel panel-default">
             <div class="panel-body text-center">
-                <h4>Add Cities</h4>
+                <h4>Add Cities (ከተማ መጨመርያ)</h4>
 
             </div>
         </div>
@@ -134,7 +134,7 @@ include("includables.php");
         <hr>
         <div class="panel panel-primary list_header">
             <div class="panel-body text-center">
-                <h4>List of Cities</h4>
+                <h4>List of Cities ( የክልል ዝርዝር )</h4>
 
             </div>
         </div>

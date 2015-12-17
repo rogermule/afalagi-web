@@ -84,7 +84,7 @@ $encoder = new Encoder_Controller($user);//make an encoder object
 
 			<div class="panel panel-primary list_header margin_top_10">
 				<div class="panel-body text-center">
-					<h4>List of Phones</h4>
+					<h4>List of Phones (የስልክ ዝርዝር)</h4>
 
 				</div>
 			</div>

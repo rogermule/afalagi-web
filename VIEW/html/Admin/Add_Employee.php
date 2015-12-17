@@ -46,7 +46,6 @@ $admin_con = new Admin_Controller($user);
 			}
 			?>
 
-
 			<div class="panel panel-default">
 				<div class="panel-body text-center">
 					<h2>Add Employee</h2>

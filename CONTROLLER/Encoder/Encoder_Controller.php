@@ -153,6 +153,49 @@ class Encoder_Controller extends Sub_Encoder_Controller {
 		}
 	}
 
+
+	function Get_Companies_For_Different_Listing_All($Registration_Type){
+		$query = "select COM_ID as company_id,COM_NAME as company_name,COM_Name_Amharic as company_name_amharic, COM_REG_DATE as registration_date
+		,CAT_Name as category,CAT_Name_Amharic as category_amharic,ADDR_ID as address_id,Belong_to as belong_to,PAY_STAT.Registration_Type,
+if(PAY_STAT.Expiration_Date<CURDATE(),'EXPIRED','NOT_EXPIRED') as Expiration_Date
+from (select COM.ID as COM_ID,COM.Name as COM_NAME,COM.Name_Amharic as COM_Name_Amharic,COM.Registration_date as COM_REG_DATE,
+			 COM_ADDR.company_id as COM_ADDR_COM_ID, COM_ADDR.address_id as COM_ADDR_ADDR_ID,
+			 ADDR.ID as ADDR_ID,ADDR.Belong_to
+		from company as COM
+		inner join company_address as COM_ADDR
+		on COM.ID = COM_ADDR.company_id
+		inner join address as ADDR
+		on ADDR.ID = COM_ADDR.address_id) as com_addr_spec
+
+		inner join
+		(select COM_CAT.company_id as COM_CAT_COM_ID, COM_CAT.category_id as COM_CAT_CAT_ID,
+				CAT.ID as CAT_ID,CAT.Name as CAT_Name,CAT.Name_Amharic as CAT_Name_Amharic
+		from company_category as COM_CAT
+		inner join category as CAT
+		on COM_CAT.category_id = CAT.id) as cat_spec
+
+		on COM_ID = COM_CAT_COM_ID
+
+		inner join
+		(select * from
+		payment_status
+		where Registration_Type='$Registration_Type') as PAY_STAT
+ 		on COM_ID = PAY_STAT.ID
+
+
+ORDER by company_name";
+
+
+		$result = mysqli_query($this->getDbc(),$query);
+
+		if($result){
+			return $result;
+		}
+		else{
+			return FALSE;
+		}
+	}
+
 	function Get_Companies_For_Different_Listings($Registration_Type,$Name_Start = null){
 
 		$Word_Start = "A";
@@ -201,6 +244,23 @@ ORDER by company_name;";
 		}
 	}
 
+	function Get_Building_For_Listing_All(){
+
+
+
+		$query = "select * from building as BUL ORDER BY Name";
+
+		$result = mysqli_query($this->getDbc(),$query);
+
+		if($result){
+			return $result;
+		}
+		else{
+			return FALSE;
+		}
+
+	}
+
 	//connected with building for listing
  	function Get_Building_For_Listing($Name_Start = null){
 
@@ -211,6 +271,45 @@ ORDER by company_name;";
 
 
 		$query = "select * from building as BUL where Name like '$Word_Start%' ORDER BY Name";
+
+		$result = mysqli_query($this->getDbc(),$query);
+
+		if($result){
+			return $result;
+		}
+		else{
+			return FALSE;
+		}
+
+	}
+
+	function Get_Not_Expired_Companies_All(){
+
+		$query = "select COM_ID as company_id,COM_NAME as company_name,COM_Name_Amharic as company_name_amharic, COM_REG_DATE as registration_date
+		,CAT_Name as category,CAT_Name_Amharic as category_amharic,ADDR_ID as address_id,Belong_to as belong_to,PAY_STAT.Registration_Type,if(PAY_STAT.Expiration_Date<CURDATE(),'EXPIRED','NOT_EXPIRED') as Expiration_Date
+from (select COM.ID as COM_ID,COM.Name as COM_NAME,COM.Name_Amharic as COM_Name_Amharic,COM.Registration_date as COM_REG_DATE,
+			 COM_ADDR.company_id as COM_ADDR_COM_ID, COM_ADDR.address_id as COM_ADDR_ADDR_ID,
+			 ADDR.ID as ADDR_ID,ADDR.Belong_to
+		from company as COM
+		inner join company_address as COM_ADDR
+		on COM.ID = COM_ADDR.company_id
+		inner join address as ADDR
+		on ADDR.ID = COM_ADDR.address_id) as com_addr_spec
+
+		inner join
+		(select COM_CAT.company_id as COM_CAT_COM_ID, COM_CAT.category_id as COM_CAT_CAT_ID,
+				CAT.ID as CAT_ID,CAT.Name as CAT_Name,CAT.Name_Amharic as CAT_Name_Amharic
+		from company_category as COM_CAT
+		inner join category as CAT
+		on COM_CAT.category_id = CAT.id) as cat_spec
+
+		on COM_ID = COM_CAT_COM_ID
+
+		inner join
+		payment_status as PAY_STAT
+		on COM_ID = PAY_STAT.ID
+where  CURDATE() < PAY_STAT.Expiration_Date
+ORDER by company_name";
 
 		$result = mysqli_query($this->getDbc(),$query);
 
@@ -268,6 +367,43 @@ ORDER by company_name";
 
 	}
 
+	function Get_Expired_Companies_All(){
+		$query = "select COM_ID as company_id,COM_NAME as company_name,COM_Name_Amharic as company_name_amharic, COM_REG_DATE as registration_date
+		,CAT_Name as category,CAT_Name_Amharic as category_amharic,ADDR_ID as address_id,Belong_to as belong_to,PAY_STAT.Registration_Type,if(PAY_STAT.Expiration_Date<CURDATE(),'EXPIRED','NOT_EXPIRED') as Expiration_Date
+from (select COM.ID as COM_ID,COM.Name as COM_NAME,COM.Name_Amharic as COM_Name_Amharic,COM.Registration_date as COM_REG_DATE,
+			 COM_ADDR.company_id as COM_ADDR_COM_ID, COM_ADDR.address_id as COM_ADDR_ADDR_ID,
+			 ADDR.ID as ADDR_ID,ADDR.Belong_to
+		from company as COM
+		inner join company_address as COM_ADDR
+		on COM.ID = COM_ADDR.company_id
+		inner join address as ADDR
+		on ADDR.ID = COM_ADDR.address_id) as com_addr_spec
+
+		inner join
+		(select COM_CAT.company_id as COM_CAT_COM_ID, COM_CAT.category_id as COM_CAT_CAT_ID,
+				CAT.ID as CAT_ID,CAT.Name as CAT_Name,CAT.Name_Amharic as CAT_Name_Amharic
+		from company_category as COM_CAT
+		inner join category as CAT
+		on COM_CAT.category_id = CAT.id) as cat_spec
+
+		on COM_ID = COM_CAT_COM_ID
+
+		inner join
+		payment_status as PAY_STAT
+		on COM_ID = PAY_STAT.ID
+where PAY_STAT.Expiration_Date < CURDATE()
+ORDER by company_name";
+
+		$result = mysqli_query($this->getDbc(),$query);
+
+		if($result){
+			return $result;
+		}
+		else{
+			return FALSE;
+		}
+	}
+
 	//this will return compnies that are expired
 	function Get_Expired_Companies($Name_Start = null){
 
@@ -311,6 +447,43 @@ ORDER by company_name";
 			return FALSE;
 		}
 
+	}
+
+	function Get_All_Companies(){
+
+		$query = "select COM_ID as company_id,COM_NAME as company_name,COM_Name_Amharic as company_name_amharic, COM_REG_DATE as registration_date
+		,CAT_Name as category,CAT_Name_Amharic as category_amharic,ADDR_ID as address_id,Belong_to as belong_to,PAY_STAT.Registration_Type,if(PAY_STAT.Expiration_Date<CURDATE(),'EXPIRED','NOT_EXPIRED') as Expiration_Date
+from (select COM.ID as COM_ID,COM.Name as COM_NAME,COM.Name_Amharic as COM_Name_Amharic,COM.Registration_date as COM_REG_DATE,
+			 COM_ADDR.company_id as COM_ADDR_COM_ID, COM_ADDR.address_id as COM_ADDR_ADDR_ID,
+			 ADDR.ID as ADDR_ID,ADDR.Belong_to
+		from company as COM
+		inner join company_address as COM_ADDR
+		on COM.ID = COM_ADDR.company_id
+		inner join address as ADDR
+		on ADDR.ID = COM_ADDR.address_id) as com_addr_spec
+
+		inner join
+		(select COM_CAT.company_id as COM_CAT_COM_ID, COM_CAT.category_id as COM_CAT_CAT_ID,
+				CAT.ID as CAT_ID,CAT.Name as CAT_Name,CAT.Name_Amharic as CAT_Name_Amharic
+		from company_category as COM_CAT
+		inner join category as CAT
+		on COM_CAT.category_id = CAT.id) as cat_spec
+
+		on COM_ID = COM_CAT_COM_ID
+
+		inner join
+		payment_status as PAY_STAT
+		on COM_ID = PAY_STAT.ID
+ 		ORDER by company_name";
+
+		$result  = mysqli_query($this->getDbc(),$query);
+
+		if($result){
+			return $result;
+		}
+		else{
+			return FALSE;
+		}
 	}
 
 	//this will return the company list from company table
@@ -683,7 +856,8 @@ BUL.Building_Description_Amharic as Building_Description_Amharic,BUL.Parking_Are
 
 		$Name = $Category->getCategoryName();
 		$Name_Amharic = $Category->getCategoryNameAmharic();
- 		$query = "UPDATE Category set Name='$Name',Name_Amharic='$Name_Amharic' where ID='$Category_ID'";
+	    $General_Category = $Category->getGeneralCategory();
+ 		$query = "UPDATE Category set Name='$Name',Name_Amharic='$Name_Amharic',General_Category='$General_Category' where ID='$Category_ID'";
 		$result = mysqli_query($this->getDbc(),$query);
 		//if the company is deleted return true
 		if($result){
@@ -1059,6 +1233,9 @@ BUL.Building_Description_Amharic as Building_Description_Amharic,BUL.Parking_Are
 
 	}
 
+
+
+
     //check for sefer edit
  	function Street_Exists_For_Edit(Street $street,$Street_ID){
 
@@ -1257,9 +1434,35 @@ BUL.Building_Description_Amharic as Building_Description_Amharic,BUL.Parking_Are
 
 
 
+    //
+    function Get_Money_Exchange($id){
+        $query = "select * from money_exchange where id='$id'";
 
+        $result = mysqli_query($this->getDbc(),$query);
 
+        if($result){
+            return $result;
+        }
+        else{
+            return null;
+        }
 
+    }
+
+    function Update_Money_Exchange($id, $buying_price, $selling_price){
+        $query = "update money_exchange
+                   set buying = '$buying_price', selling = '$selling_price'
+                   where id = '$id'";
+
+        $result = mysqli_query($this->getDbc(),$query);
+
+        if($result){
+            return 1;
+        }
+        else{
+            return 0;
+        }
+    }
 
 
 }

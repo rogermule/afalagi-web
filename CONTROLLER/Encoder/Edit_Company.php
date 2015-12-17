@@ -365,76 +365,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
 			if(empty($errors)){
 
-//				if(!$with_building){
-//					//connected with place
-//					echo(" Region ID = $Region_ID");
-//					echo("<br/>");
-//					echo(" City ID = $City_ID");
-//					echo("<br/>");
-//					echo(" SubCity ID = $Sub_City_ID");
-//					echo("<br/>");
-//					echo(" Wereda ID = $Wereda_ID");
-//					echo("<br/>");
-//					echo(" Sefer ID = $Sefer_ID");
-//					echo("<br/>");
-//					echo(" Street ID = $Street_ID");
-//
-//					//connected with direction
-//					echo("<br/>");
-//					echo(" Direction = $Direction");
-//					echo("<br/>");
-//					echo(" Direction amh = $Direction_Amharic");
-//					echo("<br/>");
-//				}
-//				else if($with_building){
-//					//connected with building
-//					echo("<br/>");
-//					echo(" Building ID = $Building_ID");
-//					echo("<br/>");
-//					echo(" Building Floor = $Building_Floor");
-//				}
-// 			//connected with contact
-// 				echo(" POBOX = $POBOX");
-//				echo("<br/>");
-//				echo(" Phone = $Telephone");
-//				echo("<br/>");
-//				echo(" FAX = $FAX");
-//				echo("<br/>");
-//				echo(" Email = $Email");
-//				echo("<br/>");
-//				echo(" house number = $House_Number");
-//				echo("<br/>");
-//
-//				//connected with company
-//				echo(" Company Name = $Company_Name");
-//				echo("<br/>");
-//				echo(" Company Name amh = $Company_Name_Amharic");
-//				echo("<br/>");
-//
-//				//connected with company type and its category
-//				echo("Company type id = $Company_Type_ID");
-//				echo("<br/>");
-//				echo(" Category = $Category_ID");
-//				echo("<br/>");
-//
-//				//connected with company product and service
-//				echo(" Company product and Service = $Product_Description_And_Service");
-//				echo("<br/>");
-//				echo(" Company product and Service Amharic = $Product_Description_And_Service_Amharic");
-//				echo("<br/>");
-//
-//				//connected with about company
-//				echo(" Branch = $Branch");
-//				echo("<br/>");
-//				echo(" Branch Amh =$Branch_Amharic");
-//				echo("<br/>");
-//				echo(" Working Hours = $Working_Hours");
-//				echo("<br/>");
-//				echo(" Working Hours Amh = $Working_Hours_Amharic");
-//				echo("<br/>");
-//
-//				//connected with payment status
-//				echo("Registration Expiration Date =$Registration_Expiration_Date");
 
 				$Company_ID = $_POST["Company_ID"];
 				$About_Company_ID = $_POST["About_Company_ID"];
@@ -549,6 +479,51 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
 
 				}
+
+				//if the company has a specialization set edit the specialization of the company
+
+				//get the specialization from the company
+				//if this data is from a specialized companies update the company specialization
+				if(isset($_POST['with_specialization'])){
+
+					$specialization = array();
+
+					$Spec = $_POST['Specialization'];
+					$count = count($Spec);
+
+					if($count > 5){
+						for($i = 0; $i< 5; $i++){
+							$specialization[$i] = $Spec[$i];
+						}
+					}
+					else if($count < 5){
+						for($i = 0; $i <sizeof($Spec); $i++){
+							$specialization[$i] = $Spec[$i];
+						}
+						for($count;$count< 5;$count++ ){
+							$specialization[$count] = 'NULL';
+						}
+					}
+
+					else{
+						$specialization = array_fill(0,5,'NULL');
+					}
+
+					 //use the company ID to get the company Specialization ID
+					$ID = $encoder_con->Get_Company_Specialization_ID($Company_ID);
+
+					if($ID){
+						$edited = $encoder_con->Edit_Company_Specialization($ID,$specialization);
+					}
+					//update the company specialization with the ID
+
+
+				}
+
+
+
+
+
 
 				if($added){
 					encoder_redirect_success($Company_C);

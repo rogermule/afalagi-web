@@ -1,6 +1,7 @@
 
 .back_ground_addis{
-    background-image: url("../html/img/1.jpg");
+    background-image: url("../html/img/addis_night_view.jpg");
+
 }
 .border_raduis_0{
     border-radius: 0;
@@ -20,13 +21,39 @@
     background-color: #ff0000;
 
 }
+
+
 a.list-group-item.active > .badge, .nav-pills > .active > a > .badge {
     color: #ffffff;
     background-color: #ff0000;
 }
 .left_menu{
+
+
     padding: 20px 20px;
 }
+
+.menu{
+    height: 30px;
+}
+
+
+
+
+.list-group-item div{
+     padding: 0;
+ }
+
+.list-group-item p{
+    margin-bottom: 2px;
+}
+
+.list-group-item{
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+
 /*this will affect the navigations*/
 .navbar-default .navbar-collapse, .navbar-default .navbar-form {
     border-color: #E6E6E6;
@@ -104,7 +131,6 @@ h4, h5, h6 {
 .name{
     color: #269abc;
 }
-
 .list-group-item{
     transition: 0.1s;
 }
@@ -130,18 +156,19 @@ input[type="radio"], input[type="checkbox"] {
 
 
 .encoder_menu{
-    padding: 15px;
 
+    font-size: 12px;
 }
 a.list-group-item:hover,
 a.list-group-item:focus {
     text-decoration: none;
-    background-color: #519cf5;
+    background-color: #bebebe;
     color: white;
 }
 hr{
     border-color: #000 -moz-use-text-color -moz-use-text-color;
 }
+
 
 
 
@@ -151,15 +178,187 @@ hr{
 }
 
 
+.form_containers{
+
+}
+
 .list_header{
     background-color: #273027;
     color: #ffffff;
 }
 
+
 .table-hover > tbody > tr:hover > td,
 .table-hover > tbody > tr:hover > th {
-    background-color: #9e9e9e;
+    background-color: #b9b9b9;
     color: white;
+     transition: 0.1s;
+}
+
+.btn-success:hover,
+.btn-success:focus,
+.btn-success:active,
+.btn-success.active,
+.open .dropdown-toggle.btn-success {
+    color: #ffffff;
+    background-color: rgba(98, 206, 103, 0.79);
+    border-color: #4aac4a;
+}
+
+.not_filled{
+    color: red;
+}
+
+/*this will affect colors*/
+.red{
+    color: red;
+}
+
+.green{
+    color: green;
+}
+.gold_b{
+    background-color: #FFD700;
+    border: 1px solid #EAC607;
+}
+
+.gold{
+    color: gold;
+
+}
+
+.silver_b{
+    background-color: #c0c0c0;
+    border: 1px solid #aeaeae;
+}
+.silver{
+    color: #c0c0c0;
+}
+
+
+.bronze_b{
+    background-color: brown;
+    border: 1px solid #8a2323;
+}
+.bronze{
+    color: brown;
+}
+.indicator{
+    font-size: 20px;
+    padding: 2px 6px;
+}
+
+.m_p_0{
+    margin: 0px;
+    padding: 0px;
+}
+
+.clear_float{
+    float: none;
+    clear: both;
+}
+
+.f_17{
+    font-size: 17px;
+}
+
+.user_types{
+    padding: 8px;
+    margin-left: 10px;
+}
+
+.center_aligned{
+
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.text_right{
+    text-align: right;
+}
+.text_left{
+    text-align: left;
+}
+
+.search_query_con{
+    padding-top: 10px;
+}
+
+
+/*this will affect the generic serach result*/
+.result_con{
+    padding: 5px  10px;
+    border-bottom: 1px solid #e3e3e3;
+    cursor: pointer;
+    height: 80px;
+
+}
+.result_con:hover{
+    background-color: #fbfbfb;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.s_r_name{
+    transition: 0.2s;
+    color: rgba(13, 161, 13, 0.8);
+    font-size: 17px;
+}
+.s_r_name:hover{
+    color: rgba(0, 99, 241, 0.80);
+}
+
+.more{
+    font-size: 11px;
+}
+
+.service{
+    color: #949494;
+    font-size: 11px;
+}
+.breadcrumb {
+
+    margin-bottom: 10px;
+
+}
+.result_for{
+    font-size: 15px;
+    color: #c6c6c6;
+}
+
+.result_num{
+    font-size: 13px;
+    color: #385C9C;
+    margin-top: 10px;
+    margin-left: 90px;
+}
+
+/*this will affect the more on companies*/
+
+.single_info{
+    transition: all 0.3s ease 0s;
+    border-bottom: 1px solid #E7E7E7;
+    padding: 10px 0;
+    cursor: pointer;
+}
+.single_info:hover{
+   background-color: #f2f2f2;
+
+
+}
+.left_disc{
+    font-size: 12px;
+    color: #464AC8;
+    text-align: right;
+}
+
+label {
+
+
+    font-weight: 700;
+    font-size: 12px;
+    color: #3a728e;
+
 }
 
 

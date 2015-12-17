@@ -208,7 +208,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 					$Direction_Amharic =mysqli_real_escape_string($database,trim($_POST['Direction_Amharic']));
 				}
 
-
 			}
  			else if(($_POST['Building'] != 'NOT_FILLED')){
 
@@ -232,7 +231,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
 
 			}
-
 
 
 			//concerned with contact
@@ -301,6 +299,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 			else{
 				$Company_Type_ID =mysqli_real_escape_string($database,trim($_POST["Company_Type"]));
 			}
+
 
 
 			//3 get the company name
@@ -402,76 +401,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
 			if(empty($errors)){
 
-//				if(!$with_building){
-//					//connected with place
-//					echo(" Region ID = $Region_ID");
-//					echo("<br/>");
-//					echo(" City ID = $City_ID");
-//					echo("<br/>");
-//					echo(" SubCity ID = $Sub_City_ID");
-//					echo("<br/>");
-//					echo(" Wereda ID = $Wereda_ID");
-//					echo("<br/>");
-//					echo(" Sefer ID = $Sefer_ID");
-//					echo("<br/>");
-//					echo(" Street ID = $Street_ID");
-//
-//					//connected with direction
-//					echo("<br/>");
-//					echo(" Direction = $Direction");
-//					echo("<br/>");
-//					echo(" Direction amh = $Direction_Amharic");
-//					echo("<br/>");
-//				}
-//				else if($with_building){
-//					//connected with building
-//					echo("<br/>");
-//					echo(" Building ID = $Building_ID");
-//					echo("<br/>");
-//					echo(" Building Floor = $Building_Floor");
-//				}
-// 			//connected with contact
-// 				echo(" POBOX = $POBOX");
-//				echo("<br/>");
-//				echo(" Phone = $Telephone");
-//				echo("<br/>");
-//				echo(" FAX = $FAX");
-//				echo("<br/>");
-//				echo(" Email = $Email");
-//				echo("<br/>");
-//				echo(" house number = $House_Number");
-//				echo("<br/>");
-//
-//				//connected with company
-//				echo(" Company Name = $Company_Name");
-//				echo("<br/>");
-//				echo(" Company Name amh = $Company_Name_Amharic");
-//				echo("<br/>");
-//
-//				//connected with company type and its category
-//				echo("Company type id = $Company_Type_ID");
-//				echo("<br/>");
-//				echo(" Category = $Category_ID");
-//				echo("<br/>");
-//
-//				//connected with company product and service
-//				echo(" Company product and Service = $Product_Description_And_Service");
-//				echo("<br/>");
-//				echo(" Company product and Service Amharic = $Product_Description_And_Service_Amharic");
-//				echo("<br/>");
-//
-//				//connected with about company
-//				echo(" Branch = $Branch");
-//				echo("<br/>");
-//				echo(" Branch Amh =$Branch_Amharic");
-//				echo("<br/>");
-//				echo(" Working Hours = $Working_Hours");
-//				echo("<br/>");
-//				echo(" Working Hours Amh = $Working_Hours_Amharic");
-//				echo("<br/>");
-//
-//				//connected with payment status
-//				echo("Registration Expiration Date =$Registration_Expiration_Date");
 
 				$Company_C = new Company($Company_Name,$Company_Name_Amharic);
 				if($encoder_con->Company_Exists($Company_C)){

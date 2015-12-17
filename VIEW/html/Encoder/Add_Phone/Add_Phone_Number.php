@@ -15,7 +15,7 @@
 
 			<div class="panel panel-default">
 				<div class="panel-body text-center">
-					<h4>Add Short And Important Telephone NO</h4>
+					<h4>Add Short And Important Telephone NO (ስልክ መጨመርያ)</h4>
 
 				</div>
 			</div>
@@ -60,7 +60,7 @@
 
 				<div class="panel panel-primary">
 					<div class="panel-heading">
-						<h3 class="panel-title">About Event</h3>
+						<h3 class="panel-title">About the number</h3>
 					</div>
 					<div class="panel-body">
 						<form class="form-horizontal" role="form"

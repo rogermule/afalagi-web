@@ -141,10 +141,9 @@ $event = $encoder->Get_Events();
 </div>
 
 
-
-	<?php
-	include "Encoder_Footer.php";
-	?>
+<?php
+include "Encoder_Footer.php";
+?>
 
 
 
