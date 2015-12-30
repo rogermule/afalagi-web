@@ -471,7 +471,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 				else if(!$with_building){
 
 					$Place_C = new Place($Region_ID,$City_ID,$Sub_City_ID,$Wereda_ID,$Sefer_ID,$Street_ID);
-					$added = $encoder_con->Add_Company_With_Out_Building($Company_Name,$Company_Name_Amharic,$Category_ID,$Company_Type_ID,$Branch,$Branch_Amharic,$Working_Hours,$Working_Hours_Amharic,$Product_Description_And_Service,$Product_Description_And_Service_Amharic,$Registration_Expiration_Date,$Registration_Type,$Contact_C,$Place_C,$Direction,$Direction_Amharic);
+					$added = $encoder_con->Add_Company_With_Out_Building_With_Specialization($Company_Name,
+                        $Company_Name_Amharic,$Category_ID,$Company_Type_ID,$Branch,$Branch_Amharic,$Working_Hours,$Working_Hours_Amharic,$Product_Description_And_Service,$Product_Description_And_Service_Amharic,$Registration_Expiration_Date,$Registration_Type,$Contact_C,$Place_C,$Direction,$Direction_Amharic,$specialization);
 
 				}
 

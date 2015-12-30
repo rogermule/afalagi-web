@@ -23,6 +23,8 @@ class Sub_Sub_Encoder_Controller extends User_Controller{
  	}
 
 
+
+
 	//get category based on their general category
 	function GetGeneralCategory($general_category){
 		$query = "select * from category where General_Category = '$general_category'";
@@ -61,8 +63,178 @@ class Sub_Sub_Encoder_Controller extends User_Controller{
 		}
 	}
 
+    function Add_Company_With_Out_Building_With_Specialization(
+        $Company_Name,$Company_Name_Amharic,
+        $Category_ID,
+        $Company_Type_ID,
+        $Branch,$Branch_Amharic,$Working_Hours,$Working_Hours_Amharic,
+        $Product_Service,$Product_Service_Amharic,
+        $Registration_Expiration_Date,$Registration_Type,
+        Contact $Contact,
+        Place $place,
+        $Direction,
+        $Direction_Amharic,
+        $specialization
+    ){
+        $query = "START TRANSACTION";
 
-	//add companies with socialization and with building
+        mysqli_query($this->getDbc(),$query);
+
+        //First add the company
+        $query = "INSERT INTO Company (Name,Name_Amharic,Registration_Date) VALUES ('$Company_Name','$Company_Name_Amharic', Now())";
+
+
+
+        $result1 = mysqli_query($this->getDbc(),$query);
+
+
+
+        //get the company id
+        $added_company_id = $this->getDb()->get_last_id();
+
+        //add company category relation
+        $query = "INSERT INTO Company_Category (Company_ID,Category_ID) VALUES('$added_company_id','$Category_ID')";
+        $result2 = mysqli_query($this->getDbc(),$query);
+
+
+        //add company ownership
+        $query = "INSERT INTO Company_Ownership(Company_ID,Ownership_ID)VALUES('$added_company_id','$Company_Type_ID')";
+        $result3 = mysqli_query($this->getDbc(),$query);
+
+
+
+        //add about company
+        $query = "INSERT INTO About_Company(Company_ID,Branch,Branch_Amharic,Working_Hours,Working_Hours_Amharic) VALUES('$added_company_id','$Branch','$Branch_Amharic','$Working_Hours',
+'$Working_Hours_Amharic')";
+        $result4 = mysqli_query($this->getDbc(),$query);
+
+
+
+        //add company service
+        $query = "INSERT INTO company_product_service(Company_ID,Product_Service,Product_Service_Amharic) VALUES('$added_company_id','$Product_Service','$Product_Service_Amharic')";
+        $result5 = mysqli_query($this->getDbc(),$query);
+
+
+
+        //add payment status
+        $query = "INSERT INTO Payment_Status(Company_ID,Expiration_Date,Registration_Type) VALUES ('$added_company_id','$Registration_Expiration_Date','$Registration_Type')";
+        $result6 = mysqli_query($this->getDbc(),$query);
+
+
+
+        //increment address
+        $this->Increment_Address(Belong::COMPANY_WITH_OUT_BUILDING);
+
+        //get the address id
+        $added_address_id = $this->getDb()->get_last_id();
+
+        //add company address relationship
+        $query = "INSERT INTO Company_Address (Company_ID,Address_ID) VALUES('$added_company_id','$added_address_id')";
+        $result7 = mysqli_query($this->getDbc(),$query);
+
+
+
+
+        //add contact
+        $Email = $Contact->getEmail();
+        $House_No = $Contact->getHouseNo();
+        $FAX = $Contact->getFAX();
+        $POBOX = $Contact->getPOBOX();
+        $Telephone = $Contact->getTelephone();
+        $query = "INSERT INTO Contact (Email,House_No,FAX,POBOX,Telephone) VALUES('$Email','$House_No','$FAX','$POBOX','$Telephone')";
+        $result8 = mysqli_query($this->getDbc(),$query);
+
+
+
+        //get the contact id
+        $added_contact_id = $this->getDb()->get_last_id();
+
+
+        //add address contact relation
+
+        $query = "INSERT INTO Address_Contact (Address_ID,Contact_ID) VALUES('$added_address_id','$added_contact_id')";
+        $result9 = mysqli_query($this->getDbc(),$query);
+
+
+
+        //add place
+        $Region_ID = $place->getRegionID();
+        $City_ID =$place->getCityID();
+        $SubCity_ID =$place->getSubCityID();
+        $Wereda_ID = $place->getWeredaID();
+        $Sefer_ID =$place->getSeferID();
+        $Street_ID = $place->getStreetID();
+
+        $query = "INSERT INTO Place (Region,City,Sub_City,Wereda,Sefer,Street)
+ 				VALUE ('$Region_ID','$City_ID','$SubCity_ID','$Wereda_ID','$Sefer_ID','$Street_ID')";
+
+
+        $result10 = mysqli_query($this->getDbc(),$query);
+
+
+
+        //get the id of the added place
+        $added_place_id = $this->getDb()->get_last_id();
+
+
+        //add address place relation
+        $query = "INSERT INTO Address_Place (Address_ID,Place_ID) VALUES('$added_address_id','$added_place_id')";
+        $result11 = mysqli_query($this->getDbc(),$query);
+
+
+
+        //add direction
+        $query = "INSERT INTO Direction (Direction,Direction_Amharic) VALUES('$Direction','$Direction_Amharic')";
+        $result12 = mysqli_query($this->getDbc(),$query);
+
+        $added_direction_id = $this->getDb()->get_last_id();
+
+        //add address direction
+        $query = "INSERT INTO Address_Direction (Address_ID,Direction_ID) VALUES('$added_address_id','$added_direction_id')";
+
+        $result13 = mysqli_query($this->getDbc(),$query);
+
+        $query = "insert into  company_specialization(Company_ID,Spec_1,Spec_2,Spec_3,Spec_4,Spec_5) values('$added_company_id',$specialization[0],$specialization[1],$specialization[2],$specialization[3],
+$specialization[4])";
+        $result_spec = mysqli_query($this->getDbc(),$query);
+
+//        if($result_spec){
+//            echo("The specilization is added");
+//        }
+//        else{
+//            echo("The specliation is not added");
+//
+//            echo($specialization[0]);
+//            echo("-> ");
+//            echo($specialization[1]);
+//            echo("-> ");
+//            echo($specialization[2]);
+//            echo("-> ");
+//            echo($specialization[3]);
+//
+//        }
+
+
+
+        if($result1 and $result2 and $result3 and $result4 and $result5 and $result6 and $result7 and $result8 and
+            $result9 and $result10 and $result11 and $result12 and $result13 and $result_spec){
+
+            $query = "COMMIT";
+            mysqli_query($this->getDbc(),$query);
+            return TRUE;
+
+        }
+        else{
+            $query = "ROLLBACK";
+            mysqli_query($this->getDbc(),$query);
+            echo("Rolled back");
+            return FALSE;
+
+        }
+    }
+
+
+    //add companies with socialization and with building
 	function Add_Company_With_Building_With_Specialization(
 		$Company_Name,$Company_Name_Amharic,
 		$Category_ID,
@@ -157,7 +329,6 @@ $specialization[4])";
 			echo($specialization[2]);
 			echo("-> ");
 			echo($specialization[3]);
-
 
 		}
 

@@ -1449,9 +1449,9 @@ BUL.Building_Description_Amharic as Building_Description_Amharic,BUL.Parking_Are
 
     }
 
-    function Update_Money_Exchange($id, $buying_price, $selling_price){
+    function Update_Money_Exchange($id, $buying_price, $selling_price,$date){
         $query = "update money_exchange
-                   set buying = '$buying_price', selling = '$selling_price'
+                   set buying = '$buying_price', selling = '$selling_price' , pubDate = '$date'
                    where id = '$id'";
 
         $result = mysqli_query($this->getDbc(),$query);
@@ -1463,6 +1463,26 @@ BUL.Building_Description_Amharic as Building_Description_Amharic,BUL.Parking_Are
             return 0;
         }
     }
+
+    function Get_Money_Exchange_Date(){
+        $date = "";
+        $query = "select * from money_exchange where id='1'";
+
+        $result = mysqli_query($this->getDbc(),$query);
+
+        if($result){
+            while($results = mysqli_fetch_array($result,MYSQL_ASSOC)){
+                $date = $results['pubDate'];
+            }
+            return $date;
+        }
+        else{
+            $date = "Unknown";
+            return $date;
+        }
+
+    }
+
 
 
 }

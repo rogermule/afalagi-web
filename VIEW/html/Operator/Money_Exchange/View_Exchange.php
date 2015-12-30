@@ -35,7 +35,7 @@ $selling = "";
 
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <h4 class="panel-title text-center">የአሜሪካ ዶላር</h4>
+                        <h4 class="panel-title text-center">የአሜሪካ ዶላር </h4>
                         <?php
                             while($results = mysqli_fetch_array($dollar,MYSQL_ASSOC)){
                                 $buying = $results['buying'];
@@ -46,11 +46,11 @@ $selling = "";
                     <div class="panel-body">
                         <div class="single_info row">
                             <div class="col-sm-3 left_disc">ግዢ</div>
-                            <div class="col-sm-9 float_left"><?php echo $buying; ?></div>
+                            <div class="col-sm-9 float_left"><?php echo $buying  . " ብር"; ?></div>
                         </div>
                         <div class="single_info row">
                             <div class="col-sm-3 left_disc">ሽያጭ</div>
-                            <div class="col-sm-9 float_left"><?php echo $selling ?></div>
+                            <div class="col-sm-9 float_left"><?php echo $selling . " ብር" ?></div>
                         </div>
                     </div>
                 </div>
@@ -71,11 +71,11 @@ $selling = "";
                     <div class="panel-body">
                         <div class="single_info row">
                             <div class="col-sm-3 left_disc">ግዢ</div>
-                            <div class="col-sm-9 float_left"><?php echo $buying; ?></div>
+                            <div class="col-sm-9 float_left"><?php echo $buying . " ብር"; ?></div>
                         </div>
                         <div class="single_info row">
                             <div class="col-sm-3 left_disc">ሽያጭ</div>
-                            <div class="col-sm-9 float_left"><?php echo $selling ?></div>
+                            <div class="col-sm-9 float_left"><?php echo $selling . " ብር"; ?></div>
                         </div>
                     </div>
                 </div>
@@ -101,11 +101,11 @@ $selling = "";
                         <div class="panel-body">
                             <div class="single_info row">
                                 <div class="col-sm-3 left_disc">ግዢ</div>
-                                <div class="col-sm-9 float_left"><?php echo $buying; ?></div>
+                                <div class="col-sm-9 float_left"><?php echo $buying . " ብር"; ?></div>
                             </div>
                             <div class="single_info row">
                                 <div class="col-sm-3 left_disc">ሽያጭ</div>
-                                <div class="col-sm-9 float_left"><?php echo $selling ?></div>
+                                <div class="col-sm-9 float_left"><?php echo $selling . " ብር"; ?></div>
                             </div>
                         </div>
                     </div>
@@ -126,11 +126,11 @@ $selling = "";
                         <div class="panel-body">
                             <div class="single_info row">
                                 <div class="col-sm-3 left_disc">ግዢ</div>
-                                <div class="col-sm-9 float_left"><?php echo $buying; ?></div>
+                                <div class="col-sm-9 float_left"><?php echo $buying . " ብር"; ?></div>
                             </div>
                             <div class="single_info row">
                                 <div class="col-sm-3 left_disc">ሽያጭ</div>
-                                <div class="col-sm-9 float_left"><?php echo $selling ?></div>
+                                <div class="col-sm-9 float_left"><?php echo $selling . " ብር" ?></div>
                             </div>
                         </div>
                     </div>
@@ -157,11 +157,11 @@ $selling = "";
                     <div class="panel-body">
                         <div class="single_info row">
                             <div class="col-sm-3 left_disc">ግዢ</div>
-                            <div class="col-sm-9 float_left"><?php echo $buying; ?></div>
+                            <div class="col-sm-9 float_left"><?php echo $buying . " ብር"; ?></div>
                         </div>
                         <div class="single_info row">
                             <div class="col-sm-3 left_disc">ሽያጭ</div>
-                            <div class="col-sm-9 float_left"><?php echo $selling ?></div>
+                            <div class="col-sm-9 float_left"><?php echo $selling . " ብር" ?></div>
                         </div>
                     </div>
                 </div>
@@ -182,11 +182,11 @@ $selling = "";
                     <div class="panel-body">
                         <div class="single_info row">
                             <div class="col-sm-3 left_disc">ግዢ</div>
-                            <div class="col-sm-9 float_left"><?php echo $buying; ?></div>
+                            <div class="col-sm-9 float_left"><?php echo $buying . " ብር"; ?></div>
                         </div>
                         <div class="single_info row">
                             <div class="col-sm-3 left_disc">ሽያጭ</div>
-                            <div class="col-sm-9 float_left"><?php echo $selling ?></div>
+                            <div class="col-sm-9 float_left"><?php echo $selling . " ብር"; ?></div>
                         </div>
                     </div>
                 </div>
@@ -211,11 +211,11 @@ $selling = "";
                         <div class="panel-body">
                             <div class="single_info row">
                                 <div class="col-sm-3 left_disc">ግዢ</div>
-                                <div class="col-sm-9 float_left"><?php echo $buying; ?></div>
+                                <div class="col-sm-9 float_left"><?php echo $buying . " ብር"; ?></div>
                             </div>
                             <div class="single_info row">
                                 <div class="col-sm-3 left_disc">ሽያጭ</div>
-                                <div class="col-sm-9 float_left"><?php echo $selling ?></div>
+                                <div class="col-sm-9 float_left"><?php echo $selling . " ብር"; ?></div>
                             </div>
                         </div>
                     </div>
@@ -236,11 +236,11 @@ $selling = "";
                         <div class="panel-body">
                             <div class="single_info row">
                                 <div class="col-sm-3 left_disc">ግዢ</div>
-                                <div class="col-sm-9 float_left"><?php echo $buying; ?></div>
+                                <div class="col-sm-9 float_left"><?php echo $buying . " ብር"; ?></div>
                             </div>
                             <div class="single_info row">
                                 <div class="col-sm-3 left_disc">ሽያጭ</div>
-                                <div class="col-sm-9 float_left"><?php echo $selling ?></div>
+                                <div class="col-sm-9 float_left"><?php echo $selling . " ብር"; ?></div>
                             </div>
                         </div>
                     </div>
@@ -267,11 +267,11 @@ $selling = "";
                         <div class="panel-body">
                             <div class="single_info row">
                                 <div class="col-sm-3 left_disc">ግዢ</div>
-                                <div class="col-sm-9 float_left"><?php echo $buying; ?></div>
+                                <div class="col-sm-9 float_left"><?php echo $buying . " ብር"; ?></div>
                             </div>
                             <div class="single_info row">
                                 <div class="col-sm-3 left_disc">ሽያጭ</div>
-                                <div class="col-sm-9 float_left"><?php echo $selling ?></div>
+                                <div class="col-sm-9 float_left"><?php echo $selling . " ብር" ?></div>
                             </div>
                         </div>
                     </div>

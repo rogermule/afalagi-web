@@ -47,6 +47,7 @@ else{
         $item_title=$x->item($i)->getElementsByTagName('title')->item(0)->childNodes->item(0)->nodeValue;
         $item_link=$x->item($i)->getElementsByTagName('link')->item(0)->childNodes->item(0)->nodeValue;
         $item_desc=$x->item($i)->getElementsByTagName('description')->item(0)->childNodes->item(0)->nodeValue;
+        $item_date = $x->item($i)->getElementsByTagName('pubDate')->item(0)->childNodes->item(0)->nodeValue;
 
         //US DOLLAR
         if($item_title == "USD"){
@@ -59,7 +60,7 @@ else{
             $buying = substr($buying_sub_string,$price_delimeter + 2);
             $selling = substr($selling_sub_string,$price_delimeter + 2);
 
-            $updater->Update_Money_Exchange(1,$buying,$selling);
+            $updater->Update_Money_Exchange(1,$buying,$selling,$item_date);
 
         }
         //BRITISH POUND
@@ -73,7 +74,7 @@ else{
             $buying = substr($buying_sub_string,$price_delimeter + 2);
             $selling = substr($selling_sub_string,$price_delimeter + 2);
 
-            $updater->Update_Money_Exchange(2,$buying,$selling);
+            $updater->Update_Money_Exchange(2,$buying,$selling,$item_date);
 
 
         }
@@ -88,7 +89,7 @@ else{
             $buying = substr($buying_sub_string,$price_delimeter + 2);
             $selling = substr($selling_sub_string,$price_delimeter + 2);
 
-            $updater->Update_Money_Exchange(9,$buying,$selling);
+            $updater->Update_Money_Exchange(9,$buying,$selling,$item_date);
 
         }
         //United Arab Emirates Dirham
@@ -102,7 +103,7 @@ else{
             $buying = substr($buying_sub_string,$price_delimeter + 2);
             $selling = substr($selling_sub_string,$price_delimeter + 2);
 
-            $updater->Update_Money_Exchange(3,$buying,$selling);
+            $updater->Update_Money_Exchange(3,$buying,$selling,$item_date);
 
 
         }
@@ -118,7 +119,7 @@ else{
             $buying = substr($buying_sub_string,$price_delimeter + 2);
             $selling = substr($selling_sub_string,$price_delimeter + 2);
 
-            $updater->Update_Money_Exchange(4,$buying,$selling);
+            $updater->Update_Money_Exchange(4,$buying,$selling,$item_date);
 
 
         }
@@ -133,7 +134,7 @@ else{
             $buying = substr($buying_sub_string,$price_delimeter + 2);
             $selling = substr($selling_sub_string,$price_delimeter + 2);
 
-            $updater->Update_Money_Exchange(5,$buying,$selling);
+            $updater->Update_Money_Exchange(5,$buying,$selling,$item_date);
 
         }
         //Japanese Yen
@@ -147,7 +148,7 @@ else{
             $buying = substr($buying_sub_string,$price_delimeter + 2);
             $selling = substr($selling_sub_string,$price_delimeter + 2);
 
-            $updater->Update_Money_Exchange(6,$buying,$selling);
+            $updater->Update_Money_Exchange(6,$buying,$selling,$item_date);
 
 
         }
@@ -162,7 +163,7 @@ else{
             $buying = substr($buying_sub_string,$price_delimeter + 2);
             $selling = substr($selling_sub_string,$price_delimeter + 2);
 
-            $updater->Update_Money_Exchange(7,$buying,$selling);
+            $updater->Update_Money_Exchange(7,$buying,$selling,$item_date);
 
         }
         //CHINESE YUAN
@@ -176,7 +177,7 @@ else{
             $buying = substr($buying_sub_string,$price_delimeter + 2);
             $selling = substr($selling_sub_string,$price_delimeter + 2);
 
-            $updater->Update_Money_Exchange(8,$buying,$selling);
+            $updater->Update_Money_Exchange(8,$buying,$selling,$item_date);
 
         }
 

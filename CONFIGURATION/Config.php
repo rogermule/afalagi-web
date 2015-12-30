@@ -29,8 +29,8 @@ if( stristr($_SERVER['HTTP_HOST'],"local")|| (substr($_SERVER['HTTP_HOST'],0,7) 
 	// BASE URI is the absolute path to the fo
 if($local){
 	$debug  = True;
-	define('BASE_URI','http://192.168.137.1/AFALAGI/');
-	define('BASE_URL','http://192.168.137.1/AFALAGI/');
+	define('BASE_URI','C:/xampp/htdocs/AFALAGI/');
+	define('BASE_URL','http://localhost/AFALAGI/');	//update this if you are going global
 	define('DB','C:/xampp/htdocs/AFALAGI/MODEL/DataBase.php');
 
 }

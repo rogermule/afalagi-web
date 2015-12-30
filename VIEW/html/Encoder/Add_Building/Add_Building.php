@@ -236,7 +236,7 @@ include "Includeables.php";
 								while($Str = mysqli_fetch_array($Street,MYSQLI_ASSOC)){
 									$Street_ID = $Str['ID'];
 									$Street_Name = $Str['Name'];
-									$Street_Name_Amharic = $str['Name_Amharic'];
+									$Street_Name_Amharic = $Str['Name_Amharic'];
 									?>
 									<option value="<?php echo($Street_ID);?>"><?php echo($Street_Name." (".$Street_Name_Amharic." )");?></option>
 								<?php
